@@ -250,7 +250,16 @@ for (int i = 0; i < KazalarList.length; i++) {
 
 
     return Scaffold(
-     
+      appBar: AppBar(
+    
+        backgroundColor: Colors.white,
+        centerTitle: true,
+        title: 
+        
+     Center(child:  Image.asset("assets/baslik.png",fit: BoxFit.contain
+     ,),) 
+      
+     ),
       body: Center(
         child: CustomScrollView(
 
@@ -261,7 +270,7 @@ for (int i = 0; i < KazalarList.length; i++) {
       child: Center(child:  Container(
         padding: EdgeInsets.all(6),
         margin: EdgeInsets.fromLTRB(5, 50, 5, 0),
-        height: 100,
+        height: 50,
 
         child: Text("Kazalar",style: 
         TextStyle(

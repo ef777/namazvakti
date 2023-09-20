@@ -192,7 +192,7 @@ final String aciklama;
 
 height: size.height * 0.10,
 decoration: BoxDecoration(
-  color: Colors.white,
+  color: Colors.transparent,
   borderRadius: BorderRadius.circular(20)
 ),
 padding: EdgeInsets.all(0.0),
@@ -220,6 +220,7 @@ Container(
       
     
   decoration: BoxDecoration(
+    color:Colors.red,
     borderRadius: BorderRadius.only(
       topLeft: Radius.circular(15),
       bottomLeft: Radius.circular(15),
@@ -259,7 +260,7 @@ Expanded(
     child: Container(
       padding: EdgeInsets.all(8),
       margin: EdgeInsets.fromLTRB(size.width*0.0 
-      , size.height*0.018 , size.width*0.05 , size.height*0.018 ),
+      , size.height*0.013 , size.width*0.04 , size.height*0.013 ),
           decoration: BoxDecoration(
   color: Colors.white,
  borderRadius: BorderRadius.only(
@@ -416,36 +417,40 @@ dualar.where((element) => element['d_id'] == id);
                mainAxisAlignment: MainAxisAlignment.center,
                children: [
                 SizedBox(height: 25,),
-  Container(
-    
-    margin: EdgeInsets.fromLTRB(width*0.05 , height * 0.010, width*0.05, height * 0.010),
-    child:Text('${secilidua.first['title']}',style: TextStyle(
-          fontSize: 14,
-          fontWeight: FontWeight.bold,
-                 ))),             Row(
+           Row(
                mainAxisAlignment: MainAxisAlignment.spaceBetween,
                children: [  
          RoundIconButton(
-  size: 30,
+  size: 20,
   onPressed: () {
     // düğmeye basıldığında çalışacak kod
   }, 
   iconAsset: 'assets/play.svg' 
 ), RoundIconButton(
-  size: 30,
+  size: 20,
   onPressed: () {
     // düğmeye basıldığında çalışacak kod
   }, 
+  
   iconAsset: 'assets/share.svg' 
 ),
+
+ Container(
+    
+    margin: EdgeInsets.fromLTRB(width*0.03 , height * 0.010, width*0.03, height * 0.010),
+    child:Text('${secilidua.first['title']}',style: TextStyle(
+          fontSize: 13,
+          fontWeight: FontWeight.bold,
+                 ))),   
+
                  RoundIconButton(
-  size: 30,
+  size: 20,
   onPressed: () {
     // düğmeye basıldığında çalışacak kod
   }, 
   iconAsset: null, text: "A+",
 ),   RoundIconButton(
-  size: 30,
+  size: 20,
   onPressed: () {
     // düğmeye basıldığında çalışacak kod
   }, 
@@ -610,8 +615,8 @@ class RoundIconButton extends StatelessWidget {
       IconButton(
         icon: SvgPicture.asset(
           iconAsset!,
-          width: 13,
-          height: 13,
+          width: 20,
+          height: 20,
           color: Colors.white,
         ),
         onPressed: onPressed,

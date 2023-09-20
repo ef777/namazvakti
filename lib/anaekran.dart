@@ -5,9 +5,11 @@ import 'dart:ui';
 
 import 'package:flutter/material.dart';
  import 'package:flutter/services.dart';
+import 'package:flutter_svg/flutter_svg.dart';
  import 'package:get/get.dart';
  import 'package:flutter/material.dart';
 import 'package:flutter/painting.dart';
+import 'package:namazvakti/config.dart';
 import 'dart:math';
 
  import 'wrapper.dart';
@@ -40,6 +42,7 @@ class _AnaEkState extends State<AnaEk> {
   int _currentColorIndex = 0; 
  // Index of the current color
   late Timer _timer; 
+
  // Timer for changing colors
  late DateTime currentTime;
  var vakitstring= "Öğlenin Çıkmasına";
@@ -114,7 +117,7 @@ double normalizedValue = progressValue / 100.0;
   SliverToBoxAdapter(
       child: Container(
          padding: EdgeInsets.all(10.0),
-          height: size.height * 0.18,
+          height: size.height * 0.195,
           width: size.width * 0.8,
          margin: EdgeInsets.fromLTRB(
               size.width * 0.05, size.width * 0.06, size.width * 0.05, size.width * 0.06),
@@ -140,7 +143,7 @@ double normalizedValue = progressValue / 100.0;
           color: Colors.white,
         ),
       )  ]),
-SizedBox(height: 10),
+SizedBox(height: 5),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
@@ -161,17 +164,19 @@ SizedBox(height: 10),
 
         children: [
           Column(
-                  crossAxisAlignment: CrossAxisAlignment.center,
+                  crossAxisAlignment: CrossAxisAlignment.start,
               mainAxisAlignment: MainAxisAlignment.start,
             children: [
               Text(
                 hours.toString().padLeft(2, '0') + " : ",
                 style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold, color: Colors.white),
               ),
-              Text(
+              Center(child: Text(
+              
+              textAlign:TextAlign.center, 
                 "saat",
                 style: TextStyle(fontSize: 11, color: Colors.white),
-              ),
+              )),
             ],
           ),
         
@@ -285,7 +290,7 @@ TirtikliLinearProgressIndicator(progressValue: 30),
           SliverToBoxAdapter(
       child: Container(
           decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(20),
+            borderRadius: BorderRadius.circular(10),
             color: Colors.white.withOpacity(0.8),
             boxShadow: [
               BoxShadow(
@@ -322,7 +327,7 @@ TirtikliLinearProgressIndicator(progressValue: 30),
           SliverToBoxAdapter(
       child: Container(
           decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(20),
+            borderRadius: BorderRadius.circular(10),
             color: Colors.white.withOpacity(0.8),
             boxShadow: [
               BoxShadow(
@@ -376,7 +381,7 @@ TirtikliLinearProgressIndicator(progressValue: 30),
      SliverToBoxAdapter(  
       child: Container(
           decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(20),
+            borderRadius: BorderRadius.circular(10),
             color: Colors.transparent,
             boxShadow: [
               BoxShadow(
@@ -417,7 +422,7 @@ TirtikliLinearProgressIndicator(progressValue: 30),
   SliverToBoxAdapter(
       child: Container(
           decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(20),
+            borderRadius: BorderRadius.circular(10),
             color: Colors.transparent,
             boxShadow: [
               BoxShadow(
@@ -476,153 +481,39 @@ child:                      Row(
 
       )),
 
+//sss
+ SliverToBoxAdapter(
+      child:  HadisKarti( renk : [   Color(0xFF21D884).withOpacity(1),
+                Color(0xFF005510).withOpacity(1) ],
+               baslik: "Vakit Hadisi",icerik: "Resulullah (sav) buyurdular ki: “İnsanların en hayırlısı, ailesine karşı en hayırlı olanıdır. Ben de aileme karşı en hayırlı olanınızım.” (Tirmizi, Menakıb, 67)",
+
+ 
+      
+       
+      
+      )),
 
  SliverToBoxAdapter(
-      child: Container(
-decoration: BoxDecoration(
-  color: Colors.transparent,
-  borderRadius: BorderRadius.circular(20)
-),
-padding: EdgeInsets.all(0.0),
-        margin: EdgeInsets.fromLTRB(
-              size.width * 0.03, size.width * 0.005, size.width * 0.03, size.width * 0.005),
-        height: size.height * 0.20,
-child:
-Stack(children: [
+      child:  HadisKarti( renk : [   Color(0xFF21D884).withOpacity(1),
+                Color(0xFF005510).withOpacity(1) ],
+               baslik: "Vakit Hadisi",icerik: "Resulullah (sav) buyurdular ki: “İnsanların en hayırlısı, ailesine karşı en hayırlı olanıdır. Ben de aileme karşı en hayırlı olanınızım.” (Tirmizi, Menakıb, 67)",
 
-
-Align(
- alignment: Alignment.center,
-  
-  child:
-Container(
-  decoration: BoxDecoration(
-  color: Colors.transparent,
-  borderRadius: BorderRadius.circular(20)
-),
-  child:
- Row(children:[ 
-
-  Expanded(
-    flex: 1,
-    child: Container(
+ 
       
-      decoration: BoxDecoration(
-         gradient: LinearGradient(
-              colors: [
-                Color(0xFF21D884).withOpacity(1),
-                Color(0xFF005510).withOpacity(1),
-               
-              ],
-         
-            ),
-  color: Colors.white,
-borderRadius: BorderRadius.only(
-      topLeft: Radius.circular(20),
-      bottomLeft: Radius.circular(20),
-    ),
-),
-      height: size.height * 0.20,
-
-      child: Image .asset("assets/aicon.png"),
-    ),
-
-
-
-  ),
-Expanded(
-  flex: 3,
-    child: Container(
-      padding: EdgeInsets.all(4),
-          decoration: BoxDecoration(
-  color: Colors.white,
- borderRadius: BorderRadius.only(
-      topRight: Radius.circular(20),
-      bottomRight: Radius.circular(20),
-    ),
-),
-      height: size.height * 0.22,
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.start,
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-        Container(
-                            padding: EdgeInsets.fromLTRB(1, 4, 1, 1),
-
-          child:Text("Vaktin Hadisi",style: TextStyle(
-          fontSize: 16,
-          fontWeight: FontWeight.bold,
-          color: Colors.black,
-        ))),
-        Container(
-                            padding: EdgeInsets.fromLTRB(1, 2, 1, 1),
-child:
-       SizedBox(
-        height: size.height * 0.085,
-        child: SingleChildScrollView(
-          child: Text("Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud "),
-        )
-         ) ),
-          Align(
-            
-            alignment: Alignment.bottomLeft,
-            
-            child: Container(child:  TextButton(
-              
-            child: Text("Devamını Oku",style: TextStyle(
-          fontSize: 12,
-          fontWeight: FontWeight.bold,
-          color: Colors.blue,
-        )),
-            
-         
-            onPressed: (){
-
-            },)))
-            
-            
-
-    ],),
-    ),
-
-
-
-  )
-
-
-  ]))
+       
       
-      
-  ) ,Align(
- alignment: Alignment.topRight,
-  
-  child:
-  Container(
-          height: size.height * 0.05,
-          width: size.width * 0.08,
-          
-  padding: EdgeInsets.all(2),
-  margin: EdgeInsets.fromLTRB(0, 6,6, 0),
-          decoration: BoxDecoration(
-            gradient: LinearGradient(
-              colors: [
-                Color(0xFF21367F),
-                Color(0xFF194D91),
-                Color(0xFF1590C1),
-                Color(0xFF0298CA),
-              ],
-              begin: Alignment.topCenter,
-              end: Alignment.bottomCenter,
-            ),
-            borderRadius: BorderRadius.circular(10),
-          ),
-          child: Center(child:
-Container(child:
-Icon(Icons.share,color: Colors.white,size: 25,)))),
-  )
+      )), SliverToBoxAdapter(
+      child:  HadisKarti( renk : [   Color(0xFF21D884).withOpacity(1),
+                Color(0xFF005510).withOpacity(1) ],
+               baslik: "Vakit Hadisi",icerik: "Resulullah (sav) buyurdular ki: “İnsanların en hayırlısı, ailesine karşı en hayırlı olanıdır. Ben de aileme karşı en hayırlı olanınızım.” (Tirmizi, Menakıb, 67)",
 
-])),
-      ),
+ 
+      
+       
+      
+      )),
+
+
      SliverToBoxAdapter(
       child: Container(
         alignment: Alignment.center,
@@ -642,8 +533,8 @@ Icon(Icons.share,color: Colors.white,size: 25,)))),
       child: Container(
         height: size.height * 0.17,
         decoration: BoxDecoration(
-  color:  Colors.red.withOpacity(0.2), 
-  borderRadius: BorderRadius.circular(20)
+  color:  Colors.red.withOpacity(0), 
+  borderRadius: BorderRadius.circular(10)
 ),
 padding: EdgeInsets.all(0.0),
         margin: EdgeInsets.fromLTRB(
@@ -651,7 +542,13 @@ padding: EdgeInsets.all(0.0),
 
   child:
          Stack(children: [
-        
+        Align(
+  alignment: Alignment.topLeft,
+child: Container(
+  padding: EdgeInsets.all(1),
+  child: Image .asset("assets/er.png",width: 100,height: 100,fit: BoxFit.cover,),
+
+          )),
    
    Align(
   alignment: Alignment.center,
@@ -662,28 +559,36 @@ padding: EdgeInsets.all(0.0),
         height: 100,
         decoration: BoxDecoration(
   color:   Color(0xFFFF702C). withOpacity(0.2), 
-  borderRadius: BorderRadius.circular(20)
+  borderRadius: BorderRadius.circular(10)
 ),
 padding: EdgeInsets.all(0.0),
         margin: EdgeInsets.fromLTRB(
               size.width * 0.03, size.width * 0.005, size.width * 0.03, size.width * 0.005),
    )),  Align(
-  alignment: Alignment.topLeft,
-child: Container(
-  padding: EdgeInsets.all(20),
-  child: Image .asset("assets/er.png"),
-
-          )),Align(
   alignment: Alignment.center,
-child: Container(child: Text("Erkek İsim: AHMET",style: TextStyle(
+child: Container(child:
+Column(
+  mainAxisAlignment: MainAxisAlignment.center,
+  crossAxisAlignment: CrossAxisAlignment.center,
+  children: [
+
+Text("Erkek İsim: AHMET",style: TextStyle(
   
- ),
-)
-          )),
-    ])  )),
+)),
+ Text("Çok övülmüş , methedilmiş",style: TextStyle( 
+   fontSize: 12,
+   color: Colors.black.withOpacity(0.5)
+ 
+  ),
+  ), ])))
+          ]),
+      )),
+
+ 
+       
             SliverToBoxAdapter(
       child: Container(
-        height: 500,
+        height: 200,
 
       ))
           
@@ -696,38 +601,78 @@ child: Container(child: Text("Erkek İsim: AHMET",style: TextStyle(
 
          
            );
-    }
-}class AyGunleriWidget extends StatelessWidget {
+    }}
 
+
+ 
+class AyGunleriWidget extends StatefulWidget {
+    AyGunleriWidget({Key? key,   
+
+    }) : super(key: key);
+    
+  
   @override
+
+  State<AyGunleriWidget> createState() => _AyGunleriWidgetState();
+}
+
+class _AyGunleriWidgetState extends State<AyGunleriWidget> {
+  @override
+    
+
+var  isSelected = false;
   Widget build(BuildContext context) {
            var size = MediaQuery.of(context).size;
-
+ 
     DateTime now = DateTime.now();
     int ay = now.month;
     int yil = now.year;
     int gunSayisi = DateTime(yil, ay + 1, 0).day;
-
+   
     List<Widget> gunListesi = [];
-
+    
     for (int gun = 1; gun <= gunSayisi; gun++) {
+
       gunListesi.add(
+        GestureDetector(
+          onTap: () {
+            print('$gun');
+           setState(() {
+        AppConfig.selectedaygunIndex =  gun;   });
+
+          
+          },
+          child:
         Container(
           height: size.height * 0.050,
           width: size.width * 0.050,
           padding: EdgeInsets.all(2),
           margin: EdgeInsets.fromLTRB(10, 10, 10, 10),
           decoration: BoxDecoration(
-            gradient: LinearGradient(
+            gradient:
+             AppConfig.selectedaygunIndex == gun ?
+            
+             LinearGradient(
               colors: [
-                Color(0xFF21367F),
+                Color(0xFFffffff),
                 Color(0xFF194D91),
                 Color(0xFF1590C1),
                 Color(0xFF0298CA),
               ],
               begin: Alignment.topCenter,
               end: Alignment.bottomCenter,
-            ),
+            ):
+             LinearGradient(
+              colors: [
+                Color.fromARGB(255, 255, 255, 255),
+                Color.fromARGB(255, 240, 241, 242),
+            
+              ],
+              begin: Alignment.topCenter,
+              end: Alignment.bottomCenter,
+            )
+            
+            ,
             borderRadius: BorderRadius.circular(10),
           ),
           child: Column(
@@ -738,20 +683,20 @@ child: Container(child: Text("Erkek İsim: AHMET",style: TextStyle(
                 style: TextStyle(
                   fontSize: 18,
                   fontWeight: FontWeight.bold,
-                  color: Colors.white,
+                  color:  AppConfig.selectedaygunIndex == gun ?         Colors.white        : Color(0xFF004eff)  ,
                 ),
               ),
               Text(
                 DateFormat('MMMM', 'tr_TR').format(now), // Ayı türkçe olarak yazdırıyoruz
                 style: TextStyle(
                   fontSize: 12,
-                  color: Colors.white,
+                  color:  AppConfig.selectedaygunIndex == gun ?   Colors.white : Colors.black ,
                 ),
               ),
             ],
           ),
         ),
-      );
+       ) );
     }
 
     String ayAdi = DateFormat('MMMM y', 'tr_TR').format(now);    
@@ -769,7 +714,6 @@ return   GridView.count(
 class EzanVakitleri extends StatelessWidget {
       
 
-var  selected_index=0;
   @override
   Widget build(BuildContext context) {
            var size = MediaQuery.of(context).size;
@@ -819,7 +763,7 @@ child:
        return GestureDetector(
                 onTap: () {
                   setState(() {
-                    selected_index=i;
+                    AppConfig.selectedEzanvakti=i;
                     print("tikladin");
                     
                   });
@@ -842,7 +786,7 @@ child:
               ],
             gradient:
             
-                selected_index==i ?  
+                AppConfig.selectedEzanvakti ==i ?  
              LinearGradient(
               colors:
               
@@ -1202,4 +1146,170 @@ class TirtikliPainter extends CustomPainter {
   bool shouldRepaint(CustomPainter oldDelegate) {
     return true;
   }
+}
+
+
+class HadisKarti extends StatelessWidget {
+
+  // İçerik bilgileri için değişkenler tanımlayalım
+  final String baslik;
+  final String icerik;
+  final List<Color> renk;
+
+   HadisKarti({
+    required this.baslik,
+    required this.renk,
+    required this.icerik,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+     var size = MediaQuery.of(context).size;
+   var  height = size.height;
+   var width = size.width;
+    // Buraya kod parçasını yapıştıralım
+     return Container(
+decoration: BoxDecoration(
+  color: Colors.transparent,
+  borderRadius: BorderRadius.circular(10)
+),
+padding: EdgeInsets.all(size.width * 0.01),
+        margin: EdgeInsets.fromLTRB(
+              size.width * 0.03, size.width * 0.010, size.width * 0.03, size.width * 0.005),
+        height: size.height * 0.20,
+child:
+Stack(children: [
+
+
+Align(
+ alignment: Alignment.center,
+  
+  child:
+Container(
+  decoration: BoxDecoration(
+  color: Colors.transparent,
+  borderRadius: BorderRadius.circular(10)
+),
+  child:
+ Row(children:[ 
+
+  Expanded(
+    flex: 1,
+    child: Container(
+      
+      decoration: BoxDecoration(
+         gradient: LinearGradient(
+              colors: 
+               renk
+               
+              
+         
+            ),
+  color: Colors.white,
+borderRadius: BorderRadius.only(
+      topLeft: Radius.circular(20),
+      bottomLeft: Radius.circular(20),
+    ),
+),
+      height: size.height * 0.20,
+
+      child: Image .asset("assets/aicon.png"),
+    ),
+
+
+
+  ),
+Expanded(
+  flex: 3,
+    child: Container(
+      padding: EdgeInsets.all(4),
+          decoration: BoxDecoration(
+  color: Colors.white,
+ borderRadius: BorderRadius.only(
+      topRight: Radius.circular(20),
+      bottomRight: Radius.circular(20),
+    ),
+),
+      height: size.height * 0.22,
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.start,
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+        Container(
+                            padding: EdgeInsets.fromLTRB(1, 4, 1, 1),
+
+          child:Text("$baslik",style: TextStyle(
+          fontSize: 16,
+          fontWeight: FontWeight.bold,
+          color: Colors.black,
+        ))),
+        Container(
+                            padding: EdgeInsets.fromLTRB(1, 2, 1, 1),
+child:
+       SizedBox(
+        height: size.height * 0.095,
+        child: SingleChildScrollView(
+          child: Text(" $icerik")))), 
+          
+          
+          Align(
+            
+            alignment: Alignment.bottomLeft,
+            
+            child: Container(
+              height: size.height * 0.034,
+              child:  TextButton(
+              
+            child: Text("Devamını Oku",style: TextStyle(
+          fontSize: 12,
+          fontWeight: FontWeight.bold,
+          color: Colors.blue,
+        )),
+            
+         
+            onPressed: (){
+
+            },)))
+            
+            
+
+    ],),
+    ),
+
+
+
+  )
+
+
+  ]))
+      
+      
+  ) ,Align(
+ alignment: Alignment.topRight,
+  
+  child:
+  Container(
+          height: size.height * 0.05,
+          width: size.width * 0.08,
+          
+  padding: EdgeInsets.all(2),
+  margin: EdgeInsets.fromLTRB(0, 6,6, 0),
+          decoration: BoxDecoration(
+            gradient: LinearGradient(
+              colors: renk  ,
+              begin: Alignment.topCenter,
+              end: Alignment.bottomCenter,
+            ),
+            borderRadius: BorderRadius.circular(10),
+          ),  
+          child: Center(child:
+Container(child:
+SizedBox(child: 
+     SvgPicture.asset("assets/share.svg",color:Colors.white ,height: 15,width:15 , fit: BoxFit.scaleDown ,) ,
+)),
+  )
+
+))]));
+  }
+
 }

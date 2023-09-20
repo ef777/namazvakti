@@ -75,13 +75,9 @@ List<Map<String, String>> menuList = [
 ];
 
     List<Widget> menulistwidgets = [];
- basfonk(
- ){}
-    
+ 
     @override
   void initState() {
-    basfonk();
-    // TODO: implement initState
     super.initState();
   }
   int selected_index=0;
@@ -99,7 +95,7 @@ for (int i = 0; i < menuList.length; i++) {
                 },    
                 child:   Container(
           
-       
+          
           padding: EdgeInsets.all(10),
           margin: EdgeInsets.fromLTRB(8, 3, 8, 3),
           decoration: BoxDecoration(
@@ -124,41 +120,46 @@ for (int i = 0; i < menuList.length; i++) {
               end: Alignment.bottomCenter,
             ),
           
-            borderRadius: BorderRadius.circular(10),
+            borderRadius: BorderRadius.circular(20),
           ),
           child:
           
           
           
            Column(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.center,
             children: [
                 Container(
-          height: size.height * 0.030,
-          width: size.width * 0.070,
-          padding: EdgeInsets.all(1),
+          height: size.height * 0.040,
+          width: size.width * 0.080,
+          padding: EdgeInsets.all(5),
           margin: EdgeInsets.fromLTRB(0, 0, 0, 0),
           decoration: BoxDecoration(
 
            color: Colors.white,
-            borderRadius: BorderRadius.circular(4),
+            borderRadius: BorderRadius.circular(10),
           
 
           ),child: 
           
-          Image.asset("assets/${menuList[i]['icon']}",width: 25,height: 25,),
+          Image.asset("assets/${menuList[i]['icon']}",width: 16,height: 16,fit: BoxFit.contain 
+          ,),
           ),
-              Text(
+          SizedBox(height: 5,),
+              Center(child: Container(
+                
+                child: Center ( child: Text(
               
                
                 '${menuList[i]['title']}',
                 textAlign: TextAlign.center,
                 style: TextStyle(
-                  fontSize: 10,
+                  fontSize: menuList[i]['title']!.length > 20 ?12 : 14, 
                   
                   color: Colors.white,
                 ),
-              ),
+               )) )),
                 
             ],
           ),
@@ -177,8 +178,13 @@ for (int i = 0; i < menuList.length; i++) {
   slivers: [
 
    SliverToBoxAdapter(
-    
+           
       child:   Container(
+        
+         padding: EdgeInsets.all(5.0),
+         
+
+        margin: EdgeInsets.fromLTRB(size.width * 0.05, size.width * 0.02, size.width * 0.05, size.width * 0.05),
         decoration: BoxDecoration(
           border: 
           Border.all(
@@ -205,7 +211,7 @@ for (int i = 0; i < menuList.length; i++) {
          margin: EdgeInsets.fromLTRB(
               size.width * 0.3, size.width * 0.04, size.width * 0.3, size.width * 0.02), */
           child:GridView.count(
-          crossAxisCount: 4, // Her satırda 7 kutu olacak şekilde ayarlayabilirsiniz
+          crossAxisCount: 3, // Her satırda 7 kutu olacak şekilde ayarlayabilirsiniz
                      scrollDirection: Axis.vertical,
 
           shrinkWrap: true, // GridView'ın  içeriği sığdırılabilir

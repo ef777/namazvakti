@@ -88,9 +88,9 @@ class _VakitTileState extends State<VakitTile> {
    var width = size.width;
    // Ana container 
     return   Container(
-        
+
           decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(20),
+            borderRadius: BorderRadius.circular(10),
             color: Colors.white.withOpacity(0.8),
             boxShadow: [
               BoxShadow(

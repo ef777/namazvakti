@@ -57,8 +57,9 @@ class _CounterViewState extends State<CounterView> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.transparent,
+      backgroundColor: Colors.white,
       appBar: AppBar(
+        backgroundColor: Colors.white,
           leading: Padding(
             padding: const EdgeInsets.only(left: 18),
             child: Container(
