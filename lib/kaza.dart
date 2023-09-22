@@ -360,8 +360,8 @@ List<Map<String, dynamic>> getSabahNamazlari(List<Map<String, dynamic>> kazalar 
  Container(
         
           decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(20),
-            color: Colors.grey.withOpacity(0.2),
+            borderRadius: BorderRadius.circular(10),
+            color: Colors.grey.withOpacity(0.1),
             boxShadow: [
               BoxShadow(
                 color: Colors.white.withOpacity(0.5),
@@ -371,11 +371,11 @@ List<Map<String, dynamic>> getSabahNamazlari(List<Map<String, dynamic>> kazalar 
               ),
             ],
           ),
-         padding: EdgeInsets.all(12.0),
-          height: size.height * 0.01,
+         padding: EdgeInsets.all(8.0),
+          height: size.height * 0.001,
           width: size.width * 0.08,
    margin: EdgeInsets.fromLTRB(
-              size.width * 0.05, size.width * 0.02, size.width * 0.05, size.width * 0.02),
+              size.width * 0.05, size.width * 0.01, size.width * 0.05, size.width * 0.01),
        child: 
        Column (
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -386,7 +386,7 @@ List<Map<String, dynamic>> getSabahNamazlari(List<Map<String, dynamic>> kazalar 
                     textAlign: TextAlign.center,
                     style: TextStyle(
                       fontSize: 14,
-                      color: Colors.white,
+                      color: Colors.black,
                     ),
                   ),
 
@@ -405,16 +405,47 @@ List<Map<String, dynamic>> getSabahNamazlari(List<Map<String, dynamic>> kazalar 
                       color:  Color(0xFF168ec0),
                     ),
                   ),
-    IconButton(
-                  icon: Icon(
-                    Icons.remove_circle,
-                    color: Colors.white,
-                  ),
-                  onPressed: () {
-                    setState(() {
-                   //   kazalarim.removeAt(i);
-                    });
-                  },)
+
+                  Container(
+      height: 40,
+width: 40,
+      padding: EdgeInsets.all(1)
+      ,margin: EdgeInsets.fromLTRB(
+        
+        10
+        , 7, 10, 7),
+      decoration: BoxDecoration(
+         
+        gradient: LinearGradient(
+          colors: [
+
+              Color.fromARGB(255, 196, 18, 18),
+            Color.fromARGB(255, 160, 52, 16),
+           
+          ],
+          begin: Alignment.topCenter,
+          end: Alignment.bottomCenter,
+        ), 
+        borderRadius: BorderRadius.circular(10),
+      ),
+      
+      child:  IconButton(
+        icon:SvgPicture.asset(
+            'assets/close.svg', // SVG dosyanızın yolunu doğru şekilde belirtin
+            width: 30, // Genişlik
+            height: 30,
+            fit: 
+            BoxFit.scaleDown,
+            color: Colors.white
+            , // Yükseklik
+          ),
+        onPressed: () {
+          setState(() {
+           kazalarim.removeAt(i);
+          });
+        },
+      ),)
+   
                   ],
                 ),  ],),
              ))

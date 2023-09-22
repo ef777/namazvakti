@@ -8,6 +8,9 @@ static var login = true;
  static List<bool> isSelected = [true, false, false];
  static int selectedaygunIndex = 0;
   static int selectedEzanvakti = 0;
+  static int namazduaindex = 0;
+  static int selecteddiniyil = 0;
+    static int selecteddinigun = 1;
 
 // AIzaSyDgCtLy0MA-gbwFH1UJHHB0h7Ljfz8-eI8
 

@@ -9,6 +9,7 @@ import 'package:flutter_svg/flutter_svg.dart';
  import 'package:get/get.dart';
  import 'package:flutter/material.dart';
 import 'package:flutter/painting.dart';
+import 'package:namazvakti/config.dart';
 import 'dart:math';
 
  import 'wrapper.dart';
@@ -366,12 +367,7 @@ dualar.where((element) => element['d_id'] == id);
   builder: (context) {
 
     return StatefulBuilder(
-      builder: (context, setState) {
- 
-
-
-
-        return  Container(
+      builder: (context, setState) {  return  Container(
         
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(20),
@@ -411,7 +407,7 @@ dualar.where((element) => element['d_id'] == id);
             flexibleSpace: FlexibleSpaceBar(
              centerTitle: true,
              title: Container(
-              padding: EdgeInsets.all(20.0),
+              padding: EdgeInsets.all(15.0),
               child:
              Column(
                mainAxisAlignment: MainAxisAlignment.center,
@@ -420,37 +416,45 @@ dualar.where((element) => element['d_id'] == id);
            Row(
                mainAxisAlignment: MainAxisAlignment.spaceBetween,
                children: [  
+
          RoundIconButton(
-  size: 20,
+  size: 25,
   onPressed: () {
     // düğmeye basıldığında çalışacak kod
   }, 
   iconAsset: 'assets/play.svg' 
-), RoundIconButton(
-  size: 20,
+),
+SizedBox(width: 2,),
+
+ RoundIconButton(
+  size: 25,
   onPressed: () {
     // düğmeye basıldığında çalışacak kod
   }, 
   
   iconAsset: 'assets/share.svg' 
 ),
+SizedBox(width: 2,),
 
  Container(
     
-    margin: EdgeInsets.fromLTRB(width*0.03 , height * 0.010, width*0.03, height * 0.010),
+    margin: EdgeInsets.fromLTRB(width*0.01 , height * 0.010, width*0.01, height * 0.010),
     child:Text('${secilidua.first['title']}',style: TextStyle(
-          fontSize: 13,
+          fontSize: secilidua.first['title']!.length > 10 ?  10 : 13,
           fontWeight: FontWeight.bold,
+          color: Colors.black,
                  ))),   
+SizedBox(width: 3,),
 
                  RoundIconButton(
-  size: 20,
+  size: 25,
   onPressed: () {
     // düğmeye basıldığında çalışacak kod
   }, 
   iconAsset: null, text: "A+",
-),   RoundIconButton(
-  size: 20,
+), SizedBox(width: 3,),
+  RoundIconButton(
+  size: 25,
   onPressed: () {
     // düğmeye basıldığında çalışacak kod
   }, 
@@ -464,13 +468,13 @@ dualar.where((element) => element['d_id'] == id);
              ),
            
             bottom: PreferredSize(
-  preferredSize: Size.fromHeight(150.0), // Widget'ın yüksekliği
+  preferredSize: Size.fromHeight(120.0), // Widget'ın yüksekliği
   child:Container(
- height: 100,
+ height: 90,
    margin: EdgeInsets.all(20), // Dış kenar boşluğunu ayarlar
   decoration: BoxDecoration(
     color: Colors.white,
-    borderRadius: BorderRadius.circular(15), // Kenarları yumuşatır
+    borderRadius: BorderRadius.circular(15  ), // Kenarları yumuşatır
     boxShadow: [
       BoxShadow(
         color: Colors.grey.withOpacity(0.5), // Gölge rengi
@@ -481,22 +485,67 @@ dualar.where((element) => element['d_id'] == id);
     ],
   ),
   child:  TabBar(
-  indicator: BoxDecoration( // Seçili olan sekmenin altındaki göstergeyi özelleştirme
-    color: Colors.white10, // Gösterge rengi
-    borderRadius: BorderRadius.circular(80), // Gösterge köşeleri
-  ),
-   labelPadding: EdgeInsets.symmetric(horizontal: 1.0), // Etiketin iç boşluğunu ayarlar
-    labelColor: Colors.blue, // Seçili sekmenin metin rengi
-  unselectedLabelColor: Colors.black, // Seçilmemiş sekmenin metin rengi
-  labelStyle: TextStyle(fontSize: 16.0, ), // Metin stilini özelleştirme
-  unselectedLabelStyle: TextStyle(fontSize: 13.0), // Seçilmemiş metin stilini özelleştirme
+
+    
+  indicator:  BoxDecoration(
+         
+        gradient: LinearGradient(
+          colors: [
+            Color(0xFF21367F),
+            Color(0xFF194D91),
+            Color(0xFF1590C1),
+            Color(0xFF0298CA),
+          ],
+          begin: Alignment.topCenter,
+          end: Alignment.bottomCenter,
+        ) ,
+        borderRadius: BorderRadius.circular(15),
+      ),
+
   
-  indicatorWeight: 5.0, // Gösterge kalınlığı
-  indicatorPadding: EdgeInsets.symmetric(horizontal: 1.0), // Gösterge iç boşluğu
+  labelPadding: EdgeInsets.symmetric(horizontal: 1.0),
+  labelColor: Colors.white,
+  unselectedLabelColor: Colors.black,
+   // Seçilmemiş etiket metin rengi
+  
+  labelStyle: TextStyle(fontSize: 16.0),
+  unselectedLabelStyle: TextStyle(fontSize: 13.0, color: Colors.black), // Seçilmemiş etiket metin stilini özelleştirme
+  indicatorWeight: 5.0,
+  indicatorPadding: EdgeInsets.all(10),
    tabs: [
-    _buildCustomTab('Okunuşu', Icons.access_alarm), // Özel tab 1
-    _buildCustomTab('Meali', Icons.menu_book), // Özel tab 2
-    _buildCustomTab('Arabçası', Icons.language), // Özel tab 3
+  Tab(
+        text: "Okunuşu",
+        icon:  SvgPicture.asset("assets/okunusu.svg",
+          width: 21,
+          height: 21,
+          color: Colors.black,
+        ),
+
+    height: 130,
+     
+  ),Tab(
+   icon:  SvgPicture.asset("assets/meali.svg",
+          width: 21,
+          height: 21,
+                    color: Colors.black,
+
+        ),
+
+    text: "Meali",
+    height: 130, ),Tab(
+            icon:  SvgPicture.asset("assets/arapca.svg",
+          width: 21,
+          height: 21,          color: Colors.black,
+
+        ),
+
+    text: "Arapçası",
+    height: 130,
+    
+    
+  ),
+
+
   ],
             ),
             ))),
@@ -591,7 +640,7 @@ class RoundIconButton extends StatelessWidget {
     return Container(
       height: size,
       width: size,
-      padding: EdgeInsets.all(1),
+      padding: EdgeInsets.all(0),
       margin: EdgeInsets.all(0),
       decoration: BoxDecoration(
         gradient: LinearGradient(
@@ -615,48 +664,12 @@ class RoundIconButton extends StatelessWidget {
       IconButton(
         icon: SvgPicture.asset(
           iconAsset!,
-          width: 20,
-          height: 20,
+          width: 21,
+          height: 21,
           color: Colors.white,
         ),
         onPressed: onPressed,
       ),
     );
   }
-}Widget _buildCustomTab(String label, IconData icon,) {
-  return Tab(
-    height: 130,
-    child: Container(
-      height: 120,
-width: 120,
-      padding: EdgeInsets.all(3)
-      ,margin: EdgeInsets.fromLTRB(
-        
-        10
-        , 7, 10, 7),
-      decoration: BoxDecoration(
-         
-        gradient: LinearGradient(
-          colors: [
-            Color(0xFF21367F),
-            Color(0xFF194D91),
-            Color(0xFF1590C1),
-            Color(0xFF0298CA),
-          ],
-          begin: Alignment.topCenter,
-          end: Alignment.bottomCenter,
-        ), 
-        borderRadius: BorderRadius.circular(10),
-      ),
-      
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          Icon(icon, color: Colors.white), // İkon
-          SizedBox(width: 1), // İkon ile metin arasındaki boşluk
-          Text(label, style: TextStyle(color: Colors.white)), // Metin
-        ],
-      ),
-    ),
-  );
 }
