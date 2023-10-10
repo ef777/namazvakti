@@ -34,9 +34,9 @@ class _WellcomePageState extends State<WellcomePage> {
                 child:
 
 UpwardSlopedCircularContainer(
-  height: 600,
+  height: 700,
   width : 900,
-            angle: 45, // Eğim açısı (derece cinsinden)
+            angle: 50, // Eğim açısı (derece cinsinden)
          
           
  )) ,
@@ -45,14 +45,14 @@ UpwardSlopedCircularContainer(
                // Üstten boşluk
                 left: -35,
                 right:  -35,
-                bottom: -500,
+                bottom: -700,
              // Soldan boşluk
                 child:
 
 UpwardSlopedCircularContainer(
-  height: 1200,
-  width : 1200,
-            angle: 20, // Eğim açısı (derece cinsinden)
+  height: 1600,
+  width : 1000,
+            angle: 50, // Eğim açısı (derece cinsinden)
           
           
  )) ,
@@ -63,6 +63,9 @@ UpwardSlopedCircularContainer(
 
   slivers: [
 
+   SliverToBoxAdapter(
+    
+      child:   Container( height: 30, )),
    SliverToBoxAdapter(
     
       child:   Container(
@@ -131,11 +134,17 @@ UpwardSlopedCircularContainer(
             
             
             )
-,
+,          SizedBox(height: 10,),
             Container(child: 
-            Text ("Lorem ipsum dolor sit amet, conse cadipiscing elit,Lorem ipsum"), 
+            Text ("Lorem ipsum dolor sit amet, conse cadipiscing elit,Lorem ipsum",
             
-            )
+            textAlign: TextAlign.center
+            ,
+            
+            style: TextStyle(fontSize: 14.0, 
+            ), 
+            ))
+            
            ])),
             ]),
       ),

@@ -483,8 +483,12 @@ child:                      Row(
 
 //sss
  SliverToBoxAdapter(
-      child:  HadisKarti( renk : [   Color(0xFF21D884).withOpacity(1),
-                Color(0xFF005510).withOpacity(1) ],
+      child:  HadisKarti( renk : [   Color(0xFF21367f),
+      Color(0xFF194d91),
+      Color(0xFF1590c1),
+      Color(0xFF0298ca),
+      Color(0xFF0298ca), ],
+
                baslik: "Vakit Hadisi",icerik: "Resulullah (sav) buyurdular ki: “İnsanların en hayırlısı, ailesine karşı en hayırlı olanıdır. Ben de aileme karşı en hayırlı olanınızım.” (Tirmizi, Menakıb, 67)",
 
  
@@ -503,8 +507,10 @@ child:                      Row(
        
       
       )), SliverToBoxAdapter(
-      child:  HadisKarti( renk : [   Color(0xFF21D884).withOpacity(1),
-                Color(0xFF005510).withOpacity(1) ],
+      child:  HadisKarti( renk : [ 
+      Color(0xFF0c1732),
+      Color(0xFF65b2ff),
+    ],
                baslik: "Vakit Hadisi",icerik: "Resulullah (sav) buyurdular ki: “İnsanların en hayırlısı, ailesine karşı en hayırlı olanıdır. Ben de aileme karşı en hayırlı olanınızım.” (Tirmizi, Menakıb, 67)",
 
  
@@ -531,7 +537,7 @@ child:                      Row(
       ),
       )),SliverToBoxAdapter(
       child: Container(
-        height: size.height * 0.17,
+        height: size.height * 0.20,
         decoration: BoxDecoration(
   color:  Colors.red.withOpacity(0), 
   borderRadius: BorderRadius.circular(10)
@@ -542,13 +548,7 @@ padding: EdgeInsets.all(0.0),
 
   child:
          Stack(children: [
-        Align(
-  alignment: Alignment.topLeft,
-child: Container(
-  padding: EdgeInsets.all(1),
-  child: Image .asset("assets/er.png",width: 100,height: 100,fit: BoxFit.cover,),
-
-          )),
+     
    
    Align(
   alignment: Alignment.center,
@@ -558,15 +558,27 @@ child: Container(
        
         height: 100,
         decoration: BoxDecoration(
-  color:   Color(0xFFFF702C). withOpacity(0.2), 
+  color:   Color(0xFFFF702C). withOpacity(0.4), 
   borderRadius: BorderRadius.circular(10)
 ),
 padding: EdgeInsets.all(0.0),
         margin: EdgeInsets.fromLTRB(
               size.width * 0.03, size.width * 0.005, size.width * 0.03, size.width * 0.005),
-   )),  Align(
+   )), 
+      Align(
+  alignment: Alignment.topLeft,
+child: Container(
+  padding: EdgeInsets.all(10),
+  child: Image .asset("assets/er.png",width: 85,height: 110,fit: BoxFit.cover,),
+
+          )),
+    Align(
+      
   alignment: Alignment.center,
-child: Container(child:
+child: Container(
+  margin: EdgeInsets.fromLTRB(40, 1, 0, 1),
+  
+  child:
 Column(
   mainAxisAlignment: MainAxisAlignment.center,
   crossAxisAlignment: CrossAxisAlignment.center,
@@ -584,11 +596,72 @@ Text("Erkek İsim: AHMET",style: TextStyle(
           ]),
       )),
 
+ SliverToBoxAdapter(
+      child: Container(
+        height: size.height * 0.20,
+        decoration: BoxDecoration(
+  color:  Colors.red.withOpacity(0), 
+  borderRadius: BorderRadius.circular(10)
+),
+padding: EdgeInsets.all(0.0),
+        margin: EdgeInsets.fromLTRB(
+              size.width * 0.03, size.width * 0.005, size.width * 0.03, size.width * 0.005),
+
+  child:
+         Stack(children: [
+     
+   
+   Align(
+  alignment: Alignment.center,
+    
+    child: 
+   Container(
+       
+        height: 100,
+        decoration: BoxDecoration(
+  color:   Color(0xFFFF702C). withOpacity(0.4), 
+  borderRadius: BorderRadius.circular(10)
+),
+padding: EdgeInsets.all(0.0),
+        margin: EdgeInsets.fromLTRB(
+              size.width * 0.03, size.width * 0.005, size.width * 0.03, size.width * 0.005),
+   )), 
+      Align(
+  alignment: Alignment.topRight,
+child: Container(
+  padding: EdgeInsets.all(10),
+  child: Image .asset("assets/ki.png",width: 85,height: 110,fit: BoxFit.cover,),
+
+          )),
+    Align(
+      
+  alignment: Alignment.center,
+child: Container(
+  margin: EdgeInsets.fromLTRB(1, 1, 40, 1),
+  
+  child:
+Column(
+  mainAxisAlignment: MainAxisAlignment.center,
+  crossAxisAlignment: CrossAxisAlignment.center,
+  children: [
+
+Text("Kız İsim: Azize",style: TextStyle(
+  
+)),
+ Text("Sevgili, izzetli , nurlu,dost",style: TextStyle( 
+   fontSize: 12,
+   color: Colors.black.withOpacity(0.5)
+ 
+  ),
+  ), ])))
+          ]),
+      )),
+
  
        
             SliverToBoxAdapter(
       child: Container(
-        height: 200,
+        height: 100,
 
       ))
           
@@ -621,7 +694,9 @@ class _AyGunleriWidgetState extends State<AyGunleriWidget> {
     
 
 var  isSelected = false;
+
   Widget build(BuildContext context) {
+
            var size = MediaQuery.of(context).size;
  
     DateTime now = DateTime.now();
@@ -630,7 +705,6 @@ var  isSelected = false;
     int gunSayisi = DateTime(yil, ay + 1, 0).day;
    
     List<Widget> gunListesi = [];
-    
     for (int gun = 1; gun <= gunSayisi; gun++) {
 
       gunListesi.add(
@@ -654,7 +728,7 @@ var  isSelected = false;
             
              LinearGradient(
               colors: [
-                Color(0xFFffffff),
+              
                 Color(0xFF194D91),
                 Color(0xFF1590C1),
                 Color(0xFF0298CA),
@@ -770,13 +844,13 @@ child:
                 },
                 child:   Container(
           
-          
           height: size.height * 0.18,
           width: size.width * 0.050,
           padding: EdgeInsets.all(13),
           margin: EdgeInsets.fromLTRB(5, 5, 5, 5),
           decoration: BoxDecoration(
-            boxShadow: [
+           color:  AppConfig.selectedEzanvakti ==i ?    Color(0xFF004eff).withOpacity(0.8): Color(0xFF004eff).withOpacity(0.3)
+          ,  boxShadow: [
                /*  BoxShadow(
                   color: Colors.white.withOpacity(0.2),
                   spreadRadius: 2,
@@ -786,35 +860,34 @@ child:
               ],
             gradient:
             
-                AppConfig.selectedEzanvakti ==i ?  
-             LinearGradient(
-              colors:
-              
-                          [
-                Color(0xFF21367f).withOpacity(0.1), Color(0xFF194d91).withOpacity(0.28),
-               Color(0xFF1590c1).withOpacity(0.88), Color(0xFF0298ca).withOpacity(1), Color(0xFF0298ca).withOpacity(1), 
-
-
-                
-                  
-              ],
-           begin: Alignment.topCenter,
-      end: Alignment.bottomCenter,
-            ) :  LinearGradient(
-              colors:
-              
-                          [
-
-                Color(0xFF00a3ff).withOpacity(0.2), Color(0xFF004eff).withOpacity(0.4),
-
-              ],
-           begin: Alignment.topCenter,
-      end: Alignment.bottomCenter,
-            ) ,
+             
+                    AppConfig.selectedEzanvakti ==i ?  
+                     LinearGradient(
+      begin: Alignment(0.0, 0.0),
+      end: Alignment(0, 1),
+       colors: [
+        Color(0xFF21367f),
+        Color(0xFF194d91),
+        Color(0xFF1590c1),
+        Color(0xFF0298ca),
+        Color(0xFF0298ca),
+      ],
+      stops: [0,0.28,0.88,1,1]
+    )
+   :  LinearGradient(
+  begin: Alignment(0.0, 0.0),
+        end: Alignment(0, 1),
+        stops: [0,1]
+,      colors: [
+        Color(0xFF00A3FF),
+        Color(0xFF004EFF),
+      ]
+    )
+  ,
             borderRadius: BorderRadius.circular(10),
           ),
           child:
-          
+      
           
           
            Column(
@@ -852,7 +925,7 @@ child:
             ],
           ),
         ),
-      );
+       );
     }));
     }
 
@@ -1036,7 +1109,11 @@ class CircularProgressBarPainter extends CustomPainter {
       ..color = backgroundColor
       ..strokeWidth = strokeWidth
       ..style = PaintingStyle.stroke;
-
+  final cPaint = Paint()
+      ..color = foregroundColor
+      ..strokeWidth = strokeWidth
+      ..style = PaintingStyle.stroke;
+  
     final foregroundPaint = Paint()
       ..color = foregroundColor
       ..strokeWidth = strokeWidth
@@ -1064,30 +1141,59 @@ imageResolver2.addListener(ImageStreamListener((info, synchronousCall) {
   final image2 = info.image;
 
      canvas.drawCircle(
-      Offset(center.dx + radius * cos(startAngle), center.dy + radius * sin(startAngle)),
-      strokeWidth /2,
-      backgroundPaint,
+      Offset(center.dx+2 + radius * cos(startAngle), center.dy + radius * sin(startAngle)),
+    strokeWidth/1.5,
+      cPaint,
     ); 
-  canvas.drawImage(image2,   Offset(center.dx + radius * cos(startAngle)-5, center.dy + radius * sin(startAngle) -10), Paint()); // Resmi çizdirme işlemi
+ // canvas.drawImage(image2,   Offset(center.dx + radius * cos(startAngle)-5, center.dy + radius * sin(startAngle) -10), Paint()); // Resmi çizdirme işlemi
+final srcRect = Rect.fromPoints(
+  Offset(center.dx + radius * cos(startAngle) - 6, center.dy - 10 + radius * sin(startAngle)),
+  Offset(center.dx + radius * cos(startAngle) - 6 + image2.width.toDouble()*1.2, center.dy - 10 + radius * sin(startAngle) + image2.height.toDouble()*1.2),
+);
+
+
+
+ paintImage(
+        canvas: canvas,
+        rect: srcRect,
+        image: image2,
+        fit: BoxFit.cover);
   
+
 
   }));
     // Draw start and end icons
  
 
   canvas.drawCircle(
-      Offset(center.dx + radius * cos(startAngle + sweepAngle), center.dy + radius * sin(startAngle + sweepAngle)),
-      strokeWidth /2,
-      backgroundPaint,
+      Offset(center.dx+2 + radius * cos(startAngle + sweepAngle), center.dy + radius * sin(startAngle + sweepAngle)),
+      strokeWidth/1.5,
+      cPaint,
     );
-        final image1 = AssetImage("assets/vakit1.png"); // ImageProvider kullanıyoruz
+
+        final image1 =AssetImage("assets/vakit1.png");
+// ImageProvider kullanıyoruz
+
 
 final imageResolver = image1.resolve(ImageConfiguration.empty);
 imageResolver.addListener(ImageStreamListener((info, synchronousCall) {
-  final image = info.image;
+  var image = info.image;
+// Yeni yükseklik
+final srcRect = Rect.fromPoints(
+  Offset(center.dx + radius * cos(startAngle + sweepAngle) - 6, center.dy - 10 + radius * sin(startAngle + sweepAngle)),
+  Offset(center.dx + radius * cos(startAngle + sweepAngle) - 6 + image.width.toDouble()*1.3, center.dy - 10 + radius * sin(startAngle + sweepAngle) + image.height.toDouble()*1.3),
+);
 
- 
-  canvas.drawImage(image,  Offset(center.dx + radius * cos(startAngle + sweepAngle)-6, center.dy -10+ radius * sin(startAngle + sweepAngle)) , Paint()); // Resmi çizdirme işlemi
+
+ paintImage(
+        canvas: canvas,
+        rect: srcRect,
+        image: image,
+        fit: BoxFit.cover);
+  
+
+ // canvas.drawImage(image,  Offset(center.dx + radius * cos(startAngle + sweepAngle)-6, center.dy -10+ radius * sin(startAngle + sweepAngle))
+ // , Paint()); // Resmi çizdirme işlemi
   
   }));
   }

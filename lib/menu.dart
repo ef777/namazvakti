@@ -15,35 +15,35 @@ class _MenuState extends State<Menu> {
 List<Map<String, String>> menuList = [
  
   {  
-    'icon': "pusula.png",
+    'icon': "menuicons/duakardes.png",
     'title': 'Kazalar', 
     'page': '/kaza'
   },
    {
-    'icon': "pusula.png",
+    'icon': "menuicons/dualar.png",
     'title': 'Namaz Duaları',
     'page': '/namazdua'
   } ,
     {
-    'icon': "pusula.png",
+    'icon': "menuicons/dinigunler.png",
     'title': 'Dini Günler Ve Geceler',
     'page': '/dinigunler'
   } ,
  {
-    'icon': "pusula.png",
+    'icon': "menuicons/esmaulhusna.png",
     'title': 'Esma\'ül Hüsna',
     'page': '/esma'
   } ,
   {
-    'icon': "pusula.png",
+    'icon': "menuicons/dualar.png",
     'title': 'Dualar',
     'page': '/dualar'
   } ,
   
   {
-    'icon': "pusula.png",
-    'title': 'Yakındaki Camiler',
-    'page': 'AboutPage' 
+    'icon': "menuicons/dinihikaye.png",
+    'title': 'Dini Hikayeler',
+    'page': '/hikaye' 
   }, {  
     'icon': "pusula.png",
     'title': 'Kıble Pusulası', 
@@ -52,29 +52,57 @@ List<Map<String, String>> menuList = [
 
    
    {
-    'icon': "pusula.png",
-    'title': 'Esma\'ül Hüsna',
-    'page': 'ProductsPage'
-  } , {
-    'icon': "pusula.png",
-    'title': 'Esma\'ül Hüsna',
-    'page': 'ProductsPage'
-  } , {
-    'icon': "pusula.png",
-    'title': 'Kur\'anı Kerim',
-    'page': 'ProductsPage'
-  } , {
-    'icon': "pusula.png",
+    'icon': "menuicons/dinirehber.png",
     'title': 'Dini Rehber',
-    'page': 'ProductsPage'
+    'page': '/rehber'
   } , {
-    'icon': "pusula.png",
-    'title': 'Kabe Canlı',
-    'page': 'ProductsPage'
-  } 
+    'icon': "menuicons/diniradyo.png",
+    'title': 'Dini Radyolar',
+    'page': '/radyolar'
+  } ,
+   {  
+    'icon': "menuicons/yakindacami.png",
+    'title': 'Yakındaki Camiler', 
+    'page': '/'
+  },
+   {  
+    'icon': "menuicons/kabecanli.png",
+    'title': 'Kabe Canlı', 
+    'page': '/'
+  }, {  
+    'icon': "menuicons/hikmetname.png",
+    'title': 'Hikmetname', 
+    'page': '/'
+  },{  
+    'icon': "menuicons/hikmetname.png",
+    'title': 'Hikmetname', 
+    'page': '/'
+  },
+  {  
+    'icon': "menuicons/duakardes.png",
+    'title': 'Dua', 
+    'page': '/'
+  }, {  
+    'icon': "menuicons/kur'an.png",
+    'title': 'Kur\'an ', 
+    'page': '/'
+  },
+   {  
+    'icon': "menuicons/zikirler.png",
+    'title': 'Zikir', 
+    'page': '/'
+  },   {  
+    'icon': "menuicons/tebrik.png",
+    'title': 'Tebrik Kartları', 
+    'page': '/'
+  }, {  
+    'icon': "menuicons/tesbihat.png",
+    'title': 'Tesbihat', 
+    'page': '/'
+  },
 ];
 
-    List<Widget> menulistwidgets = [];
+    List<Widget> menulistwidgets = [  ];
  
     @override
   void initState() {
@@ -173,7 +201,6 @@ for (int i = 0; i < menuList.length; i++) {
      
       body: Center(
         child: CustomScrollView(
-          shrinkWrap: true,
 
   slivers: [
 
@@ -210,7 +237,8 @@ for (int i = 0; i < menuList.length; i++) {
           width: size.width * 0.1,
          margin: EdgeInsets.fromLTRB(
               size.width * 0.3, size.width * 0.04, size.width * 0.3, size.width * 0.02), */
-          child:GridView.count(
+          child: SingleChildScrollView(
+  child: GridView.count(  
           crossAxisCount: 3, // Her satırda 7 kutu olacak şekilde ayarlayabilirsiniz
                      scrollDirection: Axis.vertical,
 
@@ -224,7 +252,7 @@ for (int i = 0; i < menuList.length; i++) {
           
           
       ),
-  ),
+  ),)
   
  ]),
       ),

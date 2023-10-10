@@ -21,7 +21,8 @@ import 'package:get/get.dart';
 import 'package:intl/intl.dart'; // Tarih biçimlendirme için
 
 
- 
+     final controller = Get.put(AppConfig()); //<---
+
  class DiniGunlerView extends StatefulWidget {
     DiniGunlerView({super.key});
 
@@ -31,8 +32,9 @@ import 'package:intl/intl.dart'; // Tarih biçimlendirme için
 
 class _DiniGunlerViewState extends State<DiniGunlerView> {
  @override
+ 
 List<Widget> ozelgunlerwidgets = [];
-  
+
 List<Map<String,String>> ozelgunler = [
 
 {
@@ -82,11 +84,13 @@ List<Map<String,String>> ozelgunler = [
    var size = MediaQuery.of(context).size;
    var  height = size.height;
    var width = size.width;
-ozelgunlerwidgets = [];
+   ozelgunlerwidgets=[];
  for (int i = 0; i < ozelgunler.length; i++) {
       ozelgunlerwidgets.add(
         
-                OzelGunTile( 
+             Obx(
+  () =>   OzelGunTile( 
+                  secili : controller.selecteddinigun == int.parse (ozelgunler[i]['d_id'].toString()) ? true : false,
                   m_tarih_ay: ozelgunler[i]['m_tarih_ay'].toString(),
                   m_tarih_gun: ozelgunler[i]['m_tarih_gun'].toString(),
                   m_tarih_hafta: ozelgunler[i]['m_tarih_hafta'].toString(),
@@ -95,15 +99,17 @@ ozelgunlerwidgets = [];
                   h_tarih_gun: ozelgunler[i]['h_tarih_gun'].toString(),
                   h_tarih_isim: ozelgunler[i]['h_tarih_isim'].toString(),
                   aciklama : ozelgunler[i]['aciklama'].toString(),
-                  id: ozelgunler[i]['d_id'].toString(),
+                  idim: ozelgunler[i]['d_id'].toString(),
                
 
                 )
 
       
-    );
+    ));
     } 
-     return Scaffold(
+     return 
+     
+      Scaffold(
         backgroundColor: const Color.fromARGB(255, 235, 237, 240),
 
             appBar: AppBar(
@@ -176,7 +182,7 @@ SliverToBoxAdapter(
           padding: EdgeInsets.all(5.0),
            crossAxisSpacing: 10,
            mainAxisSpacing: 10,
-        childAspectRatio: 3.5,
+        childAspectRatio: 3.2,
           crossAxisCount: 1, // Her satırda 7 kutu olacak şekilde ayarlayabilirsiniz
                      scrollDirection: Axis.vertical,
 
@@ -251,8 +257,8 @@ var gunlerwidgets;
               end: Alignment.bottomCenter,
             ):  LinearGradient(
               colors: [
-                Color.fromARGB(255, 207, 209, 216),
-                Color.fromARGB(255, 195, 197, 200),
+               Colors.white,
+                Colors.white,
                
               ],
               begin: Alignment.topCenter,
@@ -270,7 +276,7 @@ var gunlerwidgets;
                 style: TextStyle(
                   fontSize: 18,
                   fontWeight: FontWeight.bold,
-                  color:   AppConfig.selecteddiniyil ==yillistesayi[i] ?  Colors.white : Colors.black,
+                  color:   AppConfig.selecteddiniyil ==yillistesayi[i] ?  Colors.white : Colors.blue,
                 ),
               ),
             
@@ -296,7 +302,7 @@ return   GridView.count(
 
 class OzelGunTile extends StatefulWidget {
 
-final String id;
+final String idim;
 final String m_tarih_ay;
 final String m_tarih_gun;
 final String m_tarih_hafta;
@@ -305,11 +311,11 @@ final String aciklama;
 final String h_tarih_yil;
 final String h_tarih_gun;
 final String h_tarih_isim;
-
+final bool secili;
 
 
       OzelGunTile({Key? key,  
-
+      required this.secili,
     required this.m_tarih_ay,
         required this.m_tarih_gun,
     required this.m_tarih_hafta,
@@ -320,7 +326,7 @@ final String h_tarih_isim;
     required this.h_tarih_isim,
 
     required this.aciklama,
-    required this.id,
+    required this.idim,
     }) : super(key: key);
      
       @override
@@ -331,30 +337,82 @@ final String h_tarih_isim;
       @override
       Widget build(BuildContext context) {
         var size = MediaQuery.of(context).size;
+void _showBottomSheet() {
 
+  showModalBottomSheet(
+    
+    context: context,
+    isScrollControlled: true, 
+    backgroundColor: Colors.transparent,
+    builder: (context) {
+      return GestureDetector(
+        onTap: () => Navigator.pop(context),
+        child: Container(
+          height: 200,
+          width:  400,
+          decoration: BoxDecoration(
+            gradient: LinearGradient(
+              begin: Alignment.topCenter,
+              end: Alignment.bottomCenter,
+              colors: [Colors.white, Colors.white.withOpacity(0)]
+            )
+          ),
+          child: Stack(
+            children: [
+              // Arka plan
+              Container(color: Colors.white.withOpacity(0.8)), 
+              
+              Padding(
+                padding: EdgeInsets.all(16),
+                child: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                  
+                    Text('Başlık'),
+                    
+                    SizedBox(height: 16),
+                    
+                    ElevatedButton(
+                      onPressed: () => Navigator.pop(context),
+                      child: Text('Tamam'),
+                    ),
+                    
+                  ],
+                ),
+              )
+            ],  
+          ),
+        ),
+      );
+    },
+  );
+  
+}
         return
         
         GestureDetector(
           onTap: () {
-              setState(() {
-                              AppConfig.selecteddinigun =int.parse (widget.id);
-
-              });
+              controller.selecteddinigun.value =int.parse (widget.idim);
               print("özel hün serçildi");
-              print(AppConfig.selecteddinigun);
+              print(controller.selecteddinigun);
+              _showBottomSheet();
 //
           },
-          child:Container(child: 
+          child:Container(
+           
+            child: 
           Stack(children: [
 Align(
   alignment: Alignment.centerLeft,
 
  child: Container(
   margin:   
-  EdgeInsets.fromLTRB(size.width*0.05, size.height*0.0, size.width*0.0, size.height*0.0),
+  EdgeInsets.only(
+    left: size.width*0.05,
+   ),
   width: 1, 
-  height: size.height * 0.3,
- color: Colors.black,
+  height: size.height * 0.34,
+ color: Colors.grey.withOpacity(0.4),
 
  )
 
@@ -374,7 +432,7 @@ Align(
 ,
             gradient: 
             
-                          AppConfig.selecteddinigun ==int.parse (widget.id) ?
+                          controller.selecteddinigun ==int.parse (widget.idim) ?
             LinearGradient(
               colors: [
                 Color(0xFF21367F),
@@ -387,8 +445,8 @@ Align(
             ): LinearGradient(
               colors: [
                
-                Color.fromARGB(255, 244, 249, 251),
-                Color.fromARGB(255, 230, 235, 236),
+                Color.fromARGB(255, 0, 0, 0),
+                Color.fromARGB(255, 0, 0, 0),
               ],
               begin: Alignment.topCenter,
               end: Alignment.bottomCenter,
@@ -397,10 +455,10 @@ Align(
           child: Center(child:
 Container(child:
 
-Text(widget.id,style: TextStyle(
+Text(widget.idim,style: TextStyle(
           fontSize: 17,
           fontWeight: FontWeight.bold,
-          color:  AppConfig.selecteddinigun ==int.parse (widget.id) ? Colors.white : Colors.black
+          color:  controller.selecteddinigun ==int.parse (widget.idim) ? Colors.white : Colors.white
         ), )
 
 ))),
@@ -410,14 +468,27 @@ Text(widget.id,style: TextStyle(
         
          Container(
 
-height: size.height * 0.10,
-decoration: BoxDecoration(
-  color: Colors.white,
-  borderRadius: BorderRadius.circular(20)
-),
-padding: EdgeInsets.all(0.0),
+height: size.height * 0.20,
+ 
+            decoration: BoxDecoration( 
+              borderRadius: BorderRadius.circular(10),
+              color: controller.selecteddinigun ==int.parse (widget.idim) ?  Colors.transparent : Colors.black.withOpacity(0.1),
+              border: Border.all(
+                color: controller.selecteddinigun ==int.parse (widget.idim) ? Colors.blue.withOpacity(0.2) : Colors.transparent,
+                width: 1,
+              ),
+              boxShadow: [
+                BoxShadow(
+                  color: Colors.white.withOpacity(0.2),
+                  spreadRadius: 5,
+                  blurRadius: 10,
+                  offset: Offset(0, 3),
+                ),
+              ],
+            ),
+
         margin: EdgeInsets.fromLTRB(
-              size.width * 0.13, size.width * 0.01, size.width * 0.05, size.width * 0.001),
+              size.width * 0.135, size.width * 0.05, size.width * 0.05, size.width * 0.005),
 child:
 Stack(children: [
 
@@ -427,6 +498,7 @@ Align(
   
   child:
 Container(
+  margin: EdgeInsets.all(0),
   decoration: BoxDecoration(
   color: Colors.transparent,
   borderRadius: BorderRadius.circular(20)
@@ -437,17 +509,16 @@ Container(
 Expanded(
   flex: 1,
     child: Container(
-      padding: EdgeInsets.all(2),
-      margin: EdgeInsets.fromLTRB(size.width*0.0 
-      , size.height*0.018 , size.width*0.05 , size.height*0.018 ),
+      padding: EdgeInsets.all(7),
+      margin: EdgeInsets.fromLTRB(size.width*0.05 
+      , size.height*0.010 , size.width*0.05 , size.height*0.010 ),
           decoration: BoxDecoration(
-  color: Colors.white,
+  color: Colors.transparent,
  borderRadius: BorderRadius.only(
-      topRight: Radius.circular(20),
-      bottomRight: Radius.circular(20),
+     
     ),
 ),
-      height: size.height * 0.25,
+      height: size.height * 0.22,
       child: Column(
         mainAxisAlignment: MainAxisAlignment.start,
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -456,22 +527,22 @@ Expanded(
                             padding: EdgeInsets.fromLTRB(1, 4, 1, 1),
 
           child:Text("${widget.h_tarih_gun + " "+ widget.h_tarih_isim + " "  + widget.h_tarih_yil } ",style: TextStyle(
-          fontSize: 16,
+          fontSize: 12,
           fontWeight: FontWeight.bold,
-        color:  AppConfig.selecteddinigun ==int.parse (widget.id) ? Colors.black : Colors.grey,
+        color:  controller.selecteddinigun ==int.parse (widget.idim) ? Colors.black : Colors.black,
         ))),
-        Container(
-                            padding: EdgeInsets.fromLTRB(1, 2, 1, 1),
-child:
-       SizedBox(
-        height: size.height * 0.02,
+       
+       Container(
+                                    padding: EdgeInsets.fromLTRB(1, 2, 1, 1),
+
+        height: size.height * 0.03,
         child: SingleChildScrollView(
           child: Text("${widget.aciklama}",style: TextStyle(
-            color: AppConfig.selecteddinigun ==int.parse (widget.id) ? Colors.white : Colors.black,
+            color: controller.selecteddinigun ==int.parse (widget.idim) ? Colors.black : Colors.black,
             fontSize: 14,)
             ),
         )
-         ) ),
+          ),
         
             
             
@@ -489,7 +560,7 @@ child:
   EdgeInsets.fromLTRB(size.width*0.01, size.height*0.01, size.width*0.0, size.height*0.01),
   width: 1, 
   height: size.height*0.04,
- color: AppConfig.selecteddinigun ==int.parse (widget.id) ? Colors.black : Colors.grey,
+ color: controller.selecteddinigun ==int.parse (widget.idim) ? Colors.white.withOpacity(0.2) : Colors.black,
 
  )
 
@@ -505,7 +576,7 @@ child:
       topRight: Radius.circular(15),
       bottomRight: Radius.circular(15),
     ),
-    gradient:  AppConfig.selecteddinigun ==int.parse (widget.id) ? LinearGradient(
+    gradient:  controller.selecteddinigun ==int.parse (widget.idim) ? LinearGradient(
       begin: Alignment(0.00, 0.00),
       end: Alignment(1.00, 0.00),
       colors: [
@@ -520,38 +591,41 @@ child:
       begin: Alignment(0.00, 0.00),
       end: Alignment(1.00, 0.00),
       colors: [
-        Color.fromARGB(255, 238, 240, 246),
-        Color.fromARGB(255, 224, 227, 232),
+        Colors.transparent,
+         Colors.transparent,
+      
      
       ],
-      stops: [0.00, 0.2834, 0.8794, 0.9951, 1.00],
+      stops: [0.00, 0.2834],
     ),
   ),
 
-      height: size.height * 0.10,
+      height: size.height * 0.20,
 
       child:  Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        crossAxisAlignment: CrossAxisAlignment.center,
         children: [
 
           Text(widget.m_tarih_gun 
 + " " + widget.m_tarih_ay,
           style: TextStyle(
-          fontSize: 16,
+          fontSize: 14,
           fontWeight: FontWeight.bold,
-          color:  AppConfig.selecteddinigun ==int.parse (widget.id) ? Colors.white : Colors.black,
+          color:  controller.selecteddinigun ==int.parse (widget.idim) ? Colors.white : Colors.black,
           )          
           )
           ,Text(widget.m_tarih_yil +" " +widget.m_tarih_hafta,     style: TextStyle(
-          fontSize: 16,
+          fontSize: 14,
           fontWeight: FontWeight.bold,
-          color:  AppConfig.selecteddinigun ==int.parse (widget.id) ? Colors.white : Colors.black,
+          color:  controller.selecteddinigun ==int.parse (widget.idim) ? Colors.white : Colors.black,
           )           
           ),
           Icon(
 
             Icons.info,
-            color:  AppConfig.selecteddinigun ==int.parse (widget.id) ? Colors.white : Colors.black,
-            size: 20,
+            color:  controller.selecteddinigun ==int.parse (widget.idim) ? Colors.white : Colors.black,
+            size: 17,
           )
           
         ],

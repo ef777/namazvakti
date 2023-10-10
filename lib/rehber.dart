@@ -19,43 +19,43 @@ import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart'; // Tarih biçimlendirme için
 
-List<Map<String, String>> dualar = [
+List<Map<String, String>> Rehberlist = [
  
   {  
     'icon': "pusula.png",
-    'title': 'Sabah - Akşam', 
-    'aciklama' :'Sabah Ve Akşam duaları.',
+    'title': 'Kurban Rehberi ', 
+    'aciklama' :'Sabah Ve Akşam Rehberı.',
     'd_id': '1'
   }, {  
     'icon': "pusula.png",
-    'title': 'Yiyecek Ve İçecek', 
+    'title': 'Namaz Duaları', 
     'aciklama' :'Lorem İpsum',
     'd_id': '2'
   }, ];
 
-List<Map<String, String>> icdualar = [
+List<Map<String, String>> icRehberlist = [
  
   {  
     'icon': "pusula.png",
-    'title': 'uykudan uyunaınca', 
-    'aciklama' :'Sabah Ve Akşam duaları.',
+    'title': 'Kurban Çeşitleri', 
+    'aciklama' :'Sabah Ve Akşam Rehberı.',
     'd_id': '1'
   }, {  
     'icon': "pusula.png",
-    'title': 'uykudan uyunaınca', 
+    'title': 'Kurban rehberi', 
     'aciklama' :'Lorem İpsum',
     'd_id': '2'
   }, ];
  // It is assumed that all messages contain a data field with the key 'type'
  
- class Dualar extends StatefulWidget {
-    Dualar({super.key});
+ class Rehber extends StatefulWidget {
+    Rehber({super.key});
 
   @override
-  State<Dualar> createState() => _DualarState();
+  State<Rehber> createState() => _RehberState();
 }
 
-class _DualarState extends State<Dualar> {
+class _RehberState extends State<Rehber> {
  @override
   
   List<Color> _colors = [ /*   Color(0xFF21367F).withOpacity(0.5), */
@@ -75,23 +75,23 @@ class _DualarState extends State<Dualar> {
  // Cancel the timer when the widget is disposed
     super.dispose();
   }
-List<Widget> dualarwidgets = [];
+List<Widget> Rehberwidgets = [];
    @override
    Widget build(BuildContext context) {
     // Hesaplamalar
    var size = MediaQuery.of(context).size;
    var  height = size.height;
    var width = size.width;
-dualarwidgets=[];
-for (int i = 0; i < dualar.length; i++) {
-      dualarwidgets.add(
+Rehberwidgets=[];
+for (int i = 0; i < Rehberlist.length; i++) {
+      Rehberwidgets.add(
         
-                DualarTile( 
+                RehberTile( 
                   tip: "dış",
-                  aciklama : dualar[i]['aciklama'].toString(),
-                  id: dualar[i]['d_id'].toString(),
-                   icon : dualar[i]['icon'].toString(),
-                    title : dualar[i]['title'].toString(),
+                  aciklama : Rehberlist[i]['aciklama'].toString(),
+                  id: Rehberlist[i]['d_id'].toString(),
+                   icon : Rehberlist[i]['icon'].toString(),
+                    title : Rehberlist[i]['title'].toString(),
 
                 )
 
@@ -135,7 +135,7 @@ for (int i = 0; i < dualar.length; i++) {
           margin: EdgeInsets.fromLTRB(
               size.width * 0.05, size.width * 0.01, size.width * 0.02, size.width * 0.01),
      
-        child: Text("Tüm Dualar", style: TextStyle(
+        child: Text("Dini Rehber", style: TextStyle(
           fontSize: 21,
           fontWeight: FontWeight.bold,
           color: Colors.black,
@@ -150,12 +150,12 @@ SliverToBoxAdapter(
           padding: EdgeInsets.all(5.0),
            crossAxisSpacing: 10,
            mainAxisSpacing: 10,
-        childAspectRatio: 3.5,
-          crossAxisCount: 1, // Her satırda 7 kutu olacak şekilde ayarlayabilirsiniz
+        childAspectRatio: 1,
+          crossAxisCount: 2, // Her satırda 7 kutu olacak şekilde ayarlayabilirsiniz
                      scrollDirection: Axis.vertical,
 
           shrinkWrap: true, // GridView'ın  içeriği sığdırılabilir
-          children: dualarwidgets,  
+          children: Rehberwidgets,  
         
           )
       ), 
@@ -165,17 +165,17 @@ SliverToBoxAdapter(
     }
   }
 
-     class icDualar extends StatefulWidget {
+     class icRehber extends StatefulWidget {
 final String id;
-    icDualar({super.key
+    icRehber({super.key
     , required this.id
     });
 
   @override
-  State<icDualar> createState() => ic_DualarState();
+  State<icRehber> createState() => ic_RehberState();
 }
 
-class ic_DualarState extends State<icDualar> {
+class ic_RehberState extends State<icRehber> {
  @override
   
   List<Color> _colors = [ /*   Color(0xFF21367F).withOpacity(0.5), */
@@ -195,22 +195,22 @@ class ic_DualarState extends State<icDualar> {
  // Cancel the timer when the widget is disposed
     super.dispose();
   }
-List<Widget> dualarwidgets = [];
+List<Widget> Rehberwidgets = [];
    @override
    Widget build(BuildContext context) {
     // Hesaplamalar
    var size = MediaQuery.of(context).size;
    var  height = size.height;
    var width = size.width;
-dualarwidgets=[];
-for (int i = 0; i < dualar.length; i++) {
-      dualarwidgets.add(
+Rehberwidgets=[];
+for (int i = 0; i < icRehberlist.length; i++) {
+      Rehberwidgets.add(
         
-                DualarTile( 
-                  aciklama : icdualar[i]['aciklama'].toString(),
-                  id: icdualar[i]['d_id'].toString(),
-                   icon : icdualar[i]['icon'].toString(),
-                    title : icdualar[i]['title'].toString(), tip: 'ic',
+                RehberTile( 
+                  aciklama : icRehberlist[i]['aciklama'].toString(),
+                  id: icRehberlist[i]['d_id'].toString(),
+                   icon : icRehberlist[i]['icon'].toString(),
+                    title : icRehberlist[i]['title'].toString(), tip: 'ic',
 
                 )
 
@@ -254,7 +254,7 @@ for (int i = 0; i < dualar.length; i++) {
           margin: EdgeInsets.fromLTRB(
               size.width * 0.05, size.width * 0.01, size.width * 0.02, size.width * 0.01),
      
-        child: Text("Tüm Dualar", style: TextStyle(
+        child: Text("Tüm Rehber", style: TextStyle(
           fontSize: 21,
           fontWeight: FontWeight.bold,
           color: Colors.black,
@@ -274,7 +274,7 @@ SliverToBoxAdapter(
                      scrollDirection: Axis.vertical,
 
           shrinkWrap: true, // GridView'ın  içeriği sığdırılabilir
-          children: dualarwidgets,  
+          children: Rehberwidgets,  
         
           )
       ), 
@@ -286,14 +286,14 @@ SliverToBoxAdapter(
 
     
 
-    class DualarTile extends StatefulWidget {
+    class RehberTile extends StatefulWidget {
 final String tip; 
 final String icon;
 final String title;
 final String id;
 final String aciklama;
 
-      DualarTile({Key? key,  required this.icon,
+      RehberTile({Key? key,  required this.icon,
     required this.title,
     required this.aciklama,
     required this.id,
@@ -301,10 +301,10 @@ final String aciklama;
     }) : super(key: key);
     
       @override
-      _DualarTileState createState() => _DualarTileState();
+      _RehberTileState createState() => _RehberTileState();
     }
       
-    class _DualarTileState extends State<DualarTile> {
+    class _RehberTileState extends State<RehberTile> {
       @override
       Widget build(BuildContext context) {
         var size = MediaQuery.of(context).size;
@@ -324,9 +324,11 @@ final String aciklama;
           },
 
           child:
-         Container(
+        Container(
 
-height: size.height * 0.10,
+height: size.height * 0.1,
+width: size.width * 0.3, 
+
 decoration: BoxDecoration(
   color: Colors.transparent,
   borderRadius: BorderRadius.circular(20)
@@ -349,37 +351,8 @@ Container(
 ),
   child:
  Row(children:[ 
+ 
 
-  Expanded(
-    flex: 1,
-    child: Container(
-      
-    
-  decoration: BoxDecoration(
-    color: Colors.white,
-    borderRadius: BorderRadius.only(
-      topLeft: Radius.circular(15),
-      bottomLeft: Radius.circular(15),
-    ),
-   
-  ),
-
-      height: size.height * 0.10,
-
-      child:SvgPicture.asset(
-            'assets/duaicon.svg', // SVG dosyanızın yolunu doğru şekilde belirtin
-            width: 20, // Genişlik
-            height: 20,
-            fit: 
-            BoxFit.scaleDown,
-            color: Colors.black
-            , // Yükseklik
-          ),
-    ),
-
-
-
-  ),
 Expanded(
   flex: 3,
     child: Container(
@@ -400,36 +373,39 @@ Expanded(
       stops: [0.00, 0.2834, 0.8794, 0.9951, 1.00],
     ),
   color: Colors.white,
- borderRadius: BorderRadius.only(
-      topRight: Radius.circular(20),
-      bottomRight: Radius.circular(20),
-    ),
-),
-      height: size.height * 0.22,
+ borderRadius: BorderRadius.all( 
+   Radius.circular(10),
+)),
+      height: size.height * 0.1,
       child: Column(
-        mainAxisAlignment: MainAxisAlignment.start,
-        crossAxisAlignment: CrossAxisAlignment.start,
+        mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            
         children: [
-        Container(
+
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceAround,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            
+            
+            children: [
+ widget.tip=="ic" ?
+         Image .asset("assets/aicon.png")
+          
+          : Container()
+          ,   Container(
                             padding: EdgeInsets.fromLTRB(1, 4, 1, 1),
 
-          child:Text("${widget.title}",style: TextStyle(
-          fontSize: 16,
+          child:Text("${widget.title}",
+          textAlign: TextAlign.center,
+          style: TextStyle(
+          fontSize:  widget.title.length > 12 ? 12 : 14,
           fontWeight: FontWeight.bold,
           color: Colors.white,
         ))),
-        Container(
-                            padding: EdgeInsets.fromLTRB(1, 2, 1, 1),
-child:
-       SizedBox(
-        height: size.height * 0.02,
-        child: SingleChildScrollView(
-          child: Text("${widget.aciklama}",style: TextStyle(
-            color: Colors.white,
-            fontSize: 14,)
-            ),
-        )
-         ) ),
+          ],)
+     
+       
         
             
             
@@ -445,36 +421,7 @@ child:
   ]))
       
       
-  ) ,Align(
- alignment: Alignment.centerRight,
-  
-  child:
-  Container(
-          height: size.height * 0.10,
-          width: size.width * 0.10,
-          
-  padding: EdgeInsets.all(0),
-  margin: EdgeInsets.fromLTRB(0, 0,0, 0),
-          decoration: BoxDecoration(
-                shape: BoxShape.circle
-,
-          color: Colors.white
-          ),
-          child: Center(child:
-Container(child:
-
-SvgPicture.asset(
-            'assets/eye.svg', // SVG dosyanızın yolunu doğru şekilde belirtin
-            width: 30, // Genişlik
-            height: 30,
-            fit: 
-            BoxFit.scaleDown,
-            color: Colors.black
-            , // Yükseklik
-          ),
-
-))),
-  )
+  ) 
 
 ])));
       }
@@ -487,7 +434,7 @@ nduagoster(context,id){
   bool _lights = false;
 
 var secilidua =
-dualar.where((element) => element['d_id'] == id);
+Rehberlist.where((element) => element['d_id'] == id);
   return showModalBottomSheet(
      isScrollControlled: true, // Bu parametre alt sayfanın tam ekranı kaplamasını sağlar
   useRootNavigator: true,
@@ -593,7 +540,7 @@ menugoster(context,id){
   bool _lights = false;
 
 var secilidua =
-dualar.where((element) => element['d_id'] == id);
+Rehberlist.where((element) => element['d_id'] == id);
   return showModalBottomSheet(
      isScrollControlled: true, // Bu parametre alt sayfanın tam ekranı kaplamasını sağlar
   useRootNavigator: true,
@@ -607,7 +554,7 @@ dualar.where((element) => element['d_id'] == id);
 
 
         return  Container(
-child:icDualar(id:id),
+child:icRehber(id:id),
         
 
         ); } ) ; } ); }

@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:get/get.dart';
+import 'package:namazvakti/config.dart';
 
 class ImsakVakti extends StatefulWidget {
   @override
@@ -14,6 +16,7 @@ class _ImsakVaktiState extends State<ImsakVakti> {
      var size = MediaQuery.of(context).size;
    var  height = size.height;
    var width = size.width;
+  
     return Scaffold(
      backgroundColor: Colors.lightBlue[50],
       body: Center(
@@ -24,13 +27,31 @@ SliverToBoxAdapter(
   child: Container(
 child:
 Column(children: [
- Image.asset("assets/imsak_vakit.png",width: 25,height: 25
+ Image.asset("assets/oglen_vakit.png",width: 25,height: 25
           ,fit: BoxFit.contain,
           ),
 Text("imsak vakti"),
-VakitTile(valuel: true, title: "Vaktinde", id: 1,),
-VakitTile(valuel: true, title: "Vaktinden Önce", id: 2,),
-VakitTile(valuel: true, title: "Güneşe", id: 3,),
+VakitTile(title: "Vaktinde", id: 1,),
+VakitTile(title: "Vaktinden Önce", id: 2,),
+VakitTile( title: "Güneşe", id: 3,),
+
+
+
+],)
+
+  
+  ),
+),SliverToBoxAdapter(
+  child: Container(
+child:
+Column(children: [
+ Image.asset("assets/imsak_vakit.png",width: 25,height: 25
+          ,fit: BoxFit.contain,
+          ),
+Text("Öğlen  vakti"),
+VakitTile( title: "Vaktinde", id: 4,),
+VakitTile( title: "Vaktinden Önce", id: 5,),
+VakitTile( title: "Güneşe", id: 6,),
 
 
 
@@ -62,13 +83,13 @@ VakitTile(valuel: true, title: "Güneşe", id: 3,),
 class VakitTile extends StatefulWidget {
 
   // İhtiyaç duyacağımız parametreler
-   bool valuel;
+   
   var title ;
   var id ;
   
   // Parametreleri constructor'da alıyoruz
    VakitTile({
-    required this.valuel,
+ 
     required this.title,
     required this.id,
   });
@@ -105,21 +126,20 @@ class _VakitTileState extends State<VakitTile> {
           height: size.height * 0.08,
           width: size.width * 0.9,
    margin: EdgeInsets.fromLTRB(
-              size.width * 0.05, size.width * 0.02, size.width * 0.05, size.width * 0.05),
+              size.width * 0.05, size.width * 0.013, size.width * 0.05, size.width * 0.013),
        child: 
        Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
-Switch(
-  value: widget.valuel, 
-  onChanged: (bool value) {
-    setState(() {
-      value = value;
-    });
-  },
+Obx(
+  () => Switch(
+    value: AppConfig.vakitler[widget.id-1].value,
+    onChanged: (value) {
+      AppConfig.vakitDegistir(widget.id-1, value.obs);
+    },
+  ),
 ),
-
 
    Text("${widget.title}"),
 
@@ -145,9 +165,7 @@ Switch(
           child:
    GestureDetector(
   onTap: (){
-    setState(() {
-       widget.valuel = ! widget.valuel;
-    });
+   
   },
   child:
 
@@ -179,9 +197,7 @@ Switch(
           child:
    GestureDetector(
   onTap: (){
-    setState(() {
-       widget.valuel = ! widget.valuel;
-    });
+ 
   },
   child:
 

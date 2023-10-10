@@ -95,7 +95,7 @@ class _AddCounterState extends State<AddCounter> {
           ),
         ],
         title: Text(
-          'main.add_dhikr'.tr(),
+          "Zikir isim",
           style: Theme.of(context).textTheme.headlineSmall?.copyWith(
               fontWeight: FontWeight.bold, color: Colors.white, fontSize: 18),
         ),
@@ -115,7 +115,7 @@ class _AddCounterState extends State<AddCounter> {
                       keyboardType: TextInputType.name,
                       controller: titleCont,
                       decoration: InputDecoration(
-                          hintText: 'main.please_enter_title'.tr(),
+                          hintText: "zikir ismi",
                           labelStyle: Theme.of(context)
                               .textTheme
                               .bodyMedium
@@ -128,7 +128,7 @@ class _AddCounterState extends State<AddCounter> {
                         keyboardType: TextInputType.number,
                         controller: startCont,
                         decoration: InputDecoration(
-                            hintText: 'main.please_enter_initial_value'.tr(),
+                            hintText: 'lütfen değer girin'.tr(),
                             labelStyle: Theme.of(context)
                                 .textTheme
                                 .bodyMedium
@@ -140,7 +140,7 @@ class _AddCounterState extends State<AddCounter> {
                         keyboardType: TextInputType.number,
                         controller: finishCont,
                         decoration: InputDecoration(
-                            hintText: 'main.please_enter_target_value'.tr(),
+                            hintText: "hedef deger",
                             labelStyle: Theme.of(context)
                                 .textTheme
                                 .bodyMedium

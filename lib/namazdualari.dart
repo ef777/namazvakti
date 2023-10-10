@@ -41,7 +41,8 @@ List<Map<String, String>> dualar = [
   }];
 
  // It is assumed that all messages contain a data field with the key 'type'
- 
+   late TabController tabController;
+
  class NamazDua extends StatefulWidget {
     NamazDua({super.key});
 
@@ -49,7 +50,7 @@ List<Map<String, String>> dualar = [
   State<NamazDua> createState() => _NamazDuaState();
 }
 
-class _NamazDuaState extends State<NamazDua> {
+class _NamazDuaState extends State<NamazDua> with TickerProviderStateMixin {
  @override
   
   List<Color> _colors = [ /*   Color(0xFF21367F).withOpacity(0.5), */
@@ -58,9 +59,11 @@ class _NamazDuaState extends State<NamazDua> {
    Color(0xFF0298CA).withOpacity(0.5),
 ]; 
 
+
   void initState() {
     super.initState();
-  
+      tabController = TabController(length: 3, vsync: this, initialIndex: 0);
+
    
   }
 
@@ -409,7 +412,7 @@ dualar.where((element) => element['d_id'] == id);
              title: Container(
               padding: EdgeInsets.all(15.0),
               child:
-             Column(
+            Column(
                mainAxisAlignment: MainAxisAlignment.center,
                children: [
                 SizedBox(height: 25,),
@@ -451,7 +454,8 @@ SizedBox(width: 3,),
   onPressed: () {
     // düğmeye basıldığında çalışacak kod
   }, 
-  iconAsset: null, text: "A+",
+  iconAsset: null, text: "A+"
+  ,
 ), SizedBox(width: 3,),
   RoundIconButton(
   size: 25,
@@ -485,7 +489,12 @@ SizedBox(width: 3,),
     ],
   ),
   child:  TabBar(
-
+    onTap: (index) {
+        setState(() {
+              // Burada istediğiniz işlemleri gerçekleştirebilirsiniz
+            });
+    },
+controller: tabController,
     
   indicator:  BoxDecoration(
          
@@ -499,7 +508,9 @@ SizedBox(width: 3,),
           begin: Alignment.topCenter,
           end: Alignment.bottomCenter,
         ) ,
-        borderRadius: BorderRadius.circular(15),
+        borderRadius: tabController.index ==0 ? BorderRadius.only( topLeft: Radius.circular(15),bottomLeft: Radius.circular(15))
+      : tabController.index ==1 ? BorderRadius.circular(10) : BorderRadius.only( topRight: Radius.circular(15),bottomRight: Radius.circular(15))
+    
       ),
 
   
@@ -510,32 +521,35 @@ SizedBox(width: 3,),
   
   labelStyle: TextStyle(fontSize: 16.0),
   unselectedLabelStyle: TextStyle(fontSize: 13.0, color: Colors.black), // Seçilmemiş etiket metin stilini özelleştirme
-  indicatorWeight: 5.0,
-  indicatorPadding: EdgeInsets.all(10),
+  indicatorWeight:15.0,
+  indicatorPadding: EdgeInsets.all(2),
+  padding: EdgeInsets.all(2),
    tabs: [
   Tab(
+  
         text: "Okunuşu",
         icon:  SvgPicture.asset("assets/okunusu.svg",
-          width: 21,
-          height: 21,
-          color: Colors.black,
+          width: 18,
+          height: 18,
+          color: tabController.index == 0 ? Colors.white : Colors.black,
         ),
 
     height: 130,
      
   ),Tab(
    icon:  SvgPicture.asset("assets/meali.svg",
-          width: 21,
-          height: 21,
-                    color: Colors.black,
+           width: 18,
+          height: 18,
+          color: tabController.index == 1 ? Colors.white : Colors.black,
 
         ),
 
     text: "Meali",
     height: 130, ),Tab(
             icon:  SvgPicture.asset("assets/arapca.svg",
-          width: 21,
-          height: 21,          color: Colors.black,
+         width: 18,
+          height: 18,                color: tabController.index == 2 ? Colors.white : Colors.black,
+
 
         ),
 
@@ -657,10 +671,10 @@ class RoundIconButton extends StatelessWidget {
       ),
       child: 
       
-      iconAsset == null ?  Center (child: Text(text!,
-      
+      iconAsset == null ?  Center (child: Text(text!
+      ,
       textAlign: TextAlign.center,
-       style: TextStyle(color: Colors.white, fontSize: 12, fontWeight: FontWeight.bold),)) :
+       style: TextStyle(color: Colors.white, fontSize: 10, fontWeight: FontWeight.bold),)) :
       IconButton(
         icon: SvgPicture.asset(
           iconAsset!,

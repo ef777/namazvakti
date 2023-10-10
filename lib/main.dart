@@ -7,11 +7,14 @@ import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 import 'package:intl/date_symbol_data_local.dart';
 import 'package:namazvakti/dinigunler.dart';
+import 'package:namazvakti/dinihikaye.dart';
 import 'package:namazvakti/dualar.dart';
 import 'package:namazvakti/esmaulhusna.dart';
 import 'package:namazvakti/home.dart';
 import 'package:namazvakti/kaza.dart';
 import 'package:namazvakti/namazdualari.dart';
+import 'package:namazvakti/radyolar.dart';
+import 'package:namazvakti/rehber.dart';
 import 'wrapper.dart';
 
 import 'package:flutter_localizations/flutter_localizations.dart';
@@ -53,6 +56,9 @@ class MyApp extends StatelessWidget {
         GetPage(name: '/kaza', page: () => Kazalar()),
           GetPage(name: '/esma', page: () => EsmaUl()),
           GetPage(name: '/dualar', page: () => Dualar()),
+          GetPage(name: '/hikaye', page: () => DiniHikaye()),
+          GetPage(name: '/rehber', page: () => Rehber()),
+          GetPage(name: '/radyolar', page: () => Radyolar())
         
       ],
 

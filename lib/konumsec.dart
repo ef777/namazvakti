@@ -1,7 +1,13 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:namazvakti/home.dart';
+
+
+
+
 
 class KonumSec extends StatefulWidget {
   @override
@@ -10,6 +16,10 @@ class KonumSec extends StatefulWidget {
 
 class _KonumSecState extends State<KonumSec> {
   @override
+
+
+
+  
     bool _isChecked = false;
 final ulkeler = ['Türkiye', 'Almanya', 'Fransa'];
 final sehirler = ['Ankara', 'Konya', 'Bayburt'];
@@ -371,16 +381,38 @@ void _showBottomSheet() {
     // Rengi değiştirmek için bir state ekleyebilirsiniz
     isColored = true; 
   });
+List<String> _searchList = [];
+  List<String> _defaultList = widget.items;
+  _searchList= _defaultList;
+ var _debounce;
 
     showModalBottomSheet(
       
       context: context,
       builder: (context) {
+           return StatefulBuilder(
+      builder: (BuildContext context, StateSetter setState) {
+        
         return Container(
-          height: 300,
+          height: 500,
           child: Column(
             children: [
-              TextField(
+              TextField(              onChanged: (value) {
+                
+if (_debounce?.isActive ?? false) _debounce.cancel();
+    _debounce = Timer(const Duration(milliseconds: 500), () {
+  
+
+      _searchList = value.isEmpty
+        ? _defaultList
+        : widget.items
+                    .where((item) => 
+                      item.toLowerCase().contains(value.toLowerCase()))
+                    .toList();
+
+      setState(() {});
+    }); },
+
                 decoration: InputDecoration(
                   hintText: 'Ara'  
                 ),
@@ -389,9 +421,9 @@ void _showBottomSheet() {
               // Liste
               Expanded(
                 child: ListView.builder(
-                  itemCount: widget.items.length,
+                  itemCount: _searchList.length,
                   itemBuilder: (context, index) {
-                    final item = widget.items[index];
+                    final item = _searchList[index];
 
                     return ListTile(
                       title: Text(item),
@@ -414,13 +446,15 @@ void _showBottomSheet() {
             ],
           ),
         );
-      }
-    );
+      });}
+    ); 
+
+    
     Future.delayed(Duration(seconds: 2), () {
     setState(() {
       isColored = false;  
     });
   });
-  }
-
+  
+}
 }

@@ -9,6 +9,7 @@ import 'package:flutter_svg/flutter_svg.dart';
  import 'package:get/get.dart';
  import 'package:flutter/material.dart';
 import 'package:flutter/painting.dart';
+import 'package:namazvakti/config.dart';
 import 'dart:math';
 
  import 'wrapper.dart';
@@ -57,6 +58,7 @@ List<Map<String,String>> Esma = [
 
 
 ];
+     final controller = Get.put(AppConfig()); //<---
 
   void initState() {
     super.initState();
@@ -136,7 +138,7 @@ Esmawidgets = [];
     )  )),
  
 SliverToBoxAdapter(
-      child: GridView.count(
+      child:  GridView.count(
           padding: EdgeInsets.all(5.0),
            crossAxisSpacing: 10,
            mainAxisSpacing: 10,
@@ -147,8 +149,8 @@ SliverToBoxAdapter(
           shrinkWrap: true, // GridView'ın  içeriği sığdırılabilir
           children: Esmawidgets,  
         
-          )
-      ), 
+          ))
+       
   ] ),
       )
       ;
@@ -178,48 +180,37 @@ required this.i_url,
     }
       
     class _Esma_TileState extends State<Esma_Tile> {
-     bool isSelected = false;
-     bool isPlaying = false;
+   
+          var controller = Get.put(AppConfig()); //<---
       @override
       Widget build(BuildContext context) {
         var size = MediaQuery.of(context).size;
-
+  // controller.selectedesmaulhusna.value == int.parse(widget.id) ? true : false;
         return
         
-        GestureDetector(
+     GestureDetector(
           onTap: () {
-
-            setState(() {
-              isSelected = !isSelected;
+           controller.esmaulhusnaidDegistir( int.parse(widget.id));
+                       
+  Future.delayed(const Duration(milliseconds: 500), () {
              
-             Future.delayed(const Duration(milliseconds: 500), () {
-              setState(() {
-                              isPlaying = !isPlaying;
-
-              });
+                          
+             Future.delayed(const Duration(milliseconds: 1000), () {
+              controller.esmaulhusna_play_Degistir( int.parse(widget.id));
              });
-            });
-         Future.delayed(Duration(seconds: 3), () {
-      setState(() {
-      
-              isSelected = !isSelected;
-
-      });
-       
-//                 
-        } ); },
+             });
+       },
 
           
           
-          child:Container(child: 
+          child:   Obx(() =>   Container(child: 
     
 
 Align(
  alignment: Alignment.center,
   
-  child:
-  isPlaying ?
- Container(
+  child:(controller.selectedesmaulhusna_player.value == int.parse(widget.id) ? true : false)
+ ? Container(
   padding: EdgeInsets.all(10.0),
   margin: EdgeInsets.fromLTRB(size.width*0.05 , size.height*0.01 , size.width*0.05 , size.height*0.01 ),
   decoration: BoxDecoration(
@@ -231,7 +222,7 @@ Align(
       )
     ],
      
-     gradient: isSelected ? LinearGradient(
+     gradient: (controller.selectedesmaulhusna.value == int.parse(widget.id) ? true : false) ? LinearGradient(
       begin: Alignment(0.00, 0.00),
       end: Alignment(1.00, 0.00),
       colors: [
@@ -255,7 +246,6 @@ Align(
 ),
   child:
  Row(children:[ 
-
 Expanded(
   flex: 1,
     child: 
@@ -368,7 +358,7 @@ Container(
       )
     ],
      
-     gradient: isSelected ? LinearGradient(
+     gradient: (controller.selectedesmaulhusna.value == int.parse(widget.id) ? true : false) ? LinearGradient(
       begin: Alignment(0.00, 0.00),
       end: Alignment(1.00, 0.00),
       colors: [
@@ -447,19 +437,19 @@ Expanded(
       height: size.height * 0.10,
 
       child:  Column(
-        children: [
+        children: [ 
 
           Text(widget.title
 + " " ,
           style: TextStyle(
           fontSize: 16,
           fontWeight: FontWeight.bold,
-          color: Colors.white,
+          color:   (controller.selectedesmaulhusna.value == int.parse(widget.id) ? true : false) ? Colors.white :Colors.black,
           )          
           )
           ,Text(widget.aciklama ,     style: TextStyle(
           fontSize: 12,
-          color: Colors.white,
+          color:  (controller.selectedesmaulhusna.value == int.parse(widget.id) ? true : false) ? Colors.white :Colors.black,
           )           
           ),
         
@@ -483,6 +473,6 @@ Expanded(
   
            
           )
-);
+));
       }
     }

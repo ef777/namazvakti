@@ -76,10 +76,10 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
     )  ),
 
 
-   bottomNavigationBar: CustomBottomNavigationBar(
+  bottomNavigationBar: CustomBottomNavigationBar(
         selectedIndex: _selectedIndex,
         onItemTapped: _onItemTapped,
-      ),
+      ), 
  
     );
  
@@ -131,8 +131,21 @@ class CustomBottomNavigationBar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      decoration: BoxDecoration(
+        var size = MediaQuery.of(context).size;
+    var  height = size.height;
+    var width = size.width;
+    return Stack(
+
+
+
+    
+      children:[ Align(
+        
+        alignment: Alignment.bottomCenter,
+        child: Container( 
+        
+        height: height*0.1,
+         decoration: BoxDecoration(
         color: Colors.white,
         boxShadow: [
           BoxShadow(
@@ -141,8 +154,10 @@ class CustomBottomNavigationBar extends StatelessWidget {
             blurRadius: 5,
           ),
         ],
-      ),
-      child: Row(
+      ),)),Align(
+        
+        alignment: Alignment.bottomCenter,
+        child:  Row(
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: [
          
@@ -150,52 +165,64 @@ class CustomBottomNavigationBar extends StatelessWidget {
           buildNavItem("assets/kuraan.png", "Kur'an", 1),
           buildNavItem("assets/ayyildiz.png", "Vakitler", 2),
           buildNavItem("assets/zikir.png", "Zikir", 3),
-          buildNavItem("assets/ve.png", "Vs", 4),
+          buildNavItem("assets/ve.png", "Menü", 4),
         ],
       ),
+     
+      
+     ) ],
     );
   }
-
-  Widget buildNavItem(String icon, String label, int index) {
-    return GestureDetector(
-      onTap: () => onItemTapped(index),
-      child: Column(
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          Container(
-            width: 60,
-            height: 50,
-            decoration: BoxDecoration(
-              shape: BoxShape.circle,
-              color: index == selectedIndex ? Colors.blue : Colors.transparent,
-            ),
-            padding: EdgeInsets.all(5),
-            child: Stack(
-              alignment: Alignment.center,
-              children: [
-               
-
-                  Image(
-                    height: selectedIndex == index ? 60 : 30,
-                    width: selectedIndex == index ? 60 : 30,
-            image: AssetImage(icon),
-            color: selectedIndex == index ? Colors.white : Colors.grey,
-                  )
-                  ,
-              
-              ],
-            ),
-          ),
-          SizedBox(height:  selectedIndex == index? 10 : 0),
-          selectedIndex == index ?  Text(
-            label,
-            style: TextStyle(
-
-              color: index == selectedIndex ? Colors.blue : Colors.transparent,
-            ),
-          ): Container()
-        ],
+Widget buildNavItem(String icon, String label, int index) {
+  final bool isSelected = index == selectedIndex;
+  return GestureDetector(
+    onTap: () => onItemTapped(index),
+    child: Column(
+      mainAxisSize: MainAxisSize.min,
+      crossAxisAlignment: CrossAxisAlignment.center,
+      children: [
+        Container(
+  width: 70,
+  height: 80,
+  decoration: BoxDecoration(
+    shape: BoxShape.circle,
+    color: isSelected ? Colors.white : Colors.transparent,
+  ),
+  child: Stack(
+    alignment: Alignment.center,
+    children: [
+      Container(
+        width: 55,
+        height: 55,
+        decoration: BoxDecoration(
+          shape: BoxShape.circle,
+          color: isSelected ? Colors.blue : Colors.transparent,
+        ),
       ),
-    );
-  }
+      Image(
+        height: 55,
+        width: 55,
+        image: AssetImage(icon),
+        color: isSelected ? Colors.white : Colors.grey,
+      ),
+    ],
+  ),
+)
+,
+        isSelected
+            ? Text(
+                label,
+                style: TextStyle(
+                  fontSize: 14,
+                  fontWeight: FontWeight.bold,
+                  color: Colors.blue,
+                ),
+              )
+            : Container(),        SizedBox(height: isSelected ? 5: 0),
+
+      ],
+    ),
+  );
+}
+
 }
