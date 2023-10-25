@@ -8,12 +8,63 @@ import 'package:namazvakti/wellcome.dart';
 
 // yeni maps api AIzaSyD6fDwneuvZwuCwe-kbqZLl6E9qzwVq1s8
 class AppConfig extends GetxController {
+bool getSwitchValue(String d1, String d2) {
+  return ezanvaktibildirim[d1]![d2]![0] == "1";
+}
+
+void onSwitchChange(bool value, String d1, String d2) {
+  ezanvaktibildirim[d1]![d2]![0] = value ? "1" : "0"; 
+}
+static Map<String, Map<String, RxList<String>>> ezanvaktibildirim = {
+  'imsak': { 
+    'vaktinde': ['1', 'default', '0:0'].obs,
+    'once': ['0', 'default', '0:0'].obs,
+    'gunes': ['0', 'default', '0:0'].obs,
+  },
+  'oglen': {
+    'vaktinde': ['1', 'default', '0:0'].obs,
+    'once': ['0', 'default', '0:0'].obs,
+  },
+  'ikindin': {
+    'vaktinde': ['0', 'default', '0:0'].obs,
+    'once': ['0', 'default', '0:0'].obs,
+  },
+  'aksam': {
+    'vaktinde': ['0', 'default', '0:0'].obs,
+    'once': ['0', 'default', '0:0'].obs,
+  },
+  'yatsi': {
+    'vaktinde': ['0', 'default', '0:0'].obs,
+    'once': ['0', 'default', '0:0'].obs,
+  }
+}.obs;
+
+
+ e_kaydet(Map<String,  Map<String, RxList<String>>> ezanvaktibildirim)async {
+ await box.write('ezan', ezanvaktibildirim);
+  print("ezanvakti kaydedildi");
+ var ezan= await box.read('ezan');
+  print("ezanvakti okundu");
+  print(ezan.toString());
+  
+}
+Future<  Map<String,  Map<String, RxList<String>>>> e_getir() async {
+  var gelen = await box.read('ezan');
+  print("ezanvakti hafizadan okundu");
+  print(gelen.toString());
+  return gelen;
+}
+
+
+
 static String ulkeid = "2";
 static  String ulkename = "2";
 static String sehirid = "2";
 static String sehirname = "2";
 static String ilceid = "2";
 static String ilcename = "2";
+static int vakitstxt = 0; 
+
   final box = GetStorage();
 
 ilkgiriskayit() async {
@@ -36,7 +87,7 @@ ilkgirismi( ) async {
     print("önceden giriş yapılmış");
 
     AppConfig.login=true;
-    return false;
+    return false; // config test  için true yap
   } 
 
 }
@@ -75,6 +126,9 @@ static var login = true;
   static int selecteddiniyil = 0;
 RxInt selecteddinigun = 0.obs;
 static final vakitler = <RxBool>[true.obs, false.obs, false.obs,false.obs,false.obs,false.obs,].obs;
+
+//
+
  RxInt selectedesmaulhusna = 0.obs;
   RxInt selectedesmaulhusna_player = 0.obs;
 

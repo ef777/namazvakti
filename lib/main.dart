@@ -16,17 +16,58 @@ import 'package:namazvakti/kaza.dart';
 import 'package:namazvakti/namazdualari.dart';
 import 'package:namazvakti/radyolar.dart';
 import 'package:namazvakti/rehber.dart';
+import 'package:vibration/vibration.dart';
 import 'wrapper.dart';
 
 import 'package:flutter_localizations/flutter_localizations.dart';
 
+import 'package:permission_handler/permission_handler.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
     await initializeDateFormatting();
   await GetStorage.init();
 
+// İzin durumunu kontrol edin
+if(await Permission.notification.isGranted) {
+  // Bildirim gönderilebilir
+}else if(await Permission.notification.isPermanentlyDenied){
+  // İzin kalıcı olarak reddedildi
+  openAppSettings(); 
 
+}else{
+await Permission.notification.request();
+
+  // İzin verilmedi, tekrar istemek gerekiyor
+}
+
+// İzin durumunu kontrol edin
+if(await Permission.location.isGranted){
+  // Konum erişimi var
+  // Konum kodları
+
+}else if(await Permission.location.isPermanentlyDenied){
+  // İzin kalıcı olarak reddedildi
+  openAppSettings(); 
+
+}else{
+  await Permission.location.request();
+
+  // İzin verilmedi, tekrar istemek gerekiyor
+}
+if(await Permission.sensors.isGranted) {
+  // İzin verildi
+  Vibration.vibrate();
+
+} else if(await Permission.sensors.isPermanentlyDenied) {
+  // İzin kalıcı olarak reddedildi
+await Permission.sensors.request();
+
+} else {
+  await Permission.sensors.request();
+
+  // Henüz izin verilmedi  
+}
   runApp( MyApp());
 }
 

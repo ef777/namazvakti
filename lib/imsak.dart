@@ -10,6 +10,8 @@ class ImsakVakti extends StatefulWidget {
 }
 
 class _ImsakVaktiState extends State<ImsakVakti> {
+        final AppConfig conf = Get.put(AppConfig());
+
   @override
   bool _lights = false;
 
@@ -32,9 +34,9 @@ Column(children: [
           ,fit: BoxFit.contain,
           ),
 Text("imsak vakti"),
-VakitTile(title: "Vaktinde", id: 1,),
-VakitTile(title: "Vaktinden Önce", id: 2,),
-VakitTile( title: "Güneşe", id: 3,),
+VakitTile(title: "Vaktinde", id: "imsak_vaktinde",),
+VakitTile(title: "Vaktinden Önce", id: "imsak_once",),
+VakitTile( title: "Güneşten Önce", id: "imsak_gunes",),
 
 
 
@@ -50,9 +52,59 @@ Column(children: [
           ,fit: BoxFit.contain,
           ),
 Text("Öğlen  vakti"),
-VakitTile( title: "Vaktinde", id: 4,),
-VakitTile( title: "Vaktinden Önce", id: 5,),
-VakitTile( title: "Güneşe", id: 6,),
+VakitTile( title: "Vaktinde", id: "oglen_vaktinde",),
+VakitTile( title: "Vaktinden Önce", id: "oglen_once",),
+
+
+
+],)
+
+  
+  ),
+), SliverToBoxAdapter(
+  child: Container(
+child:
+Column(children: [
+ Image.asset("assets/ikindi_vakit.png",width: 25,height: 25
+          ,fit: BoxFit.contain,
+          ),
+Text("İkindin  vakti"),
+VakitTile( title: "Vaktinde", id: "ikindin_vaktinde",),
+VakitTile( title: "Vaktinden Önce", id: "ikindin_once",),
+
+
+
+],)
+
+  
+  ),
+),SliverToBoxAdapter(
+  child: Container(
+child:
+Column(children: [
+ Image.asset("assets/aksam_vakit.png",width: 25,height: 25
+          ,fit: BoxFit.contain,
+          ),
+Text("Akşam  vakti"),
+VakitTile( title: "Vaktinde", id: "aksam_vaktinde",),
+VakitTile( title: "Vaktinden Önce", id: "aksam_once",),
+
+
+
+],)
+
+  
+  ),
+),SliverToBoxAdapter(
+  child: Container(
+child:
+Column(children: [
+ Image.asset("assets/yatsi_vakit.png",width: 25,height: 25
+          ,fit: BoxFit.contain,
+          ),
+Text("Yatsı  vakti"),
+VakitTile( title: "Vaktinde", id: "yatsi_vaktinde",),
+VakitTile( title: "Vaktinden Önce", id: "yatsi_once",),
 
 
 
@@ -70,7 +122,7 @@ VakitTile( title: "Güneşe", id: 6,),
           child: GestureDetector(
       onTap: () async {
        
-      
+      await conf.e_kaydet( AppConfig.ezanvaktibildirim);
               Get.offAll(HomePage());
 
 
@@ -132,11 +184,10 @@ VakitTile( title: "Güneşe", id: 6,),
 }
 
 class VakitTile extends StatefulWidget {
-
   // İhtiyaç duyacağımız parametreler
    
-  var title ;
-  var id ;
+  String title ;
+  String id ;
   
   // Parametreleri constructor'da alıyoruz
    VakitTile({
@@ -152,9 +203,22 @@ class VakitTile extends StatefulWidget {
 
 // State
 class _VakitTileState extends State<VakitTile> {
+      final AppConfig conf = Get.put(AppConfig());
 
+Widget _buildSwitch(String d1, String d2) {
+  return Switch(
+    value: conf.getSwitchValue(d1, d2),
+    onChanged: (value) => conf.onSwitchChange(value, d1, d2),
+  );
+}
   @override
   Widget build(BuildContext context) {
+     var split = widget.id.split('_');
+
+  var d1 = split[0];
+  var d2 = split[1];
+
+
  var size = MediaQuery.of(context).size;
    var  height = size.height;
    var width = size.width;
@@ -183,14 +247,9 @@ class _VakitTileState extends State<VakitTile> {
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
-Obx(
-  () => Switch(
-    value: AppConfig.vakitler[widget.id-1].value,
-    onChanged: (value) {
-      AppConfig.vakitDegistir(widget.id-1, value.obs);
-    },
-  ),
-),
+Obx(() => _buildSwitch(d1, d2))
+,
+
 
    Text("${widget.title}"),
 

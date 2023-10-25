@@ -2,6 +2,8 @@
  import 'dart:math';
 import 'dart:ui';
 import 'dart:ui';
+import 'package:audioplayers/audioplayers.dart';
+import 'package:vibration/vibration.dart';
 
 import 'package:flutter/material.dart';
  import 'package:flutter/services.dart';
@@ -21,7 +23,45 @@ import 'dart:async';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart'; // Tarih biçimlendirme için
+class ImsakDialog extends StatelessWidget {
 
+  @override
+  Widget build(BuildContext context) {
+    return Dialog(
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(16)
+      ),
+      child: Stack(
+        clipBehavior: Clip.none, alignment: Alignment.topCenter,
+        children: [
+          
+          Padding(
+            padding: const EdgeInsets.fromLTRB(16, 50, 16, 16),
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                Text("Namaz Vakti", style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold)),
+                SizedBox(height: 16),
+                Text("Namaz vakti başlamıştır.", textAlign: TextAlign.center),
+                SizedBox(height: 16),
+              ],
+            ),
+          ),
+          
+          Positioned(
+            top: -50,
+            child: CircleAvatar(
+              radius: 50, 
+              backgroundImage: AssetImage("assets/imsak.jpg"),
+            )  
+          )
+          
+        ],
+      ),
+    );
+  }
+
+}
  // It is assumed that all messages contain a data field with the key 'type'
  class ColorController extends GetxController {
   final colors = [Colors.red, Colors.green].obs;
@@ -40,13 +80,95 @@ import 'package:intl/intl.dart'; // Tarih biçimlendirme için
 }
 // timer_controller.dart
 
+void playAssetSound(String soundName, int duration) async {
+  final player = AudioPlayer();
+
+  // Start playing the audio
+player.play(AssetSource('ezan/$soundName'));
+
+  // Schedule stopping the audio after the specified duration
+  await Future.delayed(Duration(seconds: duration));
+
+  // Stop the audio playback
+  await player.stop();
+}
 class TimerController extends GetxController {
+  
+ Vakit bugunubul( NamazVakitleri vakitveri ){
+  List <Vakit> vakitler = vakitveri.vakitler;
+
+  var today = DateTime.now();
+    var formattedDate = DateFormat('dd.MM.yyyy').format(today);
 
 
-final prayerTime = DateTime(2023, 10, 22, 10, 0, 0).obs;
+    for(var i = 0; i < vakitler.length; i++) {
+      print("vakit bulundu");
+      if(vakitler[i].miladiTarihKisa == formattedDate) {
+        return vakitler[i];
+      }
+    }
+    print("bugun bulunamad");
+      return vakitler[0];
+
+
+
+ }
+   
+ 
+
+
+ 
+   
+DateTime? enYakinVakitBul(DateTime suan, List<DateTime> vakitler) {
+  int vakindex= 0;
+  DateTime? enYakinVakit;
+  int enKucukFark = 999999; 
+  
+  for (var vakit in vakitler) {
+    
+    if (vakit.isBefore(suan)) {
+            vakindex = vakindex + 1;
+            AppConfig.vakitstxt = vakindex;
+print("vakindex" + vakindex.toString());
+      continue; 
+    }
+    
+    int fark = suan.difference(vakit).inSeconds.abs();
+    
+    if (fark < enKucukFark) {
+      enKucukFark = fark;
+      enYakinVakit = vakit;
+    }
+    
+  }
+
+  return enYakinVakit;
+  
+}
+ vakithesaplailk( NamazVakitleri vakitveri){
+  Vakit ilkgun = bugunubul(  vakitveri);
+  print("ilk gün" + ilkgun.miladiTarihKisa.toString());
+ DateTime suan= DateTime.now();
+  
+  DateTime imsak= ilkgun.imsakdate;
+  DateTime gunes= ilkgun.gunesdate;
+  DateTime ogle= ilkgun.ogledate;
+  DateTime ikindi= ilkgun.ikindidate;
+  DateTime aksam= ilkgun.aksamdate;
+  DateTime yatsi= ilkgun.yatsidate;
+DateTime? siradaki_vakit = enYakinVakitBul(suan, [imsak, gunes, ogle, ikindi, aksam, yatsi]);
+ prayerTime.value = siradaki_vakit!.obs.value;
+
+ return siradaki_vakit;
+
+   }
+
+
+
+var prayerTime = DateTime(2030, 10, 22, 10, 0, 0).obs;
 Rx<DateTime> currentTime = DateTime.now().obs;
 Rx<Duration> remainingTime = Rx(Duration());
-
+   NamazVakitleri ? vakitveri;
 String formatDuration(Duration duration) {
   int hours = duration.inHours;
   int minutes = duration.inMinutes.remainder(60);
@@ -66,10 +188,26 @@ void onInit() {
       String formattedTime = formatDuration(remainingTime.value);
         
   });
+
+  ever(remainingTime, (_) {
+
+  if (remainingTime.value.inSeconds <= 0) {
+
+    // Bir sonraki vakte geçildi, uyarı ver
+    
+    print("Vakit değişti! Yeni vakit: ${AppConfig.vakitstxt}");
+Vibration.vibrate(pattern: [500, 1000, 500, 2000]);
+
+    // Bir sonraki vakte geç
+    prayerTime.value = vakithesaplailk(vakitveri!);
+Get.dialog(ImsakDialog());
+playAssetSound ("ezan1.mp3", 10);
+  }
+  
+});
+}
 }
 
-
-}
 
 
  class AnaEk extends StatefulWidget {
@@ -97,7 +235,7 @@ ColorController controller = Get.put(ColorController());
  var vakitstring= "Öğlenin Çıkmasına";
   late String selectedCity;
 
-
+var siradakivakit;
   void initState() {
     super.initState();
   currentTime = DateTime.now();
@@ -111,25 +249,8 @@ controller.changeColor();
     super.dispose();
   }
 
- Vakit bugunubul( NamazVakitleri vakitveri ){
-  List <Vakit> vakitler = vakitveri.vakitler;
+  
 
-  var today = DateTime.now();
-    var formattedDate = DateFormat('dd.MM.yyyy').format(today);
-
-
-    for(var i = 0; i < vakitler.length; i++) {
-      print("vakit bulundu");
-      if(vakitler[i].miladiTarihKisa == formattedDate) {
-        return vakitler[i];
-      }
-    }
-    print("bugun bulunamad");
-      return vakitler[0];
-
-
-
- }
 
   Future<List> AnaekranFuture() async{
  
@@ -145,6 +266,7 @@ for( Vakit a in vakitler){
 
 }
 
+
  return [a];
 
    }
@@ -157,21 +279,36 @@ for( Vakit a in vakitler){
           if (snapshot.hasError) {
             return Text("${snapshot.error}");
           } if (snapshot.hasData) {
-      NamazVakitleri vakitveri=   snapshot.data![0];
+   
+    timerController.vakitveri =   snapshot.data![0];
         print("vakit veri");
-        print(vakitveri);
-  Vakit bugun =bugunubul(vakitveri);
+        print(timerController.vakitveri );
+  Vakit bugun = timerController.bugunubul( timerController.vakitveri!);
+
 print("bugun" + bugun.miladiTarihKisa.toString());
-String vakitstring= "Öğlenin Çıkmasına";
+ String vakitstring="Vakte ";
+if(  AppConfig.vakitstxt == 0){
+   vakitstring= "İmsak Vaktine";
+}
+if(  AppConfig.vakitstxt == 1){
+   vakitstring= "Güneşin Doğmasına";
+}
+if(  AppConfig.vakitstxt == 2){
+   vakitstring= "Öğlenin Çıkmasına";
+}
+if(  AppConfig.vakitstxt == 3){
+   vakitstring= "İkindinin Çıkmasına";
+}
+if(  AppConfig.vakitstxt == 4){
+   vakitstring= "Akşamın Çıkmasına";
+}
+if(  AppConfig.vakitstxt == 5){
+   vakitstring= "Yatsının Çıkmasına";
+}
+
  
+DateTime ? siradakivakit =timerController.vakithesaplailk( timerController.vakitveri!); 
 
-// günler oluştur.
-
-   // Duration remainingTime = prayerTime.difference(currentTime);
-    //int hours = remainingTime.inHours;
-   // int minutes = remainingTime.inMinutes.remainder(60);
-   // int seconds = remainingTime.inSeconds.remainder(60);
-    
     double progressValue = 1 - (timerController.remainingTime.value.inSeconds / Duration(hours: 1).inSeconds);
 
      var size = MediaQuery.of(context).size;
@@ -482,7 +619,7 @@ TirtikliLinearProgressIndicator(progressValue: 30),
           width: size.width * 0.9,
           margin: EdgeInsets.fromLTRB(
               size.width * 0.03, size.width * 0.005, size.width * 0.03, size.width * 0.005),
-       child:  AyGunleriWidget(vakitveri : vakitveri),
+       child:  AyGunleriWidget(vakitveri : timerController.vakitveri!),
 
       
         
@@ -527,7 +664,7 @@ TirtikliLinearProgressIndicator(progressValue: 30),
           width: size.width * 0.8,
           margin: EdgeInsets.fromLTRB(
               size.width * 0.05, size.width * 0.005, size.width * 0.05, size.width * 0.005),
-       child:  EzanVakitleri( vakitveri : vakitveri),
+       child:  EzanVakitleri( vakitveri : timerController.vakitveri!),
 
       
         
@@ -544,13 +681,13 @@ child:                      Row(
   
   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
 
-  children:[  CircularProgressBar(vakitveri: vakitveri,   tip:"1" ,
+  children:[  CircularProgressBar(vakitveri: timerController.vakitveri!,   tip:"1" ,
   backgroundColor: Colors.white.withOpacity(0.2),  
   foregroundColor: Colors.blue.withOpacity(0.8)
   
   ),
- CircularProgressBar(vakitveri: vakitveri, backgroundColor:Colors.white.withOpacity(0.2), 
-  foregroundColor: Colors.deepPurple ,tip :"2"), CircularProgressBar(vakitveri: vakitveri, backgroundColor:    Colors.white.withOpacity(0.2),  
+ CircularProgressBar(vakitveri: timerController.vakitveri!, backgroundColor:Colors.white.withOpacity(0.2), 
+  foregroundColor: Colors.deepPurple ,tip :"2"), CircularProgressBar(vakitveri: timerController.vakitveri!, backgroundColor:    Colors.white.withOpacity(0.2),  
 
   foregroundColor: Colors.orange ,tip : "3",),
 

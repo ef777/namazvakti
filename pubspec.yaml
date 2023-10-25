@@ -53,6 +53,7 @@ dependencies:
   dialog_alert: ^0.0.3
   quickalert: ^1.0.1
   vibration: ^1.7.6
+  audioplayers: ^5.2.0
   path_provider: ^2.0.5
   faded_widget: ^2.0.0
   google_fonts: ^4.0.3
@@ -71,6 +72,7 @@ dependencies:
   fluid_bottom_nav_bar: ^1.4.0
   flutter_qiblah: ^2.1.0
   google_maps_flutter: ^2.2.1
+
 
 
 
