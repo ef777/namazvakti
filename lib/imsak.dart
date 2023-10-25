@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:namazvakti/config.dart';
+import 'package:namazvakti/home.dart';
 
 class ImsakVakti extends StatefulWidget {
   @override
@@ -59,7 +60,57 @@ VakitTile( title: "Güneşe", id: 6,),
 
   
   ),
-),
+), SliverToBoxAdapter(
+      child: Container(
+         padding: EdgeInsets.all(10.0),
+          height: size.height * 0.10,
+          width: size.width * 0.8,
+         margin: EdgeInsets.fromLTRB(
+              size.width * 0.05, size.width * 0.06, size.width * 0.05, size.width * 0.06),
+          child: GestureDetector(
+      onTap: () async {
+       
+      
+              Get.offAll(HomePage());
+
+
+
+
+      },
+      child:
+          
+           Container(
+
+      width: 320,
+      height: 65,
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(33),
+        gradient: LinearGradient(
+          colors: [
+            Color(0xFF21367F),
+            Color(0xFF194D91),
+            Color(0xFF1590C1),
+            Color(0xFF0298CA),
+            Color(0xFF0298CA),
+          ],
+          stops: [0, 0.28, 0.88, 1, 1],
+          begin: Alignment.centerLeft,
+          end: Alignment.centerRight,
+        ),
+      ),
+      child: Center(
+        child: Text(
+          "Devam Et",
+          style: TextStyle(
+            color: Colors.white,
+            fontSize: 16,
+            fontWeight: FontWeight.bold,
+          ),
+        ),
+      ),
+    ),
+       ) ),
+  ),
    SliverToBoxAdapter(
   child: Container(
     

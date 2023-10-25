@@ -1,0 +1,596 @@
+[
+  {
+    "allah_name": "Er-Rahman",
+    "png": "esma1",
+    "mean": "Dünyada bütün mahlûkata merhamet eden, şefkat gösteren, ihsan eden.",
+    "time": "5.53"
+  },
+  {
+    "allah_name": "Er-Rahim",
+    "png": "esma2",
+    "mean": "Ahirette, sadece müminlere acıyan, merhamet eden.",
+    "time": "9.22"
+  },
+  {
+    "allah_name": "El-Melik",
+    "png": "esma3",
+    "mean": "Her şeyin sahibi ve Malikî, onları terbiye edip yetiştiren.",
+    "time": "13.74"
+  },
+  {
+    "allah_name": "El-Kuddüs",
+    "png": "esma4",
+    "mean": "Her türlü çirkinlik, noksanlık ve ayıplardan uzak, tertemiz.",
+    "time": "16.57"
+  },
+  {
+    "allah_name": "Es-Selam",
+    "png": "esma5",
+    "mean": "Ölüm ve benzeri şeylerden salim olan kullarına güven ve selamet veren.",
+    "time": "20.26"
+  },
+  {
+    "allah_name": "El-Mü'min",
+    "png": "esma6",
+    "mean": "İman nuru veren.",
+    "time": "24.44"
+  },
+  {
+    "allah_name": "El-Müheymin",
+    "png": "esma7",
+    "mean": "İnsanların bütün yaptıklarını bilen, koruyan, görüp gözeten.",
+    "time": "27.64"
+  },
+  {
+    "allah_name": "El-Aziz",
+    "png": "esma8",
+    "mean": "Mutlak galip karşı gelinemez.",
+    "time": "31.34"
+  },
+  {
+    "allah_name": "El-Cebbar",
+    "png": "esma9",
+    "mean": "Dilediğini yapan ve yaptıran.",
+    "time": "35.07"
+  },
+  {
+    "allah_name": "El-Mütekebbir",
+    "png": "esma10",
+    "mean": "Herşeyi görüp gözeten.",
+    "time": "37.56"
+  },
+  {
+    "allah_name": "El-Halık",
+    "png": "esma11",
+    "mean": "Her şeyi yaratan,yoktan var eden.",
+    "time": "38.76"
+  },
+  {
+    "allah_name": "El-Bari",
+    "png": "esma12",
+    "mean": "Herşeyi kusursuz yaratan.",
+    "time": "42.22"
+  },
+  {
+    "allah_name": "El-Musavvir",
+    "png": "esma13",
+    "mean": "Varlıklara sûret eden.onları birnirinden ayıran özellikte yaratan.",
+    "time": "43.05"
+  },
+  {
+    "allah_name": "El-Gaffar",
+    "png": "esma14",
+    "mean": "Çok affeden, çok bağışlayan.",
+    "time": "44.32"
+  },
+  {
+    "allah_name": "El-Kahhar",
+    "png": "esma15",
+    "mean": "Yenilmeyen, daima galip gelen.",
+    "time": "45.64"
+  },
+  {
+    "allah_name": "El-Vehhab",
+    "png": "esma16",
+    "mean": "Karşılıksız çok nimet veren, ikram ve ihsanda devamlı olan .",
+    "time": "47.00"
+  },
+  {
+    "allah_name": "Er-Rezzak",
+    "png": "esma17",
+    "mean": "Bol nimet, maddî ve manevî rızık veren.",
+    "time": "49.64"
+  },
+  {
+    "allah_name": "El-Fettah",
+    "png": "esma18",
+    "mean": "En âdil hüküm veren iyilik kapılarını açan.",
+    "time": "53.15"
+  },
+  {
+    "allah_name": "El-Alim",
+    "png": "esma19",
+    "mean": "Her şeyi çok iyi bilen, anlayan ve tanıyan.",
+    "time": "56.49"
+  },
+  {
+    "allah_name": "El-Kabid",
+    "png": "esma20",
+    "mean": "Dilediğine rızkı daraltan, ölüm zamanı gelenlerin ruhlarını kabzeden.",
+    "time": "59.97"
+  },
+  {
+    "allah_name": "El-Basit",
+    "png": "esma21",
+    "mean": "Dilediğine rızkı bol veren.",
+    "time": "62.88"
+  },
+  {
+    "allah_name": "El-Hafid",
+    "png": "esma22",
+    "mean": "Şan, şeref ve itibar bakımından kâfirleri alçaltan, değersiz yapan, cezalandıran.",
+    "time": "66.61"
+  },
+  {
+    "allah_name": "Er-Rafi",
+    "png": "esma23",
+    "mean": "Peygamber ve müminlerin itibar, şan ve şereflerini artıran, göğü yükselten.",
+    "time": "69.50"
+  },
+  {
+    "allah_name": "El-Muız",
+    "png": "esma24",
+    "mean": "İtibar ve şeref veren, aziz yapan.",
+    "time": "73.40"
+  },
+  {
+    "allah_name": "El-Müzil",
+    "png": "esma25",
+    "mean": "Boyun eğdiren, zelil eden, alçaltan.",
+    "time": "76.58"
+  },
+  {
+    "allah_name": "Es-Semi",
+    "png": "esma26",
+    "mean": "Her sözü, bütün konuşulanları en iyi işiten, duyan.",
+    "time": "79.72"
+  },
+  {
+    "allah_name": "El-Basîr",
+    "png": "esma27",
+    "mean": "Aydınlık ve karanlıkta küçük ve büyük her şeyi gören.",
+    "time": "82.97"
+  },
+  {
+    "allah_name": "El-Hakem",
+    "png": "esma28",
+    "mean": "Hüküm veren, son kararı veren.",
+    "time": "86.51"
+  },
+  {
+    "allah_name": "El-Adl",
+    "png": "esma29",
+    "mean": "Her şeyi yerli yerinde yapan, her şeyi hak ve doğru olan.",
+    "time": "89.51"
+  },
+  {
+    "allah_name": "El-Latif",
+    "png": "esma30",
+    "mean": "Lütfeden,her şeye vakıf.",
+    "time": "92.88"
+  },
+  {
+    "allah_name": "El-Habir",
+    "png": "esma31",
+    "mean": "Her şeyden haberdar olan.",
+    "time": "96.18"
+  },
+  {
+    "allah_name": "El-Halim",
+    "png": "esma32",
+    "mean": "Cezada acele etmeyen,hilm sahibi.",
+    "time": "99.54"
+  },
+  {
+    "allah_name": "El-Azim",
+    "png": "esma33",
+    "mean": "Büyüklükte benzeri yok.",
+    "time": "104.31"
+  },
+  {
+    "allah_name": "El-Gafur",
+    "png": "esma34",
+    "mean": "Çok affeden, çok bağışlayan.",
+    "time": "105.34"
+  },
+  {
+    "allah_name": "Eş-Şekur",
+    "png": "esma35",
+    "mean": "İbadet eden kullarının mükâfatlarını bolca veren, az çok her itaati ödüllendiren.",
+    "time": "106.45"
+  },
+  {
+    "allah_name": "El-Aliyy",
+    "png": "esma36",
+    "mean": "Şanı, şerefi, izzeti ve kudreti yüce olan.",
+    "time": "107.60"
+  },
+  {
+    "allah_name": "El-Kebir",
+    "png": "esma37",
+    "mean": "Şanı ve şerefi, kadri ve kıymeti, değer ve izzeti pek yüce.",
+    "time": "108.29"
+  },
+  {
+    "allah_name": "El-Hafiz",
+    "png": "esma38",
+    "mean": "Kâinatın düzenini koyup sürdüren :Yani düzenin sürmesi için kuralları koyarak bunu sağlayan ve kâinatı koruyan.",
+    "time": "109.60"
+  },
+  {
+    "allah_name": "El-Mukit",
+    "png": "esma39",
+    "mean": "Her şeye gücü yeten, rızık veren, yapılanları bilen, koruyan, mükâfat veren.",
+    "time": "110.62"
+  },
+  {
+    "allah_name": "El-Hasib",
+    "png": "esma40",
+    "mean": "Kulların hesabını en iyi gören.",
+    "time": "111.52"
+  },
+  {
+    "allah_name": "El-Celil",
+    "png": "esma41",
+    "mean": "Kudretli, yüce, azamet ve Kibriya sahibi.",
+    "time": "112.36"
+  },
+  {
+    "allah_name": "El-Kerim",
+    "png": "esma42",
+    "mean": "Çok nimet veren, nimet ve ihsanı bol olan.",
+    "time": "113.60"
+  },
+  {
+    "allah_name": "Er-Rakib",
+    "png": "esma43",
+    "mean": "İnsanların hallerini, sözleri, yaptıklarını ve davranışlarını bilen, haber alan, murakabe edip koruyan.",
+    "time": "114.80"
+  },
+  {
+    "allah_name": "El-Mucib",
+    "png": "esma44",
+    "mean": "Duaları, istekleri, dilekleri kabul eden, ihtiyaçları karşılayan, sıkıntıları gideren.",
+    "time": "115.59"
+  },
+  {
+    "allah_name": "El-Vasi",
+    "png": "esma45",
+    "mean": "İlim ve merhameti her şeyi kuşatan, bütün yaratıklara rızık veren.",
+    "time": "116.32"
+  },
+  {
+    "allah_name": "El-Hakim",
+    "png": "esma46",
+    "mean": "Hikmet sahibi, her işi, emri ve yasağı yerli yerinde olan.",
+    "time": "117.62"
+  },
+  {
+    "allah_name": "El-Vedüd",
+    "png": "esma47",
+    "mean": "Müminleri çok seven, kulları tarafından çok sevilen.",
+    "time": "118.58"
+  },
+  {
+    "allah_name": "El-Mecid",
+    "png": "esma48",
+    "mean": "Çok şerefli, çok itibarlı.",
+    "time": "119.51"
+  },
+  {
+    "allah_name": "El-Ba'is",
+    "png": "esma49",
+    "mean": "Kıyamet kopunca ölüleri dirilten, mahşer yerine sevk eden.",
+    "time": "120.36"
+  },
+  {
+    "allah_name": "Eş-Şehid",
+    "png": "esma50",
+    "mean": "Gören, bilen, haberdâr olan, her yerde hazır nazır olan.",
+    "time": "121.51"
+  },
+  {
+    "allah_name": "El-Hakk",
+    "png": "esma51",
+    "mean": "Mülk sahibi, yok olmayan, varlığında şüphe bulunmayan, âdil.",
+    "time": "122.75"
+  },
+  {
+    "allah_name": "El-Vekil",
+    "png": "esma52",
+    "mean": "Güvenilen, koruyucu, yardım eden, görüp gözeten.",
+    "time": "123.75"
+  },
+  {
+    "allah_name": "El-Kaviyy",
+    "png": "esma53",
+    "mean": "Kuvvetli, kudretli, her şeye gücü yeten.",
+    "time": "124.32"
+  },
+  {
+    "allah_name": "El-Metin",
+    "png": "esma54",
+    "mean": "Acizliği, za'fiyeti ve gevşekliği olmayan.",
+    "time": "125.56"
+  },
+  {
+    "allah_name": "El-Veliyy",
+    "png": "esma55",
+    "mean": "Müminleri seven yardım eden.",
+    "time": "126.66"
+  },
+  {
+    "allah_name": "El-Hamid",
+    "png": "esma56",
+    "mean": "Çok övülen, övgüye layık olan.",
+    "time": "127.68"
+  },
+  {
+    "allah_name": "El-Muhsi",
+    "png": "esma57",
+    "mean": "Olup biten her şeyi bilen ve koruyan.",
+    "time": "129.69"
+  },
+  {
+    "allah_name": "El-Mübdi",
+    "png": "esma58",
+    "mean": "Varlıkları ilk defa yaratan.",
+    "time": "130.95"
+  },
+  {
+    "allah_name": "El-Mu'id",
+    "png": "esma59",
+    "mean": "Canlı varlıkları ölümlerinden sonra dirilten, yeniden yaratan.",
+    "time": "134.12"
+  },
+  {
+    "allah_name": "El-Muhyi",
+    "png": "esma60",
+    "mean": "Varlıklara hayat veren, onları yaşatan, ölümlerinden sonra dirilten.",
+    "time": "138.15"
+  },
+  {
+    "allah_name": "El-Mümit",
+    "png": "esma61",
+    "mean": "Varlıkların hayatlarına son veren, canlarını alan.",
+    "time": "141.54"
+  },
+  {
+    "allah_name": "El-Hayy",
+    "png": "esma62",
+    "mean": "Yaşayan, diri, canlı, ölümsüz, ezelî ve ebedî olan.",
+    "time": "145.33"
+  },
+  {
+    "allah_name": "El-Kayyum",
+    "png": "esma63",
+    "mean": "Zatı ile kaim olana,varlıkları yöneten, koruyan, ihtiyaçlarını üstlenen.",
+    "time": "148.59"
+  },
+  {
+    "allah_name": "El-Vacid",
+    "png": "esma64",
+    "mean": "Hiç bir şeye muhtaç olmayan, her şeyin sahibi, her şeye gücü yeten.",
+    "time": "152.82"
+  },
+  {
+    "allah_name": "El-Macid",
+    "png": "esma65",
+    "mean": "Şan ve şeref sahibi, hayır ve ihsanı, kerem ve lütfu bol olan.",
+    "time": "156.06"
+  },
+  {
+    "allah_name": "El-Vahid",
+    "png": "esma66",
+    "mean": "Zatında, isim ve sıfatlarında eşi ve benzeri bulunmayan, tek olan.",
+    "time": "160.03"
+  },
+  {
+    "allah_name": "El-Ehad",
+    "png": "esma67",
+    "mean": "Bölünmesi ve sayısının artması mümkün olmayan,herkesin muhtaç olduğu.",
+    "time": "163.33"
+  },
+  {
+    "allah_name": "Es-Samed",
+    "png": "esma68",
+    "mean": "Her şeyin kendisine muhtaç olduğu, yöneldiği, her dilek ve isteğin mercîi.",
+    "time": "166.64"
+  },
+  {
+    "allah_name": "El-Kadir",
+    "png": "esma69",
+    "mean": "Her şeye gücü yeten, istediğini istediği gibi eksiksiz, kusursuz ve tam yapabilen.",
+    "time": "169.95"
+  },
+  {
+    "allah_name": "El-Muktedir",
+    "png": "esma70",
+    "mean": "Güçlü, kuvvetli, istediğini istediği gibi yapan.",
+    "time": "172.81"
+  },
+  {
+    "allah_name": "El-Mukaddim",
+    "png": "esma71",
+    "mean": "Mukaddim, herşeyden önce olan, dilediğini öne alan.",
+    "time": "176.14"
+  },
+  {
+    "allah_name": "El-Muahhir",
+    "png": "esma72",
+    "mean": "Dilediklerini tehir eden.",
+    "time": "179.46"
+  },
+  {
+    "allah_name": "El-Evvel",
+    "png": "esma73",
+    "mean": "Öncesi olmayan, yaratılmamış, ezelî ve kadîm tek varlık.",
+    "time": "183.14"
+  },
+  {
+    "allah_name": "El-Ahir",
+    "png": "esma74",
+    "mean": "Varlığının sonu olmayan, ölümsüz, ebedî ve bâkî olan.",
+    "time": "186.06"
+  },
+  {
+    "allah_name": "Ez-Zahir",
+    "png": "esma75",
+    "mean": "Varlığı her şeyden âşikâr olan, her şeye galip gelen her şeyden yüce olan.",
+    "time": "189.34"
+  },
+  {
+    "allah_name": "El-Batın",
+    "png": "esma76",
+    "mean": "Mâhiyeti akıl ile idrâk olunamayan, haya ile tahayyül edilemeyen.",
+    "time": "192.63"
+  },
+  {
+    "allah_name": "El-Vali",
+    "png": "esma77",
+    "mean": "Bütün kainatı idare eden.",
+    "time": "195.92"
+  },
+  {
+    "allah_name": "El-Muteali",
+    "png": "esma78",
+    "mean": "Eksik ve noksanlıklardan berî olan.",
+    "time": "198.26"
+  },
+  {
+    "allah_name": "El-Berr",
+    "png": "esma79",
+    "mean": "İyilik eden, çok lütüfkâr, çok merhametli, çok şefkatli.",
+    "time": "199.34"
+  },
+  {
+    "allah_name": "Et-Tevvab",
+    "png": "esma80",
+    "mean": "Tevbeleri çok kabul eden, sürekli tevbeleri kabul eden.",
+    "time": "202.57"
+  },
+  {
+    "allah_name": "El-Müntekim",
+    "png": "esma81",
+    "mean": "Suçluları cezalandıran.",
+    "time": "205.92"
+  },
+  {
+    "allah_name": "El-Afüvv",
+    "png": "esma82",
+    "mean": "Çok affedici, çok bağışlayan.",
+    "time": "209.42"
+  },
+  {
+    "allah_name": "Er-Rauf",
+    "png": "esma83",
+    "mean": "Çok merhametli, çok şefkatli, çok acıyan.",
+    "time": "215.04"
+  },
+  {
+    "allah_name": "Malikül Mülk",
+    "png": "esma84",
+    "mean": "Mülkün sahibi.",
+    "time": "216.54"
+  },
+  {
+    "allah_name": "Zül Celali Vel İkram",
+    "png": "esma85",
+    "mean": "Azamet ve kibriya, ikram ve ihsan sahibi.",
+    "time": "218.03"
+  },
+  {
+    "allah_name": "El-Muksit",
+    "png": "esma86",
+    "mean": "Adil, hakla hükmeden.",
+    "time": "220.32"
+  },
+  {
+    "allah_name": "El-Cami",
+    "png": "esma87",
+    "mean": "Kıyamette insanları bir araya toplayan, cem eden.",
+    "time": "221.50"
+  },
+  {
+    "allah_name": "El-Ganiyy",
+    "png": "esma88",
+    "mean": "Zengin, hiçbir şeye muhtaç olmayan.",
+    "time": "222.36"
+  },
+  {
+    "allah_name": "El-Muğni",
+    "png": "esma89",
+    "mean": "İnsanlara mal mülk veren, onları zengin yapan, cömert, nimet sahibi.",
+    "time": "223.53"
+  },
+  {
+    "allah_name": "El-Mani",
+    "png": "esma90",
+    "mean": "İstediği şeye engel olan, koruyan, kurtaran, yardım eden.",
+    "time": "224.56"
+  },
+  {
+    "allah_name": "Ed-Darr",
+    "png": "esma91",
+    "mean": "Zarar veren şeyleri yaratan, âsileri zarar vererek cezalandıran.",
+    "time": "226.30"
+  },
+  {
+    "allah_name": "En-Nafi",
+    "png": "esma92",
+    "mean": "Faydalı şeyleri yaratan, bütün yaratıklara faydası olan.",
+    "time": "228.29"
+  },
+  {
+    "allah_name": "En-Nur",
+    "png": "esma93",
+    "mean": "Aydınlatıcı, ışık verici,alemleri nurlandıran.",
+    "time": "230.28"
+  },
+  {
+    "allah_name": "El-Hadi",
+    "png": "esma94",
+    "mean": "Hidayet eden, doğru yolu gösteren.",
+    "time": "231.46"
+  },
+  {
+    "allah_name": "El-Bedi",
+    "png": "esma95",
+    "mean": "Bir şeyi nümûnesi olmadan yaratan, vâr eden, îcât eden.",
+    "time": "232.38"
+  },
+  {
+    "allah_name": "El-Baki",
+    "png": "esma96",
+    "mean": "Sonlu ve ölümlü olmayan, varlığı sürekli olan, ebedî.",
+    "time": "233.56"
+  },
+  {
+    "allah_name": "El-Varis",
+    "png": "esma97",
+    "mean": "Bütün varlıkların sahibi, bâkî, ebedî ve dâim olan her şey kendisine dönen.",
+    "time": "234.53"
+  },
+  {
+    "allah_name": "Er-Reşid",
+    "png": "esma98",
+    "mean": "Her işinde isabetli olan, doğru yolu en iyi gösteren.",
+    "time": "235.48"
+  },
+  {
+    "allah_name": "Es-Sabür",
+    "png": "esma99",
+    "mean": "Çok Sabırlı,ceza vermede acele etmez.",
+    "time": "236.18"
+  }
+]

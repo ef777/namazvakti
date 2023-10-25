@@ -1,0 +1,512 @@
+[
+  {
+    "sira_no": "1",
+    "meal_adi": "Mohammad Marmaduke Pickthall",
+    "dil": "English"
+  },
+  {
+    "sira_no": "2",
+    "meal_adi": "Mohammad Habib Shakir",
+    "dil": "English"
+  },
+  {
+    "sira_no": "3",
+    "meal_adi": "Abdullah Yusuf Ali",
+    "dil": "English"
+  },
+  {
+    "sira_no": "4",
+    "meal_adi": "Mohammad Asad",
+    "dil": "English"
+  },
+  {
+    "sira_no": "5",
+    "meal_adi": "Ali Unal",
+    "dil": "English"
+  },
+  {
+    "sira_no": "6",
+    "meal_adi": "Hajj Abdalhaqq and Aisha Bewley",
+    "dil": "English"
+  },
+  {
+    "sira_no": "7",
+    "meal_adi": "Mohammad Abdel Haleem",
+    "dil": "English"
+  },
+  {
+    "sira_no": "8",
+    "meal_adi": "Thomas B Irving.",
+    "dil": "English"
+  },
+  {
+    "sira_no": "9",
+    "meal_adi": "M Hilali and Muhsin Khan",
+    "dil": "English"
+  },
+  {
+    "sira_no": "10",
+    "meal_adi": "Mohammad Mahmud Ghali",
+    "dil": "English"
+  },
+  {
+    "sira_no": "11",
+    "meal_adi": "Hamid Aziz",
+    "dil": "English"
+  },
+  {
+    "sira_no": "12",
+    "meal_adi": "Sheikh Mohammad Sarwar",
+    "dil": "English"
+  },
+  {
+    "sira_no": "13",
+    "meal_adi": "Syed Vickar Ahamed",
+    "dil": "English"
+  },
+  {
+    "sira_no": "14",
+    "meal_adi": "Abdul Majid Daryabadi",
+    "dil": "English"
+  },
+  {
+    "sira_no": "15",
+    "meal_adi": "M.J Ahmed and Samira Ahmed",
+    "dil": "English"
+  },
+  {
+    "sira_no": "16",
+    "meal_adi": "Ali Quli Qara",
+    "dil": "English"
+  },
+  {
+    "sira_no": "17",
+    "meal_adi": "Amatul Rahman Omar",
+    "dil": "English"
+  },
+  {
+    "sira_no": "18",
+    "meal_adi": "Faridul Haque",
+    "dil": "English"
+  },
+  {
+    "sira_no": "19",
+    "meal_adi": "Wahiduddin Khan",
+    "dil": "English"
+  },
+  {
+    "sira_no": "20",
+    "meal_adi": "Al Azhar",
+    "dil": "German"
+  },
+  {
+    "sira_no": "21",
+    "meal_adi": "Amir Muhammad Zaidan",
+    "dil": "German"
+  },
+  {
+    "sira_no": "22",
+    "meal_adi": "Der edle Quran Abdullah",
+    "dil": "German"
+  },
+  {
+    "sira_no": "23",
+    "meal_adi": "Muhammad Ahmad Rassoul",
+    "dil": "German"
+  },
+  {
+    "sira_no": "24",
+    "meal_adi": "lMuyesser King Fahad Quran Complex",
+    "dil": "Arabic"
+  },
+  {
+    "sira_no": "25",
+    "meal_adi": "Celaleyn Mahalli Suyuti",
+    "dil": "Arabic"
+  },
+  {
+    "sira_no": "26",
+    "meal_adi": "M Sadiq and M Sani Habib",
+    "dil": "Amharic"
+  },
+  {
+    "sira_no": "27",
+    "meal_adi": "Alikhan Musayev",
+    "dil": "Azerbaijani"
+  },
+  {
+    "sira_no": "28",
+    "meal_adi": "Muhiuddin Khan",
+    "dil": "Bengali"
+  },
+  {
+    "sira_no": "29",
+    "meal_adi": "Zohurul Hoque",
+    "dil": "Bengali"
+  },
+  {
+    "sira_no": "30",
+    "meal_adi": "Besim Korkut",
+    "dil": "Bosnian"
+  },
+  {
+    "sira_no": "31",
+    "meal_adi": "Mustafa Mlivo",
+    "dil": "Bosnian"
+  },
+  {
+    "sira_no": "32",
+    "meal_adi": "Tzvetan Theophanov",
+    "dil": "Bulgarian"
+  },
+  {
+    "sira_no": "33",
+    "meal_adi": "Ma Jian",
+    "dil": "Chinese"
+  },
+  {
+    "sira_no": "34",
+    "meal_adi": "Ma Jian Traditional",
+    "dil": "Chinese"
+  },
+  {
+    "sira_no": "35",
+    "meal_adi": "Hrbek",
+    "dil": "Czech"
+  },
+  {
+    "sira_no": "36",
+    "meal_adi": "Nykl",
+    "dil": "Czech"
+  },
+  {
+    "sira_no": "37",
+    "meal_adi": "President Of Maldives",
+    "dil": "Divehi"
+  },
+  {
+    "sira_no": "38",
+    "meal_adi": "Siregar",
+    "dil": "Dutch"
+  },
+  {
+    "sira_no": "39",
+    "meal_adi": "Hamidullah",
+    "dil": "French"
+  },
+  {
+    "sira_no": "40",
+    "meal_adi": "Mahmoud Gumi",
+    "dil": "Hausa"
+  },
+  {
+    "sira_no": "41",
+    "meal_adi": "Muhammad Farooq And M Ahmed",
+    "dil": "Hindi"
+  },
+  {
+    "sira_no": "42",
+    "meal_adi": "Suhel And Saifur",
+    "dil": "Hindi"
+  },
+  {
+    "sira_no": "43",
+    "meal_adi": "Ministry Of Religious",
+    "dil": "Indonesian"
+  },
+  {
+    "sira_no": "44",
+    "meal_adi": "Tafsir Jalalayn",
+    "dil": "Indonesian"
+  },
+  {
+    "sira_no": "45",
+    "meal_adi": "/",
+    "dil": "Japanese"
+  },
+  {
+    "sira_no": "46",
+    "meal_adi": "/",
+    "dil": "Korean"
+  },
+  {
+    "sira_no": "47",
+    "meal_adi": "Basmeih",
+    "dil": "Malaysia"
+  },
+  {
+    "sira_no": "48",
+    "meal_adi": "Parappoor",
+    "dil": "Malayalam"
+  },
+  {
+    "sira_no": "49",
+    "meal_adi": " Karakunnu and Elayavoor",
+    "dil": "Malayalam"
+  },
+  {
+    "sira_no": "50",
+    "meal_adi": "Einar Berg",
+    "dil": "Norwegian "
+  },
+  {
+    "sira_no": "51",
+    "meal_adi": " Mahdi Elahi Ghomshei",
+    "dil": "Persian"
+  },
+  {
+    "sira_no": "52",
+    "meal_adi": "Hussain Ansarian",
+    "dil": "Persian"
+  },
+  {
+    "sira_no": "53",
+    "meal_adi": "Abul Mohammad Ayati",
+    "dil": "Persian"
+  },
+  {
+    "sira_no": "54",
+    "meal_adi": "Khorramdel",
+    "dil": "Persian"
+  },
+  {
+    "sira_no": "55",
+    "meal_adi": "Khorramshahi",
+    "dil": "Persian"
+  },
+  {
+    "sira_no": "56",
+    "meal_adi": "Tehrani",
+    "dil": "Persian"
+  },
+  {
+    "sira_no": "57",
+    "meal_adi": "Mahdi Fooladvand ",
+    "dil": "Persian"
+  },
+  {
+    "sira_no": "58",
+    "meal_adi": "Sayyed Mojtabavi",
+    "dil": "Persian"
+  },
+  {
+    "sira_no": "59",
+    "meal_adi": "Kazem Moezzi",
+    "dil": "Persian"
+  },
+  {
+    "sira_no": "60",
+    "meal_adi": "Makarem Shirazi",
+    "dil": "Persian"
+  },
+  {
+    "sira_no": "61",
+    "meal_adi": "Bielawskiego",
+    "dil": "Polish"
+  },
+  {
+    "sira_no": "62",
+    "meal_adi": "ElHayek",
+    "dil": "Portugese"
+  },
+  {
+    "sira_no": "63",
+    "meal_adi": "Abu Adel",
+    "dil": "Russian"
+  },
+  {
+    "sira_no": "64",
+    "meal_adi": "Ignaty",
+    "dil": "Russian"
+  },
+  {
+    "sira_no": "65",
+    "meal_adi": "Elmir Kuliev",
+    "dil": "Russian"
+  },
+  {
+    "sira_no": "66",
+    "meal_adi": "Osmanov",
+    "dil": "Russian"
+  },
+  {
+    "sira_no": "67",
+    "meal_adi": "Porokhova",
+    "dil": "Russian"
+  },
+  {
+    "sira_no": "68",
+    "meal_adi": "Sablukov",
+    "dil": "Russian"
+  },
+  {
+    "sira_no": "69",
+    "meal_adi": "Amroti",
+    "dil": "Sindhi"
+  },
+  {
+    "sira_no": "70",
+    "meal_adi": "M.Abduh",
+    "dil": "Somali"
+  },
+  {
+    "sira_no": "71",
+    "meal_adi": "Asad Perez",
+    "dil": "Spanish"
+  },
+  {
+    "sira_no": "72",
+    "meal_adi": "Cortes",
+    "dil": "Spanish"
+  },
+  {
+    "sira_no": "73",
+    "meal_adi": "Bernstrom",
+    "dil": "Swedish"
+  },
+  {
+    "sira_no": "74",
+    "meal_adi": "Barwani",
+    "dil": "Swahili"
+  },
+  {
+    "sira_no": "75",
+    "meal_adi": "Ayat",
+    "dil": "Tajik"
+  },
+  {
+    "sira_no": "76",
+    "meal_adi": "Jan Turst Foundation",
+    "dil": "Tamil"
+  },
+  {
+    "sira_no": "77",
+    "meal_adi": "Nugman",
+    "dil": "Tatar"
+  },
+  {
+    "sira_no": "78",
+    "meal_adi": "King Fahad Quran Complex",
+    "dil": "Thai"
+  },
+  {
+    "sira_no": "79",
+    "meal_adi": "Mevdudi",
+    "dil": "Urdu"
+  },
+  {
+    "sira_no": "80",
+    "meal_adi": "Raza Khan",
+    "dil": "Urdu"
+  },
+  {
+    "sira_no": "81",
+    "meal_adi": " Ahmed Ali",
+    "dil": "Urdu"
+  },
+  {
+    "sira_no": "82",
+    "meal_adi": "Jalandhry",
+    "dil": "Urdu"
+  },
+  {
+    "sira_no": "83",
+    "meal_adi": "Tahirul Qadr",
+    "dil": "Urdu"
+  },
+  {
+    "sira_no": "84",
+    "meal_adi": "Haider Jawadi",
+    "dil": "Urdu"
+  },
+  {
+    "sira_no": "85",
+    "meal_adi": "Junagarhi.",
+    "dil": "Urdu"
+  },
+  {
+    "sira_no": "86",
+    "meal_adi": "Hussain Najafi",
+    "dil": "Urdu"
+  },
+  {
+    "sira_no": "87",
+    "meal_adi": "Saleh",
+    "dil": "Uygur"
+  },
+  {
+    "sira_no": "88",
+    "meal_adi": "Muhammad Yusuf",
+    "dil": "Uzbek"
+  },
+  {
+    "sira_no": "89",
+    "meal_adi": "Elmalili Orijinal",
+    "dil": "Türkçe"
+  },
+  {
+    "sira_no": "90",
+    "meal_adi": "Omer Nasuhi Bilmen",
+    "dil": "Türkçe"
+  },
+  {
+    "sira_no": "91",
+    "meal_adi": "Hasan Basri Cantay",
+    "dil": "Türkçe"
+  },
+  {
+    "sira_no": "92",
+    "meal_adi": "Ali Bulac",
+    "dil": "Türkçe"
+  },
+  {
+    "sira_no": "93",
+    "meal_adi": "Celal Yildirim",
+    "dil": "Türkçe"
+  },
+  {
+    "sira_no": "94",
+    "meal_adi": "Muhammed Esed",
+    "dil": "Türkçe"
+  },
+  {
+    "sira_no": "95",
+    "meal_adi": "Ali Fikri Yavuz",
+    "dil": "Türkçe"
+  },
+  {
+    "sira_no": "96",
+    "meal_adi": "Suleyman Ates",
+    "dil": "Türkçe"
+  },
+  {
+    "sira_no": "97",
+    "meal_adi": "Yasar Nuri Ozturk",
+    "dil": "Türkçe"
+  },
+  {
+    "sira_no": "98",
+    "meal_adi": "Suat Yildirim",
+    "dil": "Türkçe"
+  },
+  {
+    "sira_no": "99",
+    "meal_adi": "Abdulbaki Golpinarli",
+    "dil": "Türkçe"
+  },
+  {
+    "sira_no": "100",
+    "meal_adi": "Saban Piris",
+    "dil": "Türkçe"
+  },
+  {
+    "sira_no": "101",
+    "meal_adi": "Fizilalil Kuran",
+    "dil": "Türkçe"
+  },
+  {
+    "sira_no": "102",
+    "meal_adi": "Piccardo",
+    "dil": "Italian"
+  }
+]

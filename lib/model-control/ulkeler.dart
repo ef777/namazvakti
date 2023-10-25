@@ -13,23 +13,30 @@ class Ulke {
     ulkeAdiEn = json['UlkeAdiEn'];
     ulkeID = json['UlkeID'];
   }
-}
+
 
 // Kullanım:
 
-List<Ulke> parseUlkeListesi(String jsonString) {
+static List<Ulke> parseUlkeListesi(String jsonString) {
   final parsed = json.decode(jsonString).cast<Map<String, dynamic>>();
-  return parsed.map<Ulke>((json) => Ulke.fromJson(json)).toList();
+var  Ulkeler = <Ulke>[];
+  for (var item in parsed) {
+    Ulkeler.add(Ulke.fromJson(item));
+  }
+ 
+  return  Ulkeler;
 }
 
 // Fetch ile kullanımı: 
 
-Future<List<Ulke>> fetchUlkeListesi() async {
+static Future<List<Ulke>> fetchUlkeListesi() async {
   final response = await http.get(Uri.parse("http://vakitlerapix.namazvaktipro.com/ulkeler"));
   
   if(response.statusCode == 200) {
-    return parseUlkeListesi(response.body); 
+   var sonuc = parseUlkeListesi(response.body);
+  
+    return sonuc; 
   } else {
     throw Exception('Failed to load ulkeler');
   }
-}
+}}

@@ -17,15 +17,21 @@ class Ilce {
       ilceID: json['IlceID'] as String,
     );
   }
-}
 
-List<Ilce> parseIlceListesi(String cevap) {
+
+ static List<Ilce> parseIlceListesi(String cevap) {
   final parsed = json.decode(cevap).cast<Map<String, dynamic>>();
-  return parsed.map<Ilce>((json) => Ilce.fromJson(json)).toList();
+var  ilceler = <Ilce>[];
+  for (var item in parsed) {
+    ilceler.add(Ilce.fromJson(item));
+  }
+  print("dönen ilceler");
+  print(ilceler);
+  return ilceler;
 }
 
-Future<List<Ilce>> getIlceler(String sehirid) async {
-  final url = Uri.https("http://vakitlerapix.namazvaktipro.com/ilceler?sehir=$sehirid", );
+static Future<List<Ilce>> getIlceler(String sehirid) async {
+  final url = Uri.parse("http://vakitlerapix.namazvaktipro.com/ilceler?sehir=$sehirid" );
   final response = await http.get(url);
 
   if (response.statusCode == 200) {
@@ -33,4 +39,4 @@ Future<List<Ilce>> getIlceler(String sehirid) async {
   } else {
     throw Exception('Failed to load ilceler');
   }
-}
+}}

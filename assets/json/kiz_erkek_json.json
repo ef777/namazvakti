@@ -1,0 +1,1340 @@
+[
+  {
+    "kiz_ismi": "Adile",
+    "kiz_ismi_manasi": "Doğruluk gösteren, Allah’ın emirlerini noksansız takbik eden.",
+    "erkek_ismi": "Abbâs",
+    "erkek_ismi_manasi": "Çatık kaşlı, keskin bakışlı, sert bakan."
+  },
+  {
+    "kiz_ismi": "Affe",
+    "kiz_ismi_manasi": "Namuslu, iffetli kadın.",
+    "erkek_ismi": "Abdullah",
+    "erkek_ismi_manasi": "Bu ismi Peygamberimiz en şerefli isim olarak belirlemiş ve fazilet bakımından üstün olduğunu söylemiştir."
+  },
+  {
+    "kiz_ismi": "Afife",
+    "kiz_ismi_manasi": "Temiz, güzel, namuslu, dürüst kadın demektir.",
+    "erkek_ismi": "Abdurrahman",
+    "erkek_ismi_manasi": "Rezzak, bütün mahlukâta rızıklar veren"
+  },
+  {
+    "kiz_ismi": "Ahsen ",
+    "kiz_ismi_manasi": "En güzel, çok güzel.",
+    "erkek_ismi": "Abdülali",
+    "erkek_ismi_manasi": "Yüce ve ulu olan şan ve şeref sahibi"
+  },
+  {
+    "kiz_ismi": "Amine",
+    "kiz_ismi_manasi": "Emin olan, kalbinde korku olmayan kadın demektir.",
+    "erkek_ismi": "Abdülaziz",
+    "erkek_ismi_manasi": "Aziz olan ve izzet ve şeref sahibi"
+  },
+  {
+    "kiz_ismi": "Arife",
+    "kiz_ismi_manasi": "Bilen, çok bilgili, idrak eden, sabırlı, meşhur anlamındadır.",
+    "erkek_ismi": "Abdülbâki",
+    "erkek_ismi_manasi": "Daimi ölümsüz olan Allah’ın kulu anlamındadır."
+  },
+  {
+    "kiz_ismi": "Aslıhan",
+    "kiz_ismi_manasi": "Padişah soyundan gelen, soylu kişi demektir.",
+    "erkek_ismi": "Abdülkâdir",
+    "erkek_ismi_manasi": "Her şeye gücü yeten, istediğini istediği zaman yapmaya gücü yeten anlamındadır."
+  },
+  {
+    "kiz_ismi": "Ayça",
+    "kiz_ismi_manasi": "Hilal ayın ilk günlerindeki hali.",
+    "erkek_ismi": "Abdülkerim",
+    "erkek_ismi_manasi": "Yüce ve büyük, kerem sahibi cömert olan ."
+  },
+  {
+    "kiz_ismi": "Aydan",
+    "kiz_ismi_manasi": "Ay gibi parlak, aya benzeyen, aydan gelen demektir.",
+    "erkek_ismi": "Abidin ",
+    "erkek_ismi_manasi": "İbadet edenler, kulluk edenler anlamına gelir."
+  },
+  {
+    "kiz_ismi": "Aysen",
+    "kiz_ismi_manasi": "Güzel, sevimli, çevresine neşe saçan, huzur getiren demektir.",
+    "erkek_ismi": "Acar",
+    "erkek_ismi_manasi": "Çevik, yiğit, atılgan."
+  },
+  {
+    "kiz_ismi": "Aysu",
+    "kiz_ismi_manasi": "Berrak su demektir.",
+    "erkek_ismi": "Acun",
+    "erkek_ismi_manasi": "Dünya, evren."
+  },
+  {
+    "kiz_ismi": "Ayşe",
+    "kiz_ismi_manasi": "Bolluk ve ferahlık içinde yaşayan demektir.",
+    "erkek_ismi": "Adem ",
+    "erkek_ismi_manasi": "İyi, temiz kimse."
+  },
+  {
+    "kiz_ismi": "Azade",
+    "kiz_ismi_manasi": "Hür, bağlarından kurtulmuş, kusursuz",
+    "erkek_ismi": "Adil",
+    "erkek_ismi_manasi": "Doğru davranan, doğruluk gösteren, dürüst"
+  },
+  {
+    "kiz_ismi": "Azime",
+    "kiz_ismi_manasi": "Ulu, büyük, yüce, ileri anlamına gelir.",
+    "erkek_ismi": "Adnân",
+    "erkek_ismi_manasi": "İnsanlardan üstün olan demektir."
+  },
+  {
+    "kiz_ismi": "Azize",
+    "kiz_ismi_manasi": "Sevgili, izzetli, nurlu dost, kuvvet sahibi anlamına gelir.",
+    "erkek_ismi": "Ahmet",
+    "erkek_ismi_manasi": "Çok övülmüş, medhedilmiş."
+  },
+  {
+    "kiz_ismi": "Azra",
+    "kiz_ismi_manasi": "Ayak değmemiş kum",
+    "erkek_ismi": "Ahsen",
+    "erkek_ismi_manasi": "Daha güzel, en güzel, çok güzel anlamındadır."
+  },
+  {
+    "kiz_ismi": "Azize",
+    "kiz_ismi_manasi": "Kadri yüce, şerefli, aziz.",
+    "erkek_ismi": "Akalp",
+    "erkek_ismi_manasi": "Temiz, yiğit"
+  },
+  {
+    "kiz_ismi": "Basriye",
+    "kiz_ismi_manasi": "Basiret sahibi, ileri görüşlü, kalp gözü ile gören anlamındadır.",
+    "erkek_ismi": "Akın",
+    "erkek_ismi_manasi": "Geçici hücum, taarruz, harekat."
+  },
+  {
+    "kiz_ismi": "Bedia ",
+    "kiz_ismi_manasi": "Eşi benzeri olmayan, mükemmel.",
+    "erkek_ismi": "Âkif",
+    "erkek_ismi_manasi": "İbadetle meşgul olan, Allah’a yönelen anlamındadır."
+  },
+  {
+    "kiz_ismi": "Bengi",
+    "kiz_ismi_manasi": " Ebedi, sonu olmayan, sonsuza kadar sürecek.",
+    "erkek_ismi": "Alâeddin",
+    "erkek_ismi_manasi": " Dinin yüce kişisi, büyüğü, şanlısı demektir."
+  },
+  {
+    "kiz_ismi": "Betül",
+    "kiz_ismi_manasi": "Erkeklerden kaçınan, çekinen, namuslu kadın.",
+    "erkek_ismi": "Ali",
+    "erkek_ismi_manasi": "Yüksek, yüce, büyük, ulu"
+  },
+  {
+    "kiz_ismi": "Beyhan",
+    "kiz_ismi_manasi": "Daima aklından, kalbinden geçenleri söyleyen.",
+    "erkek_ismi": "Alişan",
+    "erkek_ismi_manasi": "Şan ve şeref sahibi kişi."
+  },
+  {
+    "kiz_ismi": "Beyza ",
+    "kiz_ismi_manasi": "Beyaz, daha beyaz. Çok temiz, parlak, günahsız.",
+    "erkek_ismi": "Alp",
+    "erkek_ismi_manasi": "Yiğit, cesur, pehlivan kimse."
+  },
+  {
+    "kiz_ismi": "Bilge",
+    "kiz_ismi_manasi": "Alim, ilim bakımından üstün",
+    "erkek_ismi": "Alparslan",
+    "erkek_ismi_manasi": "Korkusuz, yiğit, kahraman"
+  },
+  {
+    "kiz_ismi": "Buse",
+    "kiz_ismi_manasi": "Öpme, öpücük.",
+    "erkek_ismi": "Alpay",
+    "erkek_ismi_manasi": "Büyük ay manasınadır."
+  },
+  {
+    "kiz_ismi": "Cahide",
+    "kiz_ismi_manasi": "Elinden geldiği kadar, gayret ve çaba gösteren",
+    "erkek_ismi": "Alper",
+    "erkek_ismi_manasi": "Cesur asker, yiğit asker."
+  },
+  {
+    "kiz_ismi": "Cânan",
+    "kiz_ismi_manasi": "Sevgili, yâr, sevilen kadın",
+    "erkek_ismi": "Alperen",
+    "erkek_ismi_manasi": "Mücahdi, savaşçı, derviş."
+  },
+  {
+    "kiz_ismi": "Candan",
+    "kiz_ismi_manasi": "Samimi, içten, kalpten.",
+    "erkek_ismi": "Alphan",
+    "erkek_ismi_manasi": "Kahraman, yiğit, cesur hükümdar anlamındadır."
+  },
+  {
+    "kiz_ismi": "Cangül",
+    "kiz_ismi_manasi": "Gül yüzlü, samimi",
+    "erkek_ismi": "Altan",
+    "erkek_ismi_manasi": "Güneş doğarken ufka yaydığı kızıl renk."
+  },
+  {
+    "kiz_ismi": "Canipek",
+    "kiz_ismi_manasi": "Yumuşak huylu kişi demektir.",
+    "erkek_ismi": "Anıl ",
+    "erkek_ismi_manasi": "Namın yürüsün anlamındadır."
+  },
+  {
+    "kiz_ismi": "Cankız",
+    "kiz_ismi_manasi": "Samimi, içten, candan kız.",
+    "erkek_ismi": "Arda",
+    "erkek_ismi_manasi": "İşaret olarak yere dikilen çubuk."
+  },
+  {
+    "kiz_ismi": "Cannur",
+    "kiz_ismi_manasi": "Özü aydınlık, nurlu kimse..",
+    "erkek_ismi": "Arif",
+    "erkek_ismi_manasi": "İlim, irfan sahibi. Tevhid bilgi ve şuuruna sahip, üstün görüş sahibi."
+  },
+  {
+    "kiz_ismi": "Cavide",
+    "kiz_ismi_manasi": "Sonsuz, ebedi, ölümsüz.",
+    "erkek_ismi": "Arslan",
+    "erkek_ismi_manasi": "Güçlülüğün simgesi olarak yiğit, cesur anlamındadır."
+  },
+  {
+    "kiz_ismi": "Çağnur",
+    "kiz_ismi_manasi": " Zamanın, cağın nuru anlamındadır.",
+    "erkek_ismi": "Asım",
+    "erkek_ismi_manasi": "Günahtan sakınan, kendini her türlü kötülükten koruyan "
+  },
+  {
+    "kiz_ismi": "Deryanur",
+    "kiz_ismi_manasi": "Nur deryası, nur denizi.",
+    "erkek_ismi": "Aşkın",
+    "erkek_ismi_manasi": "Geçkin, ilerlemiş, aşmış."
+  },
+  {
+    "kiz_ismi": "Dilara",
+    "kiz_ismi_manasi": "Gönül süsleyen, gönül bezeyen sevgili.",
+    "erkek_ismi": "Atakan",
+    "erkek_ismi_manasi": " Atalarının kanını taşıyan, soyuca çeken."
+  },
+  {
+    "kiz_ismi": "Edibe",
+    "kiz_ismi_manasi": "Terbiyeli, zarif, nazik.",
+    "erkek_ismi": "Atıf",
+    "erkek_ismi_manasi": " Merhametli, şefkatli, acıyan."
+  },
+  {
+    "kiz_ismi": "Ediz",
+    "kiz_ismi_manasi": "Çok değerli.",
+    "erkek_ismi": "Atilla",
+    "erkek_ismi_manasi": "Savaşçı, cenkçi."
+  },
+  {
+    "kiz_ismi": "Elif",
+    "kiz_ismi_manasi": "Dinimizdeki alfabenin ilk harfi.",
+    "erkek_ismi": "Avni",
+    "erkek_ismi_manasi": "Kafadar, yardım eden anlamındadır."
+  },
+  {
+    "kiz_ismi": "Emine",
+    "kiz_ismi_manasi": "Peygamber soyundan gelen kadın demektir.",
+    "erkek_ismi": "Aydemir",
+    "erkek_ismi_manasi": "Marangozların kullandığı kavisli bir keser türü."
+  },
+  {
+    "kiz_ismi": "Evla",
+    "kiz_ismi_manasi": "Daha iyi, üstün, daha lâyık ve uygun.",
+    "erkek_ismi": "Aydın",
+    "erkek_ismi_manasi": "Işıkla aydınlanmış, açık, anlaşılır anlamındadır."
+  },
+  {
+    "kiz_ismi": "Fahriye",
+    "kiz_ismi_manasi": "İslami edebiyatta şairlerin kendi vasıflarından",
+    "erkek_ismi": "Ayhan",
+    "erkek_ismi_manasi": "Ay gibi güzel demektir."
+  },
+  {
+    "kiz_ismi": "Fatma",
+    "kiz_ismi_manasi": "Cehennem ateşinden uzaklaşmış demektir.",
+    "erkek_ismi": "Aykut",
+    "erkek_ismi_manasi": "Mükâfat, ödül, armağan"
+  },
+  {
+    "kiz_ismi": "Fazilet",
+    "kiz_ismi_manasi": " Kişiyi, ahlâklı, iyi hareket etmeye yönelten manevi kuvvet.",
+    "erkek_ismi": "Aytaç",
+    "erkek_ismi_manasi": "Ay gibi taçlı."
+  },
+  {
+    "kiz_ismi": "Ferda",
+    "kiz_ismi_manasi": "Gelecek zaman, ahiret, öbür dünya",
+    "erkek_ismi": "Aytekin",
+    "erkek_ismi_manasi": "Ay gibi tek ve çok değerli."
+  },
+  {
+    "kiz_ismi": "Ferihan",
+    "kiz_ismi_manasi": "Razı ve hoşnut, sevinçli, ferah anlamındadır.",
+    "erkek_ismi": "Aytuğ",
+    "erkek_ismi_manasi": "Padişahların başlıklarına taktıkları sorguç."
+  },
+  {
+    "kiz_ismi": "Ferzan",
+    "kiz_ismi_manasi": "Bilgili, ilim ve hikmet demektir.",
+    "erkek_ismi": "Aziz",
+    "erkek_ismi_manasi": "Mağlup edimesi mümkün olmayan, muhterem, çok nurlu"
+  },
+  {
+    "kiz_ismi": "Feyza",
+    "kiz_ismi_manasi": "Mübareklik, bolluk, bereketlilik, şöhret demektir.",
+    "erkek_ismi": "Azmi ",
+    "erkek_ismi_manasi": "Niyetli, kararlı, güçlü, kuvvetli."
+  },
+  {
+    "kiz_ismi": "Füsun",
+    "kiz_ismi_manasi": "Büyüleyici güzelliği olan.",
+    "erkek_ismi": "Baha",
+    "erkek_ismi_manasi": "Paha, değer, kıymet"
+  },
+  {
+    "kiz_ismi": "Güldane",
+    "kiz_ismi_manasi": "Gül tanesi.",
+    "erkek_ismi": "Bahadır",
+    "erkek_ismi_manasi": "Yiğit, kahraman, cesur"
+  },
+  {
+    "kiz_ismi": "Gülnur ",
+    "kiz_ismi_manasi": "Etrafına ışık saçan, etrafını aydınlatan gül gibi nazik.",
+    "erkek_ismi": "Bahaeddin",
+    "erkek_ismi_manasi": "Dinin değerlisi, kıymetlisi, üstünü demektir."
+  },
+  {
+    "kiz_ismi": "Güzide",
+    "kiz_ismi_manasi": "Seçilmiş, beğenilmiş, seçme anlamındadır.",
+    "erkek_ismi": "Bahri ",
+    "erkek_ismi_manasi": "Denize ati, denizci anlamındadır."
+  },
+  {
+    "kiz_ismi": "Hazel",
+    "kiz_ismi_manasi": "işaret bırakan sevilen insan anlamındadır.",
+    "erkek_ismi": "Bahtiyar",
+    "erkek_ismi_manasi": "Mesut, mutlu, bahtlı, talihli."
+  },
+  {
+    "kiz_ismi": "Habibe ",
+    "kiz_ismi_manasi": "Seven, sevgili, sevilen dost..",
+    "erkek_ismi": "Bâki",
+    "erkek_ismi_manasi": "Sonu olmayan, ebedi olan."
+  },
+  {
+    "kiz_ismi": "Hadiye",
+    "kiz_ismi_manasi": "Hidayet eden, doğru yolu gösteren, kılavuz, önder.",
+    "erkek_ismi": "Barış",
+    "erkek_ismi_manasi": "Savaşsız durumu, uzlaşma."
+  },
+  {
+    "kiz_ismi": "Hamdiye",
+    "kiz_ismi_manasi": "Allah’a karşı şükreden, hamdeden kişi.",
+    "erkek_ismi": "Batu",
+    "erkek_ismi_manasi": "Gelip gelen, gücü yeten anlamındadır."
+  },
+  {
+    "kiz_ismi": "Hamide ",
+    "kiz_ismi_manasi": "Cenab-ı Hakk’a hamd ve sena eden",
+    "erkek_ismi": "Batuhan",
+    "erkek_ismi_manasi": "Galip gelen, hükümdar."
+  },
+  {
+    "kiz_ismi": "Hanife",
+    "kiz_ismi_manasi": "Allah’ın birliğine iman eden, dinine sıkı sıkı bağlı olan.",
+    "erkek_ismi": "Batur",
+    "erkek_ismi_manasi": "Cesur, yiğit."
+  },
+  {
+    "kiz_ismi": "Hatice",
+    "kiz_ismi_manasi": "Vakitsiz, erken doğan kız çocuğu",
+    "erkek_ismi": "Baturalp",
+    "erkek_ismi_manasi": "Yiğitlerin en yiğidi."
+  },
+  {
+    "kiz_ismi": "Hatun",
+    "kiz_ismi_manasi": "Kadın, hanım anlamındadır.",
+    "erkek_ismi": "Bayram",
+    "erkek_ismi_manasi": "Neşe ve sevinç günü."
+  },
+  {
+    "kiz_ismi": "Havva",
+    "kiz_ismi_manasi": "1.İlk insan ve ilk peygamber Hz.Adem (a.s.)’in eşi.",
+    "erkek_ismi": "Bedir",
+    "erkek_ismi_manasi": "Dolunay, ayın ondördü demektir."
+  },
+  {
+    "kiz_ismi": "Hilal",
+    "kiz_ismi_manasi": "Yeni ay, birkaç günlük ay. İslâmiyetin sembolü olmuştur.",
+    "erkek_ismi": "Bedirhan",
+    "erkek_ismi_manasi": "Hükümdarların, padişahların en iyisi"
+  },
+  {
+    "kiz_ismi": "Hilmiye",
+    "kiz_ismi_manasi": "Sabırlı, sakin, yumuşak huylu.",
+    "erkek_ismi": "Bedreddin",
+    "erkek_ismi_manasi": "Dinin güzeli, dinin seçkin kişisi anlamına gelir."
+  },
+  {
+    "kiz_ismi": "Huriye",
+    "kiz_ismi_manasi": "Hür gibi olan, cennet hurisi gibi güzel demektir.",
+    "erkek_ismi": "Bedri ",
+    "erkek_ismi_manasi": "Her bakımdan mükemmel insan, nurlu insan demektir."
+  },
+  {
+    "kiz_ismi": "Hümeyra",
+    "kiz_ismi_manasi": "Beyaz, aklık demektir.",
+    "erkek_ismi": "Behçet",
+    "erkek_ismi_manasi": "Güleryüzlü, şirin, sevinçli ve sevimli demektir."
+  },
+  {
+    "kiz_ismi": "Hürrem",
+    "kiz_ismi_manasi": "Esir ve cariye olmayan, hür kadın demektir.",
+    "erkek_ismi": "Behiç",
+    "erkek_ismi_manasi": "Şaduman, şen, şirin, güleryüzlü demektir."
+  },
+  {
+    "kiz_ismi": "Hüsna",
+    "kiz_ismi_manasi": "Güzelliğe ait, güzellikle ilgili.",
+    "erkek_ismi": "Behlül",
+    "erkek_ismi_manasi": "Çok gülen, çok güldüren."
+  },
+  {
+    "kiz_ismi": "Hüsniye",
+    "kiz_ismi_manasi": "İyilik sahibi, güzellik sahibi.",
+    "erkek_ismi": "Behzat ",
+    "erkek_ismi_manasi": "Asil, soyu temiz."
+  },
+  {
+    "kiz_ismi": "Hüveyda",
+    "kiz_ismi_manasi": "Âşikâr, zahir, apaçık.",
+    "erkek_ismi": "Bekir",
+    "erkek_ismi_manasi": "İlk çocuk, genç, taze."
+  },
+  {
+    "kiz_ismi": "Işık",
+    "kiz_ismi_manasi": "Aydınlık, ziya, nur.",
+    "erkek_ismi": "Berat",
+    "erkek_ismi_manasi": "Kurtulma, bağışlanma."
+  },
+  {
+    "kiz_ismi": "Işılay",
+    "kiz_ismi_manasi": "Ay ışığı gibi güzel olan dilber.",
+    "erkek_ismi": "Beşir",
+    "erkek_ismi_manasi": "Müjde getiren, müjdeci, güler yüzlü adam demektir."
+  },
+  {
+    "kiz_ismi": "Itriyye",
+    "kiz_ismi_manasi": "Güzel koku ile ilgili demektir.",
+    "erkek_ismi": "Beytullah",
+    "erkek_ismi_manasi": "Allah’ın evi, Kâbe."
+  },
+  {
+    "kiz_ismi": "İffet",
+    "kiz_ismi_manasi": "Ahlâkı temiz, namuslu.",
+    "erkek_ismi": "Bilâl ",
+    "erkek_ismi_manasi": "Islaklık, su ve süt gibi boğazı ıslatan şeyler demektir."
+  },
+  {
+    "kiz_ismi": "İkbâl",
+    "kiz_ismi_manasi": " Talih açıklığı, baht uyanıklığı, yüksek bir mevkiye erişme.",
+    "erkek_ismi": "Birol ",
+    "erkek_ismi_manasi": "Tek kal demek."
+  },
+  {
+    "kiz_ismi": "İkrime",
+    "kiz_ismi_manasi": "Kerem ve cömertlik demektir.",
+    "erkek_ismi": "Bora",
+    "erkek_ismi_manasi": "Rüzgar, şimşek, gök gürültüsü"
+  },
+  {
+    "kiz_ismi": "İlknur",
+    "kiz_ismi_manasi": "İlk gelen ışık demeti.",
+    "erkek_ismi": "Buğra",
+    "erkek_ismi_manasi": "Turna kuşu."
+  },
+  {
+    "kiz_ismi": "İmran",
+    "kiz_ismi_manasi": "Evine bağlı kalan demektir.",
+    "erkek_ismi": "Burak",
+    "erkek_ismi_manasi": "Hz. Muhammed’in Miraç’taki bineği."
+  },
+  {
+    "kiz_ismi": "İrem ",
+    "kiz_ismi_manasi": "Cennet’e karşı yapılan bahçe.",
+    "erkek_ismi": "Burhan",
+    "erkek_ismi_manasi": "İlahi aydınlık, mucize, doğru yolu gösteren."
+  },
+  {
+    "kiz_ismi": "İsmet ",
+    "kiz_ismi_manasi": "Günahsızlık, suçsuzluk demektir.",
+    "erkek_ismi": "Burhaneddin",
+    "erkek_ismi_manasi": "Hak yolunu gösteren kişi."
+  },
+  {
+    "kiz_ismi": "Kader",
+    "kiz_ismi_manasi": "alın yazısı, takdir. 2.Talih, baht.",
+    "erkek_ismi": "Bülent",
+    "erkek_ismi_manasi": "Yüksek, ulu, yüce, uzun demek."
+  },
+  {
+    "kiz_ismi": "Kadriye",
+    "kiz_ismi_manasi": "Onurlu, itibarlı, değerli. Şan ve şeref sahibi.",
+    "erkek_ismi": "Cafer",
+    "erkek_ismi_manasi": "Küçük akarsu."
+  },
+  {
+    "kiz_ismi": "Kamer",
+    "kiz_ismi_manasi": "Ay. Kur’an-ı Kerim’de 54. sûrenin adı.",
+    "erkek_ismi": "Cahid ",
+    "erkek_ismi_manasi": "Cehd eden, mücadele eden."
+  },
+  {
+    "kiz_ismi": "Kâmile",
+    "kiz_ismi_manasi": "Bütün, tam, olgun, kusursuz.",
+    "erkek_ismi": "Can ",
+    "erkek_ismi_manasi": "Türk Cana yakın"
+  },
+  {
+    "kiz_ismi": "Kâmuran",
+    "kiz_ismi_manasi": "Arzusuna erişen, bahtiyar, ulu.",
+    "erkek_ismi": "Caner ",
+    "erkek_ismi_manasi": "Samimi dost, candan samimi."
+  },
+  {
+    "kiz_ismi": "Kerime",
+    "kiz_ismi_manasi": "İhsan ve inayet sahibi, cömert.",
+    "erkek_ismi": "Cankan",
+    "erkek_ismi_manasi": "Asil, soylu temiz anlamına gelir."
+  },
+  {
+    "kiz_ismi": "Kevser",
+    "kiz_ismi_manasi": "Cennette bir nehrin adıdır. Ayrıca hikmet, ilim demektir.",
+    "erkek_ismi": "Cavid",
+    "erkek_ismi_manasi": "Ebedi, sonu olmayan."
+  },
+  {
+    "kiz_ismi": "Keziban",
+    "kiz_ismi_manasi": "Ev hanımı, hamarat kadın",
+    "erkek_ismi": "Celal",
+    "erkek_ismi_manasi": "Ululuk, büyüklük, azamet."
+  },
+  {
+    "kiz_ismi": "Kıymet",
+    "kiz_ismi_manasi": "Değer, paha. 2.Şeref, onurlu, itibarlı.",
+    "erkek_ismi": "Celâleddin",
+    "erkek_ismi_manasi": "Dinin azametlisi, büyüğü, ulusu demektir."
+  },
+  {
+    "kiz_ismi": "Latife",
+    "kiz_ismi_manasi": "Nazik, ince, hoş, güzel.",
+    "erkek_ismi": "Celil",
+    "erkek_ismi_manasi": "Celalet sahibi, aziz, mertebesi yüksek, ulu."
+  },
+  {
+    "kiz_ismi": "Lebibe",
+    "kiz_ismi_manasi": "Anlayışlı, zeki kimse.",
+    "erkek_ismi": "Cemal",
+    "erkek_ismi_manasi": "Güzellik sahibi, yüz güzelliğine sahip manasına gelir."
+  },
+  {
+    "kiz_ismi": "Leman ",
+    "kiz_ismi_manasi": "Yıldız gibi parlayan.",
+    "erkek_ismi": "Cemil",
+    "erkek_ismi_manasi": "Güzel, endamlı."
+  },
+  {
+    "kiz_ismi": "Leylâ",
+    "kiz_ismi_manasi": "Hicri ayların son gecesi.",
+    "erkek_ismi": "Cevahir",
+    "erkek_ismi_manasi": " Cevherler, kıymetli taşlar, elmaslar."
+  },
+  {
+    "kiz_ismi": "Lübeyne",
+    "kiz_ismi_manasi": "İlk Müslüman olan hanım sahabilerden birinin adıdır.",
+    "erkek_ismi": "Cezmi ",
+    "erkek_ismi_manasi": "Kesin kararlı, niyetli ve azim sahibi demektir."
+  },
+  {
+    "kiz_ismi": "Lütfiye",
+    "kiz_ismi_manasi": "Hoşluk, güzellik sahibi, iyilik sever, cömert kişi.",
+    "erkek_ismi": "Cihan",
+    "erkek_ismi_manasi": "Kâinat, Dünya yerküresi, yeryüzü."
+  },
+  {
+    "kiz_ismi": "Macide",
+    "kiz_ismi_manasi": "Hoş, kerem sahibi, cömertliği çok, şan ve şeref sahibi.",
+    "erkek_ismi": "Coşkun",
+    "erkek_ismi_manasi": "Çok aşırı heyecanlı, çok hareketli ve duyarlı."
+  },
+  {
+    "kiz_ismi": "Mahbube",
+    "kiz_ismi_manasi": "Sevgili anlamına gelip, sevilmiş, sevilen.",
+    "erkek_ismi": "Cüneyt",
+    "erkek_ismi_manasi": " Küçük asker demektir."
+  },
+  {
+    "kiz_ismi": "Maide",
+    "kiz_ismi_manasi": "Yemek, ziyafet.",
+    "erkek_ismi": "Çağan",
+    "erkek_ismi_manasi": "Şenlik, bayram."
+  },
+  {
+    "kiz_ismi": "Makbule",
+    "kiz_ismi_manasi": "Alınan, kabul olunan, beğenilen, istenilen.",
+    "erkek_ismi": "Çağatay",
+    "erkek_ismi_manasi": "Doğu Türklerin lehçelerine dayanarak verilen ad. "
+  },
+  {
+    "kiz_ismi": "Mebrure",
+    "kiz_ismi_manasi": "Hayırlı, beğenilmiş, sadık olmakla makbule geçmiş",
+    "erkek_ismi": "Çağdaş",
+    "erkek_ismi_manasi": "Çağımızda olan ve yaşayan."
+  },
+  {
+    "kiz_ismi": "Medine",
+    "kiz_ismi_manasi": " İslâm’ın mukaddes şehirlerinden biri.",
+    "erkek_ismi": "Çağlar",
+    "erkek_ismi_manasi": "Hareketli, atik, çağlayan."
+  },
+  {
+    "kiz_ismi": "Mehtap",
+    "kiz_ismi_manasi": "Dolunay.",
+    "erkek_ismi": "Çağrı",
+    "erkek_ismi_manasi": "Davet"
+  },
+  {
+    "kiz_ismi": "Melek",
+    "kiz_ismi_manasi": "Masum, halim selim ve güzel kimse.",
+    "erkek_ismi": "Çelik",
+    "erkek_ismi_manasi": "Güçlü, kuvvetli, çok sert."
+  },
+  {
+    "kiz_ismi": "Melike",
+    "kiz_ismi_manasi": "Kadın hükümdar. Kraliçe.",
+    "erkek_ismi": "Çetin",
+    "erkek_ismi_manasi": "Sert; işlenmesi, elde edilmesi, çözümü zor. "
+  },
+  {
+    "kiz_ismi": "Meliha",
+    "kiz_ismi_manasi": "Güzel, şirin, sevimli.",
+    "erkek_ismi": "Davud",
+    "erkek_ismi_manasi": "Kendisine ilahi kitaplardan Zebur gönderilen büyük peygamberlerden birisinin adıdır."
+  },
+  {
+    "kiz_ismi": "Memnune",
+    "kiz_ismi_manasi": "Hoşnut, razı, minnet altında bulunan",
+    "erkek_ismi": "Demirhan",
+    "erkek_ismi_manasi": "Demir gibi güçlü, kuvvetli hükümdar."
+  },
+  {
+    "kiz_ismi": "Merve",
+    "kiz_ismi_manasi": "Mekke’de karşılıklı iki tepeden birinin adıdır.",
+    "erkek_ismi": "Devran",
+    "erkek_ismi_manasi": "Dünya, felek, zaman, tarih."
+  },
+  {
+    "kiz_ismi": "Meryem",
+    "kiz_ismi_manasi": "Dinine bağlı kadın demek.",
+    "erkek_ismi": "Dilaver",
+    "erkek_ismi_manasi": "Cesaretli, yürekli, gönül alıcı, yiğit "
+  },
+  {
+    "kiz_ismi": "Mesude",
+    "kiz_ismi_manasi": "Saadetli, iman ehli olan, bahtiyar",
+    "erkek_ismi": "Dinç",
+    "erkek_ismi_manasi": "Sağlıklı, gücü kuvveti yerinde."
+  },
+  {
+    "kiz_ismi": "Mihriban ",
+    "kiz_ismi_manasi": "Şefkatli, merhametli ve muhabbetli kimse.",
+    "erkek_ismi": "Dinçer",
+    "erkek_ismi_manasi": "Sağlam yiğit, güçlü yiğit anlamındadir."
+  },
+  {
+    "kiz_ismi": "Muazzez",
+    "kiz_ismi_manasi": "Çok aziz, izzet sahibi, saygı uyandıran,",
+    "erkek_ismi": "Doğan",
+    "erkek_ismi_manasi": "Uzun kanatlı, hızlı uçan, kuvvetli bir yırtıcı kuş."
+  },
+  {
+    "kiz_ismi": "Mukadder",
+    "kiz_ismi_manasi": "Allah’ın hükmü, alın yazısı, takdir edilmiş.",
+    "erkek_ismi": "Durmuş",
+    "erkek_ismi_manasi": "İslâm’a göre batıl olan, çocukları yaşamayan ailelerde, çocuğun yaşaması için konulan isim."
+  },
+  {
+    "kiz_ismi": "Muteber",
+    "kiz_ismi_manasi": "İtibarlı, itibarı olan, değerli",
+    "erkek_ismi": "Dündar",
+    "erkek_ismi_manasi": "Gözeten, koruyan asker."
+  },
+  {
+    "kiz_ismi": "Mübeccel ",
+    "kiz_ismi_manasi": "Tebcil edilmiş, yüceltilmiş, aziz, muhterem.",
+    "erkek_ismi": "Ebuzer",
+    "erkek_ismi_manasi": "Karınca veya nesil babası."
+  },
+  {
+    "kiz_ismi": "Müberra ",
+    "kiz_ismi_manasi": "Beri, müstesna, azâde, arınmış..",
+    "erkek_ismi": "Ecevit",
+    "erkek_ismi_manasi": "Yaramaz, haşarı, afacan."
+  },
+  {
+    "kiz_ismi": "Münevver ",
+    "kiz_ismi_manasi": " Nurlanmış, nurlandırılmış, akıllı, alim ve parlatılmış.",
+    "erkek_ismi": "Ediz",
+    "erkek_ismi_manasi": "Ulu, yüce, her şeyin yükseği"
+  },
+  {
+    "kiz_ismi": "Münire",
+    "kiz_ismi_manasi": "Nur veren, ziya ve ışık veren, parlayan.",
+    "erkek_ismi": "Efe",
+    "erkek_ismi_manasi": "Yiğit, cesur"
+  },
+  {
+    "kiz_ismi": "Mürvet ",
+    "kiz_ismi_manasi": "Erlik, kahramanlık, iyilik, cömertik, yiğitlik.",
+    "erkek_ismi": "Egemen",
+    "erkek_ismi_manasi": "Hüküm süren, hakim."
+  },
+  {
+    "kiz_ismi": "Müşerref",
+    "kiz_ismi_manasi": "Şereflenmiş, yüceltilmiş.",
+    "erkek_ismi": "Ekrem",
+    "erkek_ismi_manasi": "Eli açık, iyilik sever, çok cömert."
+  },
+  {
+    "kiz_ismi": "Müyesser",
+    "kiz_ismi_manasi": "Kolaylıkla olan, kolay.",
+    "erkek_ismi": "Emin",
+    "erkek_ismi_manasi": "Korkusuz kimse,"
+  },
+  {
+    "kiz_ismi": "Müzeyyen",
+    "kiz_ismi_manasi": "Süslü, süslenmiş, bezenmiş, donanmış",
+    "erkek_ismi": "Emre ",
+    "erkek_ismi_manasi": "Âşık, müptela, düşkün."
+  },
+  {
+    "kiz_ismi": "Nebahat",
+    "kiz_ismi_manasi": "Şan, şeref, asalet, yücelik.",
+    "erkek_ismi": "Emrullah",
+    "erkek_ismi_manasi": "Allah’ın meydana getirdiği varlığı, işi demektir."
+  },
+  {
+    "kiz_ismi": "Necibe",
+    "kiz_ismi_manasi": " Soyu ve nesli temiz, cömert",
+    "erkek_ismi": "Ender",
+    "erkek_ismi_manasi": "Çok az, çok nadir, çok seyrek bulunur."
+  },
+  {
+    "kiz_ismi": "Neslihan",
+    "kiz_ismi_manasi": "Han soyundan gelen, hükümdar soylu.",
+    "erkek_ismi": "Enes",
+    "erkek_ismi_manasi": "İnsan demektir."
+  },
+  {
+    "kiz_ismi": "Neslişah",
+    "kiz_ismi_manasi": " Padişah soyundan, neslinden gelen.",
+    "erkek_ismi": "Engin",
+    "erkek_ismi_manasi": "Çok geniş, uçsuz bucaksız, göz alabildiğince."
+  },
+  {
+    "kiz_ismi": "Nimet ",
+    "kiz_ismi_manasi": "İyilik, ihsan, lütuf, hayırlı hal.",
+    "erkek_ismi": "Enis ",
+    "erkek_ismi_manasi": "Sevimli dost, arkadaş, cana yakın."
+  },
+  {
+    "kiz_ismi": "Nur",
+    "kiz_ismi_manasi": "şık, aydınlık.",
+    "erkek_ismi": "Eray ",
+    "erkek_ismi_manasi": "Ay gibi parlak, temiz erkek."
+  },
+  {
+    "kiz_ismi": "Nuran",
+    "kiz_ismi_manasi": "Işıklı, nurlu, aydınlık.",
+    "erkek_ismi": "Ercan",
+    "erkek_ismi_manasi": "Korkusuz, yiğit, canlı erkek demektir."
+  },
+  {
+    "kiz_ismi": "Nuray",
+    "kiz_ismi_manasi": "Ay ışığı demektir.",
+    "erkek_ismi": "Ercüment",
+    "erkek_ismi_manasi": "İtibarlı, haysiyetli, muazzez kişi."
+  },
+  {
+    "kiz_ismi": "Nurbanu",
+    "kiz_ismi_manasi": "Nurlu kadın.",
+    "erkek_ismi": "Erdal",
+    "erkek_ismi_manasi": "Bir ağacın en sağlam, en kalın dalı."
+  },
+  {
+    "kiz_ismi": "Nurcan",
+    "kiz_ismi_manasi": "Can ışığı demektir.",
+    "erkek_ismi": "Erdem",
+    "erkek_ismi_manasi": "Maharet, hüner."
+  },
+  {
+    "kiz_ismi": "Nurcihan",
+    "kiz_ismi_manasi": "Cihanın nuru, kainatın ışığı demektir.",
+    "erkek_ismi": "Erdinç ",
+    "erkek_ismi_manasi": "Dinç erkek demektir."
+  },
+  {
+    "kiz_ismi": "Nurhayat",
+    "kiz_ismi_manasi": "Hayatın nuru, ışığı.",
+    "erkek_ismi": "Erdoğan",
+    "erkek_ismi_manasi": " Doğan kuşu gibi erkek olan, kahraman, yiğit."
+  },
+  {
+    "kiz_ismi": "Nuriye",
+    "kiz_ismi_manasi": "Aydınlanmış, parlak.",
+    "erkek_ismi": "Eren",
+    "erkek_ismi_manasi": "Cesur, yiğit adam."
+  },
+  {
+    "kiz_ismi": "Nursel",
+    "kiz_ismi_manasi": "Işık seli, etrafını aydınlatan, etrafına ışık veren.",
+    "erkek_ismi": "Ergün",
+    "erkek_ismi_manasi": "Sert başlı, oynak, hızlı giden at."
+  },
+  {
+    "kiz_ismi": "Nurşen",
+    "kiz_ismi_manasi": "Işık gibi şen ve güler yüzlü kişi.",
+    "erkek_ismi": "Erhan",
+    "erkek_ismi_manasi": "Yiğit, kahraman, hakan, hükümdar."
+  },
+  {
+    "kiz_ismi": "Nüvidan",
+    "kiz_ismi_manasi": " Hayırlı haberlerle müjde veren, müjdeleyen kişi.",
+    "erkek_ismi": "Erşan",
+    "erkek_ismi_manasi": "Yiğitliğiyle tanınmış erkek."
+  },
+  {
+    "kiz_ismi": "Onay",
+    "kiz_ismi_manasi": "Ayın ilk günlerindeki hali, hilâl.",
+    "erkek_ismi": "Ertan",
+    "erkek_ismi_manasi": "Erken, gün doğma zamanı."
+  },
+  {
+    "kiz_ismi": "Oya",
+    "kiz_ismi_manasi": "İnce, güzel, zarif. İnce kenar süsü.",
+    "erkek_ismi": "Ertuğrul",
+    "erkek_ismi_manasi": "Doğru, temiz yürekli insan."
+  },
+  {
+    "kiz_ismi": "Özgül",
+    "kiz_ismi_manasi": "Özü gül gibi olan, temiz, güzel kokan.",
+    "erkek_ismi": "Eşref",
+    "erkek_ismi_manasi": "Şerefli, nurlu, itibarı çok yüksek olan kişi."
+  },
+  {
+    "kiz_ismi": "Özlem",
+    "kiz_ismi_manasi": "Yeniden görme, tekrar kavuşma, arzu, hasret.",
+    "erkek_ismi": "Ethem",
+    "erkek_ismi_manasi": "Eksiksiz, noksansız, tam."
+  },
+  {
+    "kiz_ismi": "Özmen",
+    "kiz_ismi_manasi": "Özü iyi, sağlam, kişilikli.",
+    "erkek_ismi": "Eyyûb",
+    "erkek_ismi_manasi": "Tövbe eden, günahlarından pişman olan."
+  },
+  {
+    "kiz_ismi": "Öznur",
+    "kiz_ismi_manasi": "Gerçek ışık, ışığın özünden olan.",
+    "erkek_ismi": "Fadıl",
+    "erkek_ismi_manasi": "azilet sahibi, erdemli,"
+  },
+  {
+    "kiz_ismi": "Pakize",
+    "kiz_ismi_manasi": "Temiz, saf, halis, günahsız.",
+    "erkek_ismi": "Fahrettin ",
+    "erkek_ismi_manasi": "Dini büyüğü, övülmeye lâyık kişi."
+  },
+  {
+    "kiz_ismi": "Paye",
+    "kiz_ismi_manasi": "Derece, mertebe, rütbe.",
+    "erkek_ismi": "Fahri ",
+    "erkek_ismi_manasi": "Bir karşılık beklemeden yalnızca şeref ve iftihar vesilesi olarak kabul edilen."
+  },
+  {
+    "kiz_ismi": "Payidar",
+    "kiz_ismi_manasi": "İyice yerleşmiş, sağlam.",
+    "erkek_ismi": "Faik",
+    "erkek_ismi_manasi": "Üstün, seçkin, yüksek, ileri."
+  },
+  {
+    "kiz_ismi": "Pekşen",
+    "kiz_ismi_manasi": " Çok neşeli.",
+    "erkek_ismi": "Faruk",
+    "erkek_ismi_manasi": "Ayıran, ayırt eden, doğruyu yanlışı ayıran. "
+  },
+  {
+    "kiz_ismi": "Pelin",
+    "kiz_ismi_manasi": "Benzetiş, taklit.",
+    "erkek_ismi": "Fatih",
+    "erkek_ismi_manasi": "Fetheden."
+  },
+  {
+    "kiz_ismi": "Perihan",
+    "kiz_ismi_manasi": " Peri gibi güzel demektir.",
+    "erkek_ismi": "Faysal",
+    "erkek_ismi_manasi": "Keskin kılıç."
+  },
+  {
+    "kiz_ismi": "Perizad",
+    "kiz_ismi_manasi": " Peri gibi alımlı güzel.",
+    "erkek_ismi": "Fazıl",
+    "erkek_ismi_manasi": "Fazilet sahibi"
+  },
+  {
+    "kiz_ismi": "Rabia",
+    "kiz_ismi_manasi": "Dördüncü demektir.",
+    "erkek_ismi": "Fehmi ",
+    "erkek_ismi_manasi": "Zeki, akıllı, anlayışlı; anlayışa mensup."
+  },
+  {
+    "kiz_ismi": "Rahime",
+    "kiz_ismi_manasi": "Latif sözlü kız.",
+    "erkek_ismi": "Ferdi",
+    "erkek_ismi_manasi": "Tek başına yapılan, tek şey."
+  },
+  {
+    "kiz_ismi": "Rahşan",
+    "kiz_ismi_manasi": "Parıltı, ışık.",
+    "erkek_ismi": "Ferhat",
+    "erkek_ismi_manasi": "Vücudu etine dolgun, cüsseli ve güzel kişi."
+  },
+  {
+    "kiz_ismi": "Ramiye",
+    "kiz_ismi_manasi": " Boyun eğen, terbiyeli.",
+    "erkek_ismi": "Ferhan",
+    "erkek_ismi_manasi": "Sevinçli, mesut."
+  },
+  {
+    "kiz_ismi": "Ranâ",
+    "kiz_ismi_manasi": "Güzel, hoş, latif. 2.Çok iyi, alâ.",
+    "erkek_ismi": "Ferhat ",
+    "erkek_ismi_manasi": "Sevinç, neşe, sürur demektir."
+  },
+  {
+    "kiz_ismi": "Refika",
+    "kiz_ismi_manasi": " Zevce, eş, yardımcı.",
+    "erkek_ismi": "Fevzi",
+    "erkek_ismi_manasi": "Kurtuluşa eren, selamette olan, acılardan kurtulup muratlara eren."
+  },
+  {
+    "kiz_ismi": "Remziye",
+    "kiz_ismi_manasi": "İşaret, işarete mensup.",
+    "erkek_ismi": "Feyyaz",
+    "erkek_ismi_manasi": "Çok feyizli, bol verimli."
+  },
+  {
+    "kiz_ismi": "Reşide",
+    "kiz_ismi_manasi": "Doğru yolda giden, iyi davranan",
+    "erkek_ismi": "Feyzullah ",
+    "erkek_ismi_manasi": "Allah’ın bereketi."
+  },
+  {
+    "kiz_ismi": "Reyhan",
+    "kiz_ismi_manasi": "Fesleğen.",
+    "erkek_ismi": "Fikret",
+    "erkek_ismi_manasi": "Düşünme, düşünmek, Fikir, maksat, niyet"
+  },
+  {
+    "kiz_ismi": "Rezzan",
+    "kiz_ismi_manasi": "Ağır başlı, ciddi demektir.",
+    "erkek_ismi": "Fuat ",
+    "erkek_ismi_manasi": "Kalp, yürek, gönül."
+  },
+  {
+    "kiz_ismi": "Rikkat",
+    "kiz_ismi_manasi": "İncelik, yufka yüreklilik.",
+    "erkek_ismi": "Gaffar",
+    "erkek_ismi_manasi": "Çok bağışlayan, merhamet eden, affeden."
+  },
+  {
+    "kiz_ismi": "Ruhsar",
+    "kiz_ismi_manasi": "Yüz, çehre, sima demektir.",
+    "erkek_ismi": "Gazanfer",
+    "erkek_ismi_manasi": "İri arslan, mecazen yiğit"
+  },
+  {
+    "kiz_ismi": "Rukiyye",
+    "kiz_ismi_manasi": "Büyüleyici",
+    "erkek_ismi": "Gencer",
+    "erkek_ismi_manasi": " Yeni, taze, körpe kişi, yiğit."
+  },
+  {
+    "kiz_ismi": "Rümeysa",
+    "kiz_ismi_manasi": " En büyük yıldızın adıdır.",
+    "erkek_ismi": "Görkem",
+    "erkek_ismi_manasi": " İhtişam, gösteriş."
+  },
+  {
+    "kiz_ismi": "Rüveyda",
+    "kiz_ismi_manasi": "İnce, hoşnut, nazik.",
+    "erkek_ismi": "Gültekin",
+    "erkek_ismi_manasi": " Güvenilir, herkese hayrı dokunan demektir."
+  },
+  {
+    "kiz_ismi": "Rüveyha",
+    "kiz_ismi_manasi": "Zariflik, kibarlık.",
+    "erkek_ismi": "Günay",
+    "erkek_ismi_manasi": "Güneşin devri, güneş görünen yer."
+  },
+  {
+    "kiz_ismi": "Rüya",
+    "kiz_ismi_manasi": "Uyku sırasında görülen düş.",
+    "erkek_ismi": "Göngör",
+    "erkek_ismi_manasi": "İyi günler yaşa anlamındadır."
+  },
+  {
+    "kiz_ismi": "Saadet",
+    "kiz_ismi_manasi": "Mutluluk, kutluluk, bahtiyarlık",
+    "erkek_ismi": "Gürdal",
+    "erkek_ismi_manasi": "Gelişmiş dal, yaprağı meyvesi çok bol olan."
+  },
+  {
+    "kiz_ismi": "Sabâ",
+    "kiz_ismi_manasi": "Gün doğusundan esen hafif ve hoş rüzgar.",
+    "erkek_ismi": "Gürkan",
+    "erkek_ismi_manasi": "Bol kanlı, yiğit, kahraman."
+  },
+  {
+    "kiz_ismi": "Sabire",
+    "kiz_ismi_manasi": "Sabreden, bekleyen, halinden şikayetçi olmayan",
+    "erkek_ismi": "Gürsel",
+    "erkek_ismi_manasi": "Gür olan, bol bulunan."
+  },
+  {
+    "kiz_ismi": "Sabriye",
+    "kiz_ismi_manasi": "Sabırlı, dayanıklı, acelesiz kişi.",
+    "erkek_ismi": "Güven",
+    "erkek_ismi_manasi": "İtimat, emniyet."
+  },
+  {
+    "kiz_ismi": "Sacide",
+    "kiz_ismi_manasi": "Secde eden.",
+    "erkek_ismi": "Habib ",
+    "erkek_ismi_manasi": "Sevgili, dost, sevilen."
+  },
+  {
+    "kiz_ismi": "Safiye",
+    "kiz_ismi_manasi": "Temiz, içinde yapmacık olmayan",
+    "erkek_ismi": "Hakkı ",
+    "erkek_ismi_manasi": " Hak ile alakalı, doğruluk ve irfan sahibi."
+  },
+  {
+    "kiz_ismi": "Saibe ",
+    "kiz_ismi_manasi": "Hedefe doğru ulaşan, yanlışlık yapmayan, doğru olan",
+    "erkek_ismi": "Halil",
+    "erkek_ismi_manasi": "Dost, samimi, hakiki dost."
+  },
+  {
+    "kiz_ismi": "Sare",
+    "kiz_ismi_manasi": "Atlayan, sıçrayan manasındadır.",
+    "erkek_ismi": "Halim",
+    "erkek_ismi_manasi": "Uysal, yumuşak huylu."
+  },
+  {
+    "kiz_ismi": "Saliha",
+    "kiz_ismi_manasi": "Dinin emir ve yasaklarına uyan",
+    "erkek_ismi": "Hamza",
+    "erkek_ismi_manasi": "Heybetli, azametli demektir."
+  },
+  {
+    "kiz_ismi": "Sedef ",
+    "kiz_ismi_manasi": "Bazı deniz hayvanlarının sert, beyaz ve parlak kabuğu..",
+    "erkek_ismi": "Haşim",
+    "erkek_ismi_manasi": "Ezen, parçalayan, kıran, mahir, süt sağan."
+  },
+  {
+    "kiz_ismi": "Selma",
+    "kiz_ismi_manasi": "İyi ve doğru yolda olma.",
+    "erkek_ismi": "Hikmet",
+    "erkek_ismi_manasi": "Yüksek bilgi,Felsefe,Sebep, Allah’ın hikmeti."
+  },
+  {
+    "kiz_ismi": "Selvinaz",
+    "kiz_ismi_manasi": " Nazlı ve güzel demektir.",
+    "erkek_ismi": "Himmet ",
+    "erkek_ismi_manasi": "Gayret etmek, çalışma, çabalama."
+  },
+  {
+    "kiz_ismi": "Senem",
+    "kiz_ismi_manasi": "tümüyle yansıtan güzel sevgili demektir.",
+    "erkek_ismi": "Hürkan",
+    "erkek_ismi_manasi": "Özgür kandan, özgür soydan gelen."
+  },
+  {
+    "kiz_ismi": "Seniha",
+    "kiz_ismi_manasi": "Ziynet, inci.",
+    "erkek_ismi": "İbrahim",
+    "erkek_ismi_manasi": "Hakların babası anlamına gelir. Bu isim oğlu İsmail’i Allah yolunda kurban etmekle imtihan olunmuş,"
+  },
+  {
+    "kiz_ismi": "Seniyye",
+    "kiz_ismi_manasi": " Çok kıymetli ve mühim, yüce olan demektir.",
+    "erkek_ismi": "İsmet",
+    "erkek_ismi_manasi": "Ahlâk ve namus ölçülerine riayet etme, haramdan ve kötülükten çekinme."
+  },
+  {
+    "kiz_ismi": "Serap",
+    "kiz_ismi_manasi": "Hayal, ılgın.",
+    "erkek_ismi": "İzzet ",
+    "erkek_ismi_manasi": "Yücelik, ululuk, üstünlük, şeref, itibar."
+  },
+  {
+    "kiz_ismi": "Seren",
+    "kiz_ismi_manasi": "Çam kerestesi.",
+    "erkek_ismi": "Kadir",
+    "erkek_ismi_manasi": "Güçlü, kudretli."
+  },
+  {
+    "kiz_ismi": "Sevgi",
+    "kiz_ismi_manasi": "Sevme hissi, aşk, muhabbet.",
+    "erkek_ismi": "Kâmil",
+    "erkek_ismi_manasi": "Olgun, eksiksiz, tam, mükemmel."
+  },
+  {
+    "kiz_ismi": "Sevim",
+    "kiz_ismi_manasi": "Cazibe, muhabbet.",
+    "erkek_ismi": "Kâzım",
+    "erkek_ismi_manasi": "Öfkesini yenen, meydana vurmayan."
+  },
+  {
+    "kiz_ismi": "Sıdıka",
+    "kiz_ismi_manasi": "Doğru, çok dürüst, içten kimse demektir.",
+    "erkek_ismi": "Kemâl",
+    "erkek_ismi_manasi": "Olgun, kusursuz, tam ve eksiksiz olma."
+  },
+  {
+    "kiz_ismi": "Sinem",
+    "kiz_ismi_manasi": "Gönlüm, kalbim demektir.",
+    "erkek_ismi": "Korkut",
+    "erkek_ismi_manasi": "Ateş gibi han, kor gibi hükümdar."
+  },
+  {
+    "kiz_ismi": "Sultan",
+    "kiz_ismi_manasi": "İktidar sahibi.",
+    "erkek_ismi": "Latif",
+    "erkek_ismi_manasi": "Mülayim, yumuşak, nazik, güzel"
+  },
+  {
+    "kiz_ismi": "Sümeyye",
+    "kiz_ismi_manasi": "İlk Müslüman olan şehit kadın.",
+    "erkek_ismi": "Lütfullah",
+    "erkek_ismi_manasi": "Allah’ın lütfu, ihsanı demektir."
+  },
+  {
+    "kiz_ismi": "Şayeste",
+    "kiz_ismi_manasi": "Lâyık, uygun, münasip",
+    "erkek_ismi": "Lütfi ",
+    "erkek_ismi_manasi": "İyi muamele eden, hoş güzellik sahibi, iyilik seven."
+  },
+  {
+    "kiz_ismi": "Şengül",
+    "kiz_ismi_manasi": " İnsanın içini, gönlünü açan gül.",
+    "erkek_ismi": "Mahir",
+    "erkek_ismi_manasi": "Elinden iyi iş gelen, ustalık ve beceriklilikle yapan, hünerli."
+  },
+  {
+    "kiz_ismi": "Şennur",
+    "kiz_ismi_manasi": "Nurlu şen, mutlu insan.",
+    "erkek_ismi": "Mahmut",
+    "erkek_ismi_manasi": "Övülmüş, övülmeye lâyık."
+  },
+  {
+    "kiz_ismi": "Şerife",
+    "kiz_ismi_manasi": "Kutsal, şanlı, şöhretli.",
+    "erkek_ismi": "Melih",
+    "erkek_ismi_manasi": "Güzel, sevimli, şirin, tatlı, yakışıklı."
+  },
+  {
+    "kiz_ismi": "Şeyma",
+    "kiz_ismi_manasi": "Peygamber Efendimizin (sav) süt kardeşinin adıdır.",
+    "erkek_ismi": "Mesut ",
+    "erkek_ismi_manasi": "Bahtiyar, mutlu."
+  },
+  {
+    "kiz_ismi": "Şükriye",
+    "kiz_ismi_manasi": "Şükreden, yapılan iyiliğe minnettar olan.",
+    "erkek_ismi": "Muhammed ",
+    "erkek_ismi_manasi": "Çok övülmüş, birçok güzel huylara sahip."
+  },
+  {
+    "kiz_ismi": "Tahire",
+    "kiz_ismi_manasi": "Temiz zevceler anlamına gelir.",
+    "erkek_ismi": "Musa",
+    "erkek_ismi_manasi": "Vasiyet edilmiş, tavsiye olunmuş."
+  },
+  {
+    "kiz_ismi": "Taibe",
+    "kiz_ismi_manasi": "Günahlarından pişman olan.",
+    "erkek_ismi": "Mustafa",
+    "erkek_ismi_manasi": "Seçkin, seçilmiş. "
+  },
+  {
+    "kiz_ismi": "Tansu",
+    "kiz_ismi_manasi": "Mucize, doğa üstü olay.",
+    "erkek_ismi": "Nafiz ",
+    "erkek_ismi_manasi": "Nüfuz eden, işleyen, delip geçen"
+  },
+  {
+    "kiz_ismi": "Tayyibe",
+    "kiz_ismi_manasi": "İyi, hoş, güzel, âlâ",
+    "erkek_ismi": "Necati ",
+    "erkek_ismi_manasi": "Kurtulmuş, selamete ermiş kişi."
+  },
+  {
+    "kiz_ismi": "Türkân",
+    "kiz_ismi_manasi": "Hakana, saltanata ortaklık eden.",
+    "erkek_ismi": "Nurullah",
+    "erkek_ismi_manasi": "Allah’ın nuru, yarattığı kişi."
+  },
+  {
+    "kiz_ismi": "Uğur",
+    "kiz_ismi_manasi": "İyilik kaynağı, iyilik.",
+    "erkek_ismi": "Nihat ",
+    "erkek_ismi_manasi": "Tabiat, huy, karakter, yaratılış."
+  },
+  {
+    "kiz_ismi": "Ulviye",
+    "kiz_ismi_manasi": "Manevi, göğe mensup ve alakalı demektir.",
+    "erkek_ismi": "Onur ",
+    "erkek_ismi_manasi": "Şeref, haysiyet, vakar."
+  },
+  {
+    "kiz_ismi": "Ulya",
+    "kiz_ismi_manasi": "Çok yüce, pek yüksek.",
+    "erkek_ismi": "Oğuz",
+    "erkek_ismi_manasi": "Mübarek, saf ve iyi yaradılışlı."
+  },
+  {
+    "kiz_ismi": "Ülkü",
+    "kiz_ismi_manasi": "Gaye, ulaşılmak istenilen yüce gaye, ideal.",
+    "erkek_ismi": "Özcan",
+    "erkek_ismi_manasi": "Samimi, içten demektir."
+  },
+  {
+    "kiz_ismi": "Ümame",
+    "kiz_ismi_manasi": "Analık, annelik demektir.",
+    "erkek_ismi": "Önder",
+    "erkek_ismi_manasi": "İdare eden kimse, lider."
+  },
+  {
+    "kiz_ismi": "Ümmügülsüm",
+    "kiz_ismi_manasi": "Peygamber Efendimizin (sav) ortanca kızlarından",
+    "erkek_ismi": "Peyami",
+    "erkek_ismi_manasi": "Bilgi veren, toplayan."
+  },
+  {
+    "kiz_ismi": "Ümra",
+    "kiz_ismi_manasi": "Saadet, mutluluk.",
+    "erkek_ismi": "Rafet",
+    "erkek_ismi_manasi": "Acımak, yüce anlamında."
+  },
+  {
+    "kiz_ismi": "Vahide",
+    "kiz_ismi_manasi": "Tek, eşsiz, eşi benzeri olmayan.",
+    "erkek_ismi": "Raşit",
+    "erkek_ismi_manasi": "Olgun, ergin. Doğru yolda olan,"
+  },
+  {
+    "kiz_ismi": "Vechinur",
+    "kiz_ismi_manasi": "Nur çehreli, nur yüzlü.",
+    "erkek_ismi": "Reha ",
+    "erkek_ismi_manasi": "Bolluk, genişlik, zenginlik."
+  },
+  {
+    "kiz_ismi": "Vesime",
+    "kiz_ismi_manasi": "Güzel yüzlü, süslü.",
+    "erkek_ismi": "Rıza",
+    "erkek_ismi_manasi": "Hoşnutluk, razılık"
+  },
+  {
+    "kiz_ismi": "Vesile",
+    "kiz_ismi_manasi": "Sebep, fırsat, vasıta.",
+    "erkek_ismi": "Sabri",
+    "erkek_ismi_manasi": "Acelesiz, acıya ve zorluğa katlanan."
+  },
+  {
+    "kiz_ismi": "Vicdan",
+    "kiz_ismi_manasi": "yiyi kötüden ayırmaya yarayan düşünce, ahlâk.",
+    "erkek_ismi": "Safa ",
+    "erkek_ismi_manasi": "Üzüntü ve kederden uzak olma"
+  },
+  {
+    "kiz_ismi": "Vildan",
+    "kiz_ismi_manasi": "Yeni doğmuş çocuk.",
+    "erkek_ismi": "Salih",
+    "erkek_ismi_manasi": "Yarar, yakışır, elverişli."
+  },
+  {
+    "kiz_ismi": "Yağmur",
+    "kiz_ismi_manasi": "Çokluk, bolluk, gelen şey.",
+    "erkek_ismi": "Samed",
+    "erkek_ismi_manasi": "Ezeli, ebedi, yüce olan, hiç kimseye ihtiyacı olmayan"
+  },
+  {
+    "kiz_ismi": "Yasemin",
+    "kiz_ismi_manasi": "Çiçekli, güzel kokulu bir bitki.",
+    "erkek_ismi": "Talha",
+    "erkek_ismi_manasi": "Cennetle müjdelenen on sahabiden birinin adıdır."
+  },
+  {
+    "kiz_ismi": "Yeliz ",
+    "kiz_ismi_manasi": "Güzel, aydınlık, ferah.",
+    "erkek_ismi": "Talip ",
+    "erkek_ismi_manasi": "Kısmet, kader, baht."
+  },
+  {
+    "kiz_ismi": "Yüksel",
+    "kiz_ismi_manasi": "İlerleyen, yukarı çıkan.",
+    "erkek_ismi": "Uğur",
+    "erkek_ismi_manasi": "1.İyilik getirdiğine inanılan şey.Hayır, bereket, iyilik."
+  },
+  {
+    "kiz_ismi": "Zahide",
+    "kiz_ismi_manasi": "Doğruluktan ayrılmayan",
+    "erkek_ismi": "Ümit",
+    "erkek_ismi_manasi": " Bazı şeylerin olması konusunda beslenen his."
+  },
+  {
+    "kiz_ismi": "Zehra ",
+    "kiz_ismi_manasi": "Güzel yüzlü. Hazreti Fatıma’nın diğer bir adıdır.",
+    "erkek_ismi": "Vedat ",
+    "erkek_ismi_manasi": "Dostluk, sevgi, sevme."
+  },
+  {
+    "kiz_ismi": "Zekiye",
+    "kiz_ismi_manasi": "Günahsız, temiz, zeki.",
+    "erkek_ismi": "Yalçın",
+    "erkek_ismi_manasi": "Sarp, sert, düz olmayan yer."
+  },
+  {
+    "kiz_ismi": "Zeliha",
+    "kiz_ismi_manasi": "Su perisi, çok güzel.",
+    "erkek_ismi": "Zâhit",
+    "erkek_ismi_manasi": "Dinin emirlerine çok bağlı kimse."
+  },
+  {
+    "kiz_ismi": "Zübeyde",
+    "kiz_ismi_manasi": "Netice, sonuç, her şeyin iyisi ve halisi, özet, kemalin en ileri derecesi.",
+    "erkek_ismi": "Zülfikâr",
+    "erkek_ismi_manasi": "Hz.Ali’nin kılıcının ismidir."
+  },
+  {
+    "kiz_ismi": "Zeynep",
+    "kiz_ismi_manasi": "Değerli taşlar, mücevherler. değerli olan herşey",
+    "erkek_ismi": "Ziyâd ",
+    "erkek_ismi_manasi": "Bolluk ve fazlalık."
+  }
+]

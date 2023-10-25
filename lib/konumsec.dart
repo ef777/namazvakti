@@ -3,10 +3,17 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
+import 'package:get_storage/get_storage.dart';
+import 'package:namazvakti/config.dart';
 import 'package:namazvakti/home.dart';
+import 'package:namazvakti/imsak.dart';
+import 'package:namazvakti/model-control/ilceler.dart';
+import 'package:namazvakti/model-control/sehirler.dart';
+import 'package:namazvakti/model-control/ulkeler.dart';
 
 
 
+   final controller = Get.put(AppConfig()); 
 
 
 class KonumSec extends StatefulWidget {
@@ -17,21 +24,114 @@ class KonumSec extends StatefulWidget {
 class _KonumSecState extends State<KonumSec> {
   @override
 
+  final box = GetStorage();
 
 
   
     bool _isChecked = false;
-final ulkeler = ['Türkiye', 'Almanya', 'Fransa'];
-final sehirler = ['Ankara', 'Konya', 'Bayburt'];
-final ilceler = ['ilce1', 'ilce2', 'ilce3'];
+List<Sehir> sehirListesi = [];
+List<Ulke> ulkeListesi = [];
+List<Ilce> ilceListesi = [];
+
+Ulke ?selectedUlke ;
+Sehir ?selectedSehir;
+Ilce ?selectedIlce;
+@override
+  void initState() {
+
+  
+    // TODO: implement initState
+    super.initState();
+  }
+
+ Future <List<dynamic >> Konumveri(ulke,sehir) async {
+print("future fonk başladı");
+   var  ulkeler   = await Ulke.fetchUlkeListesi();
+
+   var sehirler = null;
+    var ilceler = null;
+    if(ulke == null && sehir == null){
+    sehirler = await Sehir.getSehirler(ulkeler.first.ulkeID!);
+    ilceler = await Ilce.getIlceler(sehirler.first.sehirID!);
+    return [ulkeler,sehirler,ilceler];
+    }
+else if ( ulke != null && sehir == null) {
+   sehirler = await Sehir.getSehirler(ulke);
+    ilceler = await Ilce.getIlceler(sehirler.first.sehirID!);
+    return [ulkeler,sehirler,ilceler];
+
+}
+else if (ulke != null && sehir != null) {
+     sehirler = await Sehir.getSehirler(ulke);
+
+    ilceler = await Ilce.getIlceler(sehir);
+    return [ulkeler,sehirler,ilceler];
+}
+
+
+
+  
+ 
+
+   
+ 
+
+
+  else {
+        print("hata");
+
+   return [null,null,null];
+  }
+ }
+
+saveid(Ulke ulke,Sehir sehir, Ilce ilce) async {
+
+  await box.write('ulkeid', ulke.ulkeID);
+  await box.write('ulkename', ulke.ulkeAdi);
+  await box.write('sehirid', sehir.sehirID);
+  await box.write('sehirname', sehir.sehirAdi);
+  await box.write('ilceid', ilce.ilceID);
+  await box.write('ilcename', ilce.ilceAdi);
+   await box.write('ilgiris', true);
+  AppConfig.ulkeid = ulke.ulkeID ?? "";
+  AppConfig.ulkename = ulke.ulkeAdi ?? "";
+  AppConfig.sehirid = sehir.sehirID ?? "";
+  AppConfig.sehirname = sehir.sehirAdi ?? "";
+  AppConfig.ilceid = ilce.ilceID ?? "";
+  AppConfig.ilcename = ilce.ilceAdi ?? "";
+  AppConfig.login = true;
+    controller.ilkgiriskayit();
+
+  
+  print("idler kaydedildi");
+
+}
+
 
   Widget build(BuildContext context) {
      var size = MediaQuery.of(context).size;
    var  height = size.height;
    var width = size.width;
-    return Scaffold(
+    return  Scaffold(
      
-      body: Center(
+      body: FutureBuilder<List<dynamic>>(
+        future:Konumveri (selectedUlke?.ulkeID ?? null ,selectedSehir?.sehirID ?? null),
+        
+
+        builder: (context, snapshot) {
+          if (snapshot.hasError) {
+            return Text("${snapshot.error}");
+          } if (snapshot.hasData) {
+            ulkeListesi = snapshot.data![0];
+            sehirListesi = snapshot.data![1];
+            ilceListesi = snapshot.data![2];
+
+          
+            
+
+
+            return 
+       Center(
         child: CustomScrollView(
           shrinkWrap: true,
 
@@ -111,25 +211,53 @@ child:Container(
 SliverToBoxAdapter( 
   child: DropdownBottomSheetWidget(
         tip: "1",
-        items: ulkeler,
+        items: ulkeListesi.map((e) => e.ulkeAdi!).toList(),
+        id : ulkeListesi.map((e) => e.ulkeID!).toList(),
         onSelected: (selected) {
+        selectedSehir = null;
+        setState(() {
+                    selectedUlke = ulkeListesi.firstWhere((element) => element.ulkeAdi == selected);
+                    
+        selectedSehir = null;
+selectedIlce = null;
+        });
+           
           print(selected);
         },
       ),),
+ 
+ 
+
    SliverToBoxAdapter( 
   child: DropdownBottomSheetWidget(
         tip: "2",
-        items: sehirler,
+        id: sehirListesi.map((e) => e.sehirID!).toList(),
+        items: sehirListesi.map((e) => e.sehirAdi!).toList(),
         onSelected: (selected) {
-          print(selected);
+            setState(() {
+
+          selectedSehir = sehirListesi.firstWhere((element) => element.sehirAdi == selected);
+selectedIlce = null;
+             }); print(selected);
         },
-      ),),
+      ) ,),
+            
+         
+        
+      
+
+
     SliverToBoxAdapter( 
   child: DropdownBottomSheetWidget(
         tip: "3",
-        items: ilceler,
+                id: ilceListesi.map((e) => e.ilceID!).toList(),
+
+        items: ilceListesi.map((e) => e.ilceAdi!).toList(),
         onSelected: (selected) {
+            setState(() {
+          selectedIlce = ilceListesi.firstWhere((element) => element.ilceAdi == selected);
           print(selected);
+            });
         },
       ),)
  ,
@@ -141,8 +269,23 @@ SliverToBoxAdapter(
          margin: EdgeInsets.fromLTRB(
               size.width * 0.05, size.width * 0.06, size.width * 0.05, size.width * 0.06),
           child: GestureDetector(
-      onTap: () {
-        Get.offAll(HomePage());
+      onTap: () async {
+        print(selectedIlce.toString());
+        print(selectedSehir);
+if( selectedUlke.toString() != "null"  && selectedSehir.toString() != "null" && selectedIlce .toString() != "null"){
+       await saveid(selectedUlke!, selectedSehir!, selectedIlce!);
+      print("idler kaydedildi");
+      AppConfig.login = true;
+  
+      
+              Get.offAll(ImsakVakti());
+
+}
+else{
+  Get.snackbar("Hata", "Lütfen tüm alanları doldurun");
+  print("boş");
+}
+
       },
       child:
           
@@ -189,9 +332,17 @@ SliverToBoxAdapter(
       ),
   ),
   ]),
+      );
+            
+          } else {
+            return Center(child: CircularProgressIndicator());
+          }
+       
+        },
+
       ),
     );
-   
+
   }
 }
 
@@ -199,10 +350,12 @@ class DropdownBottomSheetWidget extends StatefulWidget {
   final String tip ; 
   final List<String> items;
   final ValueChanged<String> onSelected;
+  final List<String> id;
 
   const DropdownBottomSheetWidget({
     Key? key, 
     required this.items,
+    required this.id,
     required this.tip,
     required this.onSelected
   }) : super(key: key);

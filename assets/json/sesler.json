@@ -1,0 +1,230 @@
+[
+  {
+    "name": "Alarm",
+    "dowlandUrl": "raw"
+  },
+  {
+    "name": "Ezan1",
+    "dowlandUrl": "raw"
+  },
+  {
+    "name": "Ezan2",
+    "dowlandUrl": "raw"
+  },
+  {
+    "name": "Kanun1",
+    "dowlandUrl": "raw"
+  },
+  {
+    "name": "Melodi1",
+    "dowlandUrl": "raw"
+  },
+  {
+    "name": "Ney1",
+    "dowlandUrl": "raw"
+  },
+  {
+    "name": "Ney2",
+    "dowlandUrl": "raw"
+  },
+  {
+    "name": "Sabah",
+    "dowlandUrl": "raw"
+  },
+  {
+    "name": "Tasavvuf1",
+    "dowlandUrl": "raw"
+  },
+  {
+    "name": "Ezan3",
+    "dowlandUrl": "http://sesdosyalari.islamvakit.com/Ezan3.mp3"
+  },
+  {
+    "name": "Ezan4",
+    "dowlandUrl": "http://sesdosyalari.islamvakit.com/Ezan4.mp3"
+  },
+  {
+    "name": "Ezan5",
+    "dowlandUrl": "http://sesdosyalari.islamvakit.com/Ezan5.mp3"
+  },
+  {
+    "name": "Ezan6",
+    "dowlandUrl": "http://sesdosyalari.islamvakit.com/Ezan6.mp3"
+  },
+  {
+    "name": "Ezan7",
+    "dowlandUrl": "http://sesdosyalari.islamvakit.com/Ezan7.mp3"
+  },
+  {
+    "name": "Ezan8",
+    "dowlandUrl": "http://sesdosyalari.islamvakit.com/Ezan8.mp3"
+  },
+  {
+    "name": "EzanUzun1",
+    "dowlandUrl": "http://sesdosyalari.islamvakit.com/EzanUzun1.mp3"
+  },
+  {
+    "name": "EzanUzun2",
+    "dowlandUrl": "http://sesdosyalari.islamvakit.com/EzanUzun2.mp3"
+  },
+  {
+    "name": "EzanUzun3",
+    "dowlandUrl": "http://sesdosyalari.islamvakit.com/EzanUzun3.mp3"
+  },
+  {
+    "name": "Melodi2",
+    "dowlandUrl": "http://sesdosyalari.islamvakit.com/Melodi2.mp3"
+  },
+  {
+    "name": "Melodi3",
+    "dowlandUrl": "http://sesdosyalari.islamvakit.com/Melodi3.mp3"
+  },
+  {
+    "name": "Melodi4",
+    "dowlandUrl": "http://sesdosyalari.islamvakit.com/Melodi4.mp3"
+  },
+  {
+    "name": "Melodi5",
+    "dowlandUrl": "http://sesdosyalari.islamvakit.com/Melodi5.mp3"
+  },
+  {
+    "name": "Melodi6",
+    "dowlandUrl": "http://sesdosyalari.islamvakit.com/Melodi6.mp3"
+  },
+  {
+    "name": "Melodi7",
+    "dowlandUrl": "http://sesdosyalari.islamvakit.com/Melodi7.mp3"
+  },
+  {
+    "name": "Melodi8",
+    "dowlandUrl": "http://sesdosyalari.islamvakit.com/Melodi8.mp3"
+  },
+  {
+    "name": "Melodi9",
+    "dowlandUrl": "http://sesdosyalari.islamvakit.com/Melodi9.mp3"
+  },
+  {
+    "name": "Ney3",
+    "dowlandUrl": "http://sesdosyalari.islamvakit.com/Ney3.mp3"
+  },
+  {
+    "name": "Ney4",
+    "dowlandUrl": "http://sesdosyalari.islamvakit.com/Ney4.mp3"
+  },
+  {
+    "name": "Ney5",
+    "dowlandUrl": "http://sesdosyalari.islamvakit.com/Ney5.mp3"
+  },
+  {
+    "name": "Ney6",
+    "dowlandUrl": "http://sesdosyalari.islamvakit.com/Ney6.mp3"
+  },
+  {
+    "name": "Ney7",
+    "dowlandUrl": "http://sesdosyalari.islamvakit.com/Ney7.mp3"
+  },
+  {
+    "name": "Ney8",
+    "dowlandUrl": "http://sesdosyalari.islamvakit.com/Ney8.mp3"
+  },
+  {
+    "name": "A.KadirSehitoglu-Sala",
+    "dowlandUrl": "http://sesdosyalari.islamvakit.com/A.KadirSehitoglu-Sala.mp3"
+  },
+  {
+    "name": "A.KadirSehitoglu-Sabah",
+    "dowlandUrl": "http://sesdosyalari.islamvakit.com/A.KadirSehitoglu-Sabah.mp3"
+  },
+  {
+    "name": "A.KadirSehitoglu-Ogle",
+    "dowlandUrl": "http://sesdosyalari.islamvakit.com/A.KadirSehitoglu-Ogle.mp3"
+  },
+  {
+    "name": "A.KadirSehitoglu-İkindi",
+    "dowlandUrl": "http://sesdosyalari.islamvakit.com/A.KadirSehitoglu-İkindi.mp3"
+  },
+  {
+    "name": "A.KadirSehitoglu-Aksam",
+    "dowlandUrl": "http://sesdosyalari.islamvakit.com/A.KadirSehitoglu-Aksam.mp3"
+  },
+  {
+    "name": "A.KadirSehitoglu-Yatsi",
+    "dowlandUrl": "http://sesdosyalari.islamvakit.com/A.KadirSehitoglu-Yatsi.mp3"
+  },
+  {
+    "name": "Siren",
+    "dowlandUrl": "http://sesdosyalari.islamvakit.com/Siren.mp3"
+  },
+  {
+    "name": "Kus-Sesi1",
+    "dowlandUrl": "http://sesdosyalari.islamvakit.com/Kus-Sesi1.mp3"
+  },
+  {
+    "name": "Kus-Sesi2",
+    "dowlandUrl": "http://sesdosyalari.islamvakit.com/Kus-Sesi2.mp3"
+  },
+  {
+    "name": "Kus-Sesi3",
+    "dowlandUrl": "http://sesdosyalari.islamvakit.com/Kus-Sesi3.mp3"
+  },
+  {
+    "name": "Kus-Sesi4",
+    "dowlandUrl": "http://sesdosyalari.islamvakit.com/Kus-Sesi4.mp3"
+  },
+  {
+    "name": "Adhan-Dubai",
+    "dowlandUrl": "http://sesdosyalari.islamvakit.com/Adhan-Dubai.mp3"
+  },
+  {
+    "name": "Adhan-Egypt",
+    "dowlandUrl": "http://sesdosyalari.islamvakit.com/Adhan-Egypt.mp3"
+  },
+  {
+    "name": "Adhan-Filipino",
+    "dowlandUrl": "http://sesdosyalari.islamvakit.com/Adhan-Filipino.mp3"
+  },
+  {
+    "name": "Adhan-France",
+    "dowlandUrl": "http://sesdosyalari.islamvakit.com/Adhan-France.mp3"
+  },
+  {
+    "name": "Adhan-Hawaii",
+    "dowlandUrl": "http://sesdosyalari.islamvakit.com/Adhan-Hawaii.mp3"
+  },
+  {
+    "name": "Adhan-Jordan",
+    "dowlandUrl": "http://sesdosyalari.islamvakit.com/Adhan-Jordan.mp3"
+  },
+  {
+    "name": "Adhan-Kabe",
+    "dowlandUrl": "http://sesdosyalari.islamvakit.com/Adhan-Kabe.mp3"
+  },
+  {
+    "name": "Adhan-Makkah",
+    "dowlandUrl": "http://sesdosyalari.islamvakit.com/Adhan-Makkah.mp3"
+  },
+  {
+    "name": "Adhan-Reunion",
+    "dowlandUrl": "http://sesdosyalari.islamvakit.com/Adhan-Reunion.mp3"
+  },
+  {
+    "name": "Adhan-Russia",
+    "dowlandUrl": "http://sesdosyalari.islamvakit.com/Adhan-Russia.mp3"
+  },
+  {
+    "name": "Adhan-Usa",
+    "dowlandUrl": "http://sesdosyalari.islamvakit.com/Adhan-Usa.mp3"
+  },
+  {
+    "name": "Adhan-Zimbabwe",
+    "dowlandUrl": "http://sesdosyalari.islamvakit.com/Adhan-Zimbabwe.mp3"
+  },
+  {
+    "name": "MisharyRashidAlafays",
+    "dowlandUrl": "http://sesdosyalari.islamvakit.com/MisharyRashidAlafays.mp3"
+  },
+  {
+    "name": "Adhan_Bosnia",
+    "dowlandUrl": "http://sesdosyalari.islamvakit.com/Adhan_Bosnia.mp3"
+  }
+]

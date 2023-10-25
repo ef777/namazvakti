@@ -20,20 +20,26 @@ class Sehir {
       sehirAdiEn: json['sehirAdiEn'] as String,
     );
   }
-}
 
-List<Sehir> parseSehirListesi(String cevap) {
+
+static List<Sehir> parseSehirListesi(String cevap) {
   final parsed = json.decode(cevap).cast<Map<String, dynamic>>();
-  return parsed.map<Sehir>((json) => Sehir.fromJson(json)).toList();
+var  sehirler = <Sehir>[];
+  for (var item in parsed) {
+    sehirler.add(Sehir.fromJson(item));
+  }
+  print("dönen şehirler");
+  print(sehirler);
+
+  return sehirler;
 }
 
-Future<List<Sehir>> getSehirler(String id) async {
-  final url = Uri.https("http://vakitlerapix.namazvaktipro.com/sehirler?ulke=$id", );
+static Future<List<Sehir>> getSehirler(String id) async {
+  final url = Uri.parse("http://vakitlerapix.namazvaktipro.com/sehirler?ulke=$id" );
   final response = await http.get(url);
-
   if (response.statusCode == 200) {
     return parseSehirListesi(response.body);
   } else {
     throw Exception('Failed to load sehirler');
   }
-}
+}}

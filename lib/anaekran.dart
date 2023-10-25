@@ -10,6 +10,8 @@ import 'package:flutter_svg/flutter_svg.dart';
  import 'package:flutter/material.dart';
 import 'package:flutter/painting.dart';
 import 'package:namazvakti/config.dart';
+import 'package:namazvakti/dinigunler.dart';
+import 'package:namazvakti/model-control/vakitlermodel.dart';
 import 'dart:math';
 
  import 'wrapper.dart';
@@ -21,7 +23,55 @@ import 'package:get/get.dart';
 import 'package:intl/intl.dart'; // Tarih biçimlendirme için
 
  // It is assumed that all messages contain a data field with the key 'type'
- 
+ class ColorController extends GetxController {
+  final colors = [Colors.red, Colors.green].obs;
+  RxInt currentColorIndex = 0.obs;
+
+  void changeColor() {
+    ever(currentColorIndex, (_) { 
+      if (currentColorIndex < colors.length-1) {
+        currentColorIndex++;
+      } else {
+        currentColorIndex.value = 0;
+      }
+    });
+  }
+
+}
+// timer_controller.dart
+
+class TimerController extends GetxController {
+
+
+final prayerTime = DateTime(2023, 10, 22, 10, 0, 0).obs;
+Rx<DateTime> currentTime = DateTime.now().obs;
+Rx<Duration> remainingTime = Rx(Duration());
+
+String formatDuration(Duration duration) {
+  int hours = duration.inHours;
+  int minutes = duration.inMinutes.remainder(60);
+  int seconds = duration.inSeconds.remainder(60);
+
+  return '$hours saat $minutes dakika $seconds saniye';
+}
+@override 
+void onInit() {
+  print("timer on init başladı");
+  Timer.periodic(Duration(seconds: 1), (timer) {
+  currentTime.value = DateTime.now();
+});
+  ever(currentTime, (_) {
+
+    remainingTime.value = prayerTime.value.difference(currentTime.value); 
+      String formattedTime = formatDuration(remainingTime.value);
+        
+  });
+}
+
+
+}
+
+
  class AnaEk extends StatefulWidget {
     AnaEk({super.key});
 
@@ -31,7 +81,9 @@ import 'package:intl/intl.dart'; // Tarih biçimlendirme için
 
 class _AnaEkState extends State<AnaEk> {
  @override
-  
+    final TimerController timerController = Get.put(TimerController());
+
+ColorController controller = Get.put(ColorController());
 
   List<Color> _colors = [ /*   Color(0xFF21367F).withOpacity(0.5), */
  /* Color(0xFF194D91).withOpacity(0.5), */
@@ -40,64 +92,94 @@ class _AnaEkState extends State<AnaEk> {
 ]; 
  // List of gradient colors
   int _currentColorIndex = 0; 
- // Index of the current color
-  late Timer _timer; 
 
- // Timer for changing colors
  late DateTime currentTime;
  var vakitstring= "Öğlenin Çıkmasına";
   late String selectedCity;
-  final DateTime prayerTime = DateTime(DateTime.now().year, DateTime.now().month, DateTime.now().day, 19, 0, 0); // Öğle namazı saati, örnek olarak 13:00:00 olarak alındı.
-void _startTimer() {
-    const oneSec = const Duration(seconds: 1);
-    Timer.periodic(
-      oneSec,
-      (Timer timer) => setState(() {
-        if (currentTime.isBefore(prayerTime)) {
-          currentTime = currentTime.add(Duration(seconds: 1));
-        } else {
-          timer.cancel();
-        }
-      }),
-    );
-  }
+
+
   void initState() {
     super.initState();
   currentTime = DateTime.now();
-    selectedCity = 'Gaziantep'; // Başlangıçta seçilen şehir
-    _startTimer();
+    selectedCity = '${AppConfig.sehirname}'; // Başlangıçta seçilen şehir
+controller.changeColor(); 
 
-    // Initialize the timer to change colors every 3 seconds
-    _timer = Timer.periodic(Duration(seconds: 5), (Timer timer) {
-      setState(() {
-        _currentColorIndex = (_currentColorIndex + 1) % _colors.length;
-      });
-    });
   }
 
   @override
   void dispose() {
-    _timer.cancel(); // Cancel the timer when the widget is disposed
     super.dispose();
   }
 
+ Vakit bugunubul( NamazVakitleri vakitveri ){
+  List <Vakit> vakitler = vakitveri.vakitler;
+
+  var today = DateTime.now();
+    var formattedDate = DateFormat('dd.MM.yyyy').format(today);
+
+
+    for(var i = 0; i < vakitler.length; i++) {
+      print("vakit bulundu");
+      if(vakitler[i].miladiTarihKisa == formattedDate) {
+        return vakitler[i];
+      }
+    }
+    print("bugun bulunamad");
+      return vakitler[0];
+
+
+
+ }
+
+  Future<List> AnaekranFuture() async{
+ 
+  AppConfig.sehirname;
+  AppConfig.ilceid;
+NamazVakitleri a= await NamazVakitleri.getNamazVakitleri(   AppConfig.ilceid);
+print("leng" + a.vakitler.length.toString());
+print("aha" + a.vakitler.toString());
+// tarihler
+var vakitler= a.vakitler;
+for( Vakit a in vakitler){
+  print("miladiTarihKisa" + a.miladiTarihKisa.toString());
+
+}
+
+ return [a];
+
+   }
    @override
    Widget build(BuildContext context) {
-    // Hesaplamalar
-    Duration remainingTime = prayerTime.difference(currentTime);
-    int hours = remainingTime.inHours;
-    int minutes = remainingTime.inMinutes.remainder(60);
-    int seconds = remainingTime.inSeconds.remainder(60);
-    double progressValue = 1 - (remainingTime.inSeconds / Duration(hours: 1).inSeconds);
+
+    return FutureBuilder<List<dynamic>>(
+        future:AnaekranFuture(),
+        builder: (context, snapshot) {
+          if (snapshot.hasError) {
+            return Text("${snapshot.error}");
+          } if (snapshot.hasData) {
+      NamazVakitleri vakitveri=   snapshot.data![0];
+        print("vakit veri");
+        print(vakitveri);
+  Vakit bugun =bugunubul(vakitveri);
+print("bugun" + bugun.miladiTarihKisa.toString());
+String vakitstring= "Öğlenin Çıkmasına";
+ 
+
+// günler oluştur.
+
+   // Duration remainingTime = prayerTime.difference(currentTime);
+    //int hours = remainingTime.inHours;
+   // int minutes = remainingTime.inMinutes.remainder(60);
+   // int seconds = remainingTime.inSeconds.remainder(60);
+    
+    double progressValue = 1 - (timerController.remainingTime.value.inSeconds / Duration(hours: 1).inSeconds);
 
      var size = MediaQuery.of(context).size;
    var  height = size.height;
    var width = size.width;
 double normalizedValue = progressValue / 100.0;
-     return Scaffold(
 
-          
-         
+     return Scaffold(      
          body:  AnimatedContainer(
         duration: Duration(seconds: 1),
         decoration: BoxDecoration(
@@ -143,7 +225,7 @@ double normalizedValue = progressValue / 100.0;
           color: Colors.white,
         ),
       )  ]),
-SizedBox(height: 5),
+SizedBox(height: 1),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
@@ -153,7 +235,7 @@ SizedBox(height: 5),
     border: Border.all(color: Colors.white, width: 1), // Beyaz ince çerçeve ekleme
     color: Colors.transparent,
   ),
-  padding: EdgeInsets.all(12.0),
+  padding: EdgeInsets.all(4.0),
   child: Column(
       mainAxisAlignment: MainAxisAlignment.start,
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -167,10 +249,10 @@ SizedBox(height: 5),
                   crossAxisAlignment: CrossAxisAlignment.start,
               mainAxisAlignment: MainAxisAlignment.start,
             children: [
-              Text(
-                hours.toString().padLeft(2, '0') + " : ",
+              Obx(() =>   Text(
+                timerController.remainingTime.value.inHours.toString() + " : ",
                 style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold, color: Colors.white),
-              ),
+              )),
               Center(child: Text(
               
               textAlign:TextAlign.center, 
@@ -184,10 +266,12 @@ SizedBox(height: 5),
                   crossAxisAlignment: CrossAxisAlignment.start,
               mainAxisAlignment: MainAxisAlignment.start,
             children: [
-              Text(
-                minutes.toString().padLeft(2, '0') +" : ",
+           Obx(() =>   Text(
+     
+
+                timerController.remainingTime.value.inMinutes.remainder(60).toString() +" : ",
                 style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold, color: Colors.white),
-              ),
+              ) ),
               Text(
                 "dakika",
                 style: TextStyle(fontSize: 11, color: Colors.white),
@@ -200,10 +284,11 @@ SizedBox(height: 5),
 
               mainAxisAlignment: MainAxisAlignment.start,
             children: [
-              Text(
-                seconds.toString().padLeft(2, '0'),
+             Obx(() =>    Text(
+                 timerController.remainingTime.value.inSeconds.remainder(60).toString() ,
+            
                 style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold, color: Colors.white),
-              ),
+             )),
               Text(
                 textAlign: TextAlign.center,
                 "saniye",
@@ -233,7 +318,7 @@ Container(
   margin: EdgeInsets.fromLTRB(12, 4, 12, 4),
   child: DropdownButton<String>(
     value: selectedCity,
-    items: <String>['Gaziantep', 'Ankara', 'Konya', 'Aydın']
+    items: <String>[AppConfig.sehirname]
         .map((String value) {
       return DropdownMenuItem<String>(
         value: value,
@@ -314,7 +399,7 @@ TirtikliLinearProgressIndicator(progressValue: 30),
             Container( child: Image.asset("assets/tarih.png",width: 50,height: 50,),),
 
    Text("Miladi Takvim"),
-   Text("27 mart 1997",style:TextStyle(
+   Text("${bugun.miladiTarihKisa}",style:TextStyle(
     color:  Color(0xFF1687BB),
     fontSize: 14),),
                 
@@ -351,7 +436,7 @@ TirtikliLinearProgressIndicator(progressValue: 30),
             Container( child: Image.asset("assets/tarih.png",width: 50,height: 50,),),
 
    Text("Hicri Takvim"),
-   Text("27 mart 2016",style:TextStyle(
+   Text("${bugun.hicriTarihKisa}",style:TextStyle(
     color:  Color(0xFF1687BB),
     fontSize: 14),),
                 
@@ -397,7 +482,11 @@ TirtikliLinearProgressIndicator(progressValue: 30),
           width: size.width * 0.9,
           margin: EdgeInsets.fromLTRB(
               size.width * 0.03, size.width * 0.005, size.width * 0.03, size.width * 0.005),
-       child:  AyGunleriWidget(),
+       child:  AyGunleriWidget(vakitveri : vakitveri),
+
+      
+        
+            
 
       
             ),
@@ -438,8 +527,13 @@ TirtikliLinearProgressIndicator(progressValue: 30),
           width: size.width * 0.8,
           margin: EdgeInsets.fromLTRB(
               size.width * 0.05, size.width * 0.005, size.width * 0.05, size.width * 0.005),
-       child:  EzanVakitleri(),
+       child:  EzanVakitleri( vakitveri : vakitveri),
 
+      
+        
+            
+
+      
       
             ),
             ),
@@ -450,15 +544,15 @@ child:                      Row(
   
   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
 
-  children:[  CircularProgressBar(tip:"1" ,progress: 1 / 12 ,
+  children:[  CircularProgressBar(vakitveri: vakitveri,   tip:"1" ,
   backgroundColor: Colors.white.withOpacity(0.2),  
   foregroundColor: Colors.blue.withOpacity(0.8)
   
   ),
- CircularProgressBar( backgroundColor:Colors.white.withOpacity(0.2), 
-  foregroundColor: Colors.deepPurple ,tip :"2",progress: 1 / 32), CircularProgressBar( backgroundColor:    Colors.white.withOpacity(0.2),  
+ CircularProgressBar(vakitveri: vakitveri, backgroundColor:Colors.white.withOpacity(0.2), 
+  foregroundColor: Colors.deepPurple ,tip :"2"), CircularProgressBar(vakitveri: vakitveri, backgroundColor:    Colors.white.withOpacity(0.2),  
 
-  foregroundColor: Colors.orange ,tip : "3",progress: 1 / 44),
+  foregroundColor: Colors.orange ,tip : "3",),
 
      ]) )),
 
@@ -674,13 +768,23 @@ Text("Kız İsim: Azize",style: TextStyle(
 
          
            );
-    }}
+    }
+       else {
+            return Center(child: CircularProgressIndicator());
+          }
+    
+    }
+    );
+  }
+}
+
 
 
  
 class AyGunleriWidget extends StatefulWidget {
+    NamazVakitleri ? vakitveri;
     AyGunleriWidget({Key? key,   
-
+required this.vakitveri
     }) : super(key: key);
     
   
@@ -698,21 +802,25 @@ var  isSelected = false;
   Widget build(BuildContext context) {
 
            var size = MediaQuery.of(context).size;
- 
+ List<Vakit> gunler = widget.vakitveri!.vakitler;
+
     DateTime now = DateTime.now();
-    int ay = now.month;
-    int yil = now.year;
-    int gunSayisi = DateTime(yil, ay + 1, 0).day;
-   
+  
     List<Widget> gunListesi = [];
-    for (int gun = 1; gun <= gunSayisi; gun++) {
+  
+
+    // gelen gün ve ay sayısına göre günleri oluşturuyoruz
+
+
+
+    for (int i = 0; i < gunler.length; i++) {
 
       gunListesi.add(
         GestureDetector(
           onTap: () {
-            print('$gun');
+            print('${gunler[i]}');
            setState(() {
-        AppConfig.selectedaygunIndex =  gun;   });
+        AppConfig.selectedaygunIndex = i;   });
 
           
           },
@@ -724,7 +832,7 @@ var  isSelected = false;
           margin: EdgeInsets.fromLTRB(10, 10, 10, 10),
           decoration: BoxDecoration(
             gradient:
-             AppConfig.selectedaygunIndex == gun ?
+             AppConfig.selectedaygunIndex == i ?
             
              LinearGradient(
               colors: [
@@ -753,18 +861,19 @@ var  isSelected = false;
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
               Text(
-                '$gun',
+                '${gunler[i].vakitTarih!.day}',
                 style: TextStyle(
                   fontSize: 18,
                   fontWeight: FontWeight.bold,
-                  color:  AppConfig.selectedaygunIndex == gun ?         Colors.white        : Color(0xFF004eff)  ,
+                  color:  AppConfig.selectedaygunIndex == i ?         Colors.white        : Color(0xFF004eff)  ,
                 ),
               ),
               Text(
-                DateFormat('MMMM', 'tr_TR').format(now), // Ayı türkçe olarak yazdırıyoruz
+              
+                DateFormat('MMMM', 'tr_TR').format(gunler[i].vakitTarih!), // Ayı türkçe olarak yazdırıyoruz
                 style: TextStyle(
                   fontSize: 12,
-                  color:  AppConfig.selectedaygunIndex == gun ?   Colors.white : Colors.black ,
+                  color:  AppConfig.selectedaygunIndex == i ?   Colors.white : Colors.black ,
                 ),
               ),
             ],
@@ -786,12 +895,16 @@ return   GridView.count(
 }
 
 class EzanVakitleri extends StatelessWidget {
-      
+          NamazVakitleri ? vakitveri;
+    EzanVakitleri({Key? key,   
+required this.vakitveri
+    }) : super(key: key);
+    
 
   @override
   Widget build(BuildContext context) {
            var size = MediaQuery.of(context).size;
-
+   int seciliVakit = AppConfig.selectedEzanvakti;
 
    List<String> iconlar = [
     'imsak_vakit.png',
@@ -809,15 +922,26 @@ class EzanVakitleri extends StatelessWidget {
     'Akşam',
     'Yatsı',
   ];
+   List<Vakit> gvakitler = vakitveri!.vakitler;
 
   List<String> vakitDegerleri = [
-    '05:45',
-    '05:45',
-    '05:45',
-    '05:45',
-    '05:45',
-    '05:45',
+gvakitler[seciliVakit].imsakdate.hour.toString() + ":" + gvakitler[seciliVakit].imsakdate.minute.toString(),
+gvakitler[seciliVakit].gunesdate.hour.toString() + ":" + gvakitler[seciliVakit].gunesdate.minute.toString(),
+gvakitler[seciliVakit].ogledate.hour.toString() + ":" + gvakitler[seciliVakit].ogledate.minute.toString(),
+gvakitler[seciliVakit].ikindidate.hour.toString() + ":" + gvakitler[seciliVakit].ikindidate.minute.toString(),
+gvakitler[seciliVakit].aksamdate.hour.toString() + ":" + gvakitler[seciliVakit].aksamdate.minute.toString(),
+gvakitler[seciliVakit].yatsidate.hour.toString() + ":" + gvakitler[seciliVakit].yatsidate.minute.toString(),
   ];
+
+//pp
+
+
+
+for (int i = 0; i < gvakitler.length; i++) {
+ print("aha imsak" + gvakitler[i].imsak);
+}
+
+// selectedEzanvakti 
  Map<String, String> ezanVakitleriMap = {};
 
   for (int i = 0; i < ezanVakitleri.length; i++) {
@@ -944,7 +1068,7 @@ child:
 
 
 class CircularProgressBar extends StatelessWidget {
-  final double progress;
+   double ? progress;
   final double radius;
   final double strokeWidth;
 
@@ -954,20 +1078,49 @@ class CircularProgressBar extends StatelessWidget {
   final Color backgroundColor;
   final Color foregroundColor;
   final String tip;
+        NamazVakitleri ? vakitveri;
+
   CircularProgressBar({
-    required this.progress,
+
+  
+
+     this.progress,
     required this.tip,
     this.radius = 50.0,
     this.strokeWidth = 10.0,
     required this.backgroundColor, 
-    required this.foregroundColor
+    required this.foregroundColor,
+    required this.vakitveri
+
   });
 
   @override
   Widget build(BuildContext context) {
-    double normalizedProgress = max(0, min(1, progress)); // Progress'i 0 ile 1 arasında sınırla
-    double angle = 2 * pi * normalizedProgress;
-
+  
+    List<Vakit> vakit = vakitveri!.vakitler;
+    Vakit bugun = vakit[AppConfig.selectedEzanvakti];
+    // ayin kaçıncı günü 
+    int ayinKacinciGunu = bugun.vakitTarih!.day;
+    // yılın kaçıncı ayı
+    int yilinKacinciAyi = bugun.vakitTarih!.month;
+    // kalan gün
+    // secili ayda kac gun var 
+int daysInMonth = DateTimeRange(
+                       start: bugun.vakitTarih!,
+                       end: DateTime( bugun.vakitTarih.year,  bugun.vakitTarih.month + 1))
+                    .duration
+                    .inDays;
+    int kalanGun =   daysInMonth;
+        progress = 0.1;
+    if (tip == "1") {
+      progress = ayinKacinciGunu/3 / 30;
+    } else if (tip == "2") {
+      progress = yilinKacinciAyi/3 / 12;
+    } else if (tip == "3") {
+      progress = kalanGun/3 / 30;
+    }
+      double normalizedProgress = max(0, min(1, progress!)); // Progress'i 0 ile 1 arasında sınırla
+    double angle = 1 * pi * normalizedProgress;
     return Container(
       width: radius * 2,
       height: radius * 2,
@@ -982,7 +1135,8 @@ class CircularProgressBar extends StatelessWidget {
       child: Center(
             child: tip == "1" ?
             
-            
+            // 1. tip için
+
             Container(child: Column(
               
               mainAxisAlignment: MainAxisAlignment.center,
@@ -996,7 +1150,7 @@ class CircularProgressBar extends StatelessWidget {
 
               ),
             ),Text(
-              "13." ,
+              "$ayinKacinciGunu." ,
               style: TextStyle(
                 fontSize: 19,
                 fontWeight: FontWeight.bold,
@@ -1032,7 +1186,7 @@ class CircularProgressBar extends StatelessWidget {
 
               ),
             ),Text(
-              "12." ,
+              "$yilinKacinciAyi." ,
               style: TextStyle(
                 fontSize: 19,
                 fontWeight: FontWeight.bold,
@@ -1062,7 +1216,7 @@ class CircularProgressBar extends StatelessWidget {
 
               ),
             ),Text(
-              "12" ,
+              "$kalanGun" ,
               style: TextStyle(
                 fontSize: 19,
                 fontWeight: FontWeight.bold,

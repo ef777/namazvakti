@@ -1,8 +1,12 @@
 
 import 'package:flutter/material.dart';
+import 'package:flutter_cache_manager/flutter_cache_manager.dart';
+import 'package:get/get.dart';
+import 'package:get_storage/get_storage.dart';
 import 'package:namazvakti/config.dart';
 import 'package:namazvakti/home.dart';
 import 'package:namazvakti/wellcome.dart';
+   final controller = Get.put(AppConfig()); 
 
 class Wrapper extends StatefulWidget {
   @override
@@ -10,31 +14,57 @@ class Wrapper extends StatefulWidget {
 }
 
 class _WrapperState extends State<Wrapper> {
+
+  final box = GetStorage();
+
+ // ilk kezz giris kontrol
+
+giristum()async{
+
+var giris = await controller.ilkgirismi();
+if (giris==true) {
+print("hop ilk kez giriyor");
+    return true ;
+
+}
+else{
+  await controller.okuid();
+        AppConfig.login=true;
+
+  print("hop ilk kez değil");
+  return false;
+
+}}
+
+
+ // eğer giris yapılmışsa ve şehir info yoksa şehir seçim sayfasına yönlendir
  
-
- giriskont(){
- if (AppConfig.login==false) {
-   return WellcomePage();
-
-
- }
-  else{
-    return HomePage();
-  }}
+// ardından uyarı vakitleri aç kapa yapılacak
 
 
 
-  @override
-  void initState() {
-    super.initState();
-  
-    
-  }
 
   @override
   Widget build(BuildContext context) {
-    if (1!=1) {
-      return Container(
+   
+      return FutureBuilder(future: 
+   giristum(),
+      
+       
+      builder: 
+      (context, snapshot) {
+        if (snapshot.hasData) {
+          if (snapshot.data==false) {
+            return HomePage();
+          }
+          else{
+            return WellcomePage();
+          }
+
+        } else {
+          return Scaffold(
+            body: Center(
+              child:   Container(
         decoration: BoxDecoration(
           gradient: LinearGradient(
             colors: [
@@ -52,9 +82,15 @@ class _WrapperState extends State<Wrapper> {
             color: Colors.white,
           ),
         ),
-      );
-    }
-
-    return giriskont();
+      )
+            ),
+          )
+          ;
+        }
+      },
+    );
   }
 }
+      
+       
+  
