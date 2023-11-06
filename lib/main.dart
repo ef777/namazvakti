@@ -7,6 +7,7 @@ import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:intl/intl.dart';
 import 'package:intl/date_symbol_data_local.dart';
+import 'package:namazvakti/alarm.dart';
 import 'package:namazvakti/dinigunler.dart';
 import 'package:namazvakti/dinihikaye.dart';
 import 'package:namazvakti/dualar.dart';
@@ -27,6 +28,8 @@ void main() async {
   WidgetsFlutterBinding.ensureInitialized();
     await initializeDateFormatting();
   await GetStorage.init();
+  NotificationService().initNotification();
+  await SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
 
 // İzin durumunu kontrol edin
 if(await Permission.notification.isGranted) {

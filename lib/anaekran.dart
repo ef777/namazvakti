@@ -3,6 +3,12 @@
 import 'dart:ui';
 import 'dart:ui';
 import 'package:audioplayers/audioplayers.dart';
+import 'package:namazvakti/alarm.dart';
+import 'package:namazvakti/model-control/ayetlermodel.dart';
+import 'package:namazvakti/model-control/dualarmodel.dart';
+import 'package:namazvakti/model-control/hadismodel.dart';
+import 'package:namazvakti/model-control/ilmihaller_model.dart';
+import 'package:namazvakti/model-control/isim_model.dart';
 import 'package:vibration/vibration.dart';
 
 import 'package:flutter/material.dart';
@@ -52,7 +58,7 @@ class ImsakDialog extends StatelessWidget {
             top: -50,
             child: CircleAvatar(
               radius: 50, 
-              backgroundImage: AssetImage("assets/imsak.jpg"),
+              backgroundImage: AssetImage("assets/namaz.png"),
             )  
           )
           
@@ -93,16 +99,14 @@ player.play(AssetSource('ezan/$soundName'));
   await player.stop();
 }
 class TimerController extends GetxController {
-  
+  final RxDouble progress = 0.0.obs;
+   
  Vakit bugunubul( NamazVakitleri vakitveri ){
   List <Vakit> vakitler = vakitveri.vakitler;
-
   var today = DateTime.now();
     var formattedDate = DateFormat('dd.MM.yyyy').format(today);
 
-
     for(var i = 0; i < vakitler.length; i++) {
-      print("vakit bulundu");
       if(vakitler[i].miladiTarihKisa == formattedDate) {
         return vakitler[i];
       }
@@ -113,17 +117,86 @@ class TimerController extends GetxController {
 
 
  }
+ Vakit dunubul( NamazVakitleri vakitveri ){
+  List <Vakit> vakitler = vakitveri.vakitler;
+  var today = DateTime.now();
+    var tomorrow = DateTime(today.year, today.month, today.day - 1);
+
+    var formattedDate = DateFormat('dd.MM.yyyy').format(tomorrow);
+
+    for(var i = 0; i < vakitler.length; i++) {
+      print("yarin bulundu");
+      if(vakitler[i].miladiTarihKisa == formattedDate) {
+        return vakitler[i];
+      }
+    }
+    print("yarin bulunamad");
+      return vakitler[0];
+
+
+
+ }
    
+ Vakit yarinibul( NamazVakitleri vakitveri ){
+  List <Vakit> vakitler = vakitveri.vakitler;
+  var today = DateTime.now();
+    var tomorrow = DateTime(today.year, today.month, today.day + 1);
+
+    var formattedDate = DateFormat('dd.MM.yyyy').format(tomorrow);
+
+    for(var i = 0; i < vakitler.length; i++) {
+      print("yarin bulundu");
+      if(vakitler[i].miladiTarihKisa == formattedDate) {
+        return vakitler[i];
+      }
+    }
+    print("yarin bulunamad");
+      return vakitler[0];
+
+
+
+ }
  
 
 
  
-   
+   DateTime? oncekiVakitBul(DateTime suan, List<DateTime> vakitler) {
+
+    // gece 12 den sonra onceki vakri nasıl bulrusun?
+
+  int vakindex= 0;
+  DateTime? oncekivakit;
+  int enKucukFark = 999999; 
+  print( "suan" + suan.toString() ); //         2023-11-04 19:31:56.842374
+  print( "vakitler!" + vakitler.toString()); // 2023-11-04 05:48:00.000
+  for (var i = 0 ; i< vakitler.length; i++) {
+  
+  
+    if (vakitler[i].isBefore(suan)) {
+            vakindex = vakindex + 1;
+         //   AppConfig.vakitstxt = vakindex;
+print("vakindex" + vakindex.toString());
+      continue; 
+    }
+    
+    int fark = suan.difference(vakitler[i-1]).inSeconds.abs();
+    
+    if (fark < enKucukFark) {
+      enKucukFark = fark;
+      oncekivakit = vakitler[i-1];
+    }
+    
+  }
+
+  return oncekivakit;
+  
+}
 DateTime? enYakinVakitBul(DateTime suan, List<DateTime> vakitler) {
   int vakindex= 0;
   DateTime? enYakinVakit;
   int enKucukFark = 999999; 
-  
+  print( "suan" + suan.toString() ); //         2023-11-04 19:31:56.842374
+  print( "vakitler!" + vakitler.toString()); // 2023-11-04 05:48:00.000
   for (var vakit in vakitler) {
     
     if (vakit.isBefore(suan)) {
@@ -146,8 +219,9 @@ print("vakindex" + vakindex.toString());
   
 }
  vakithesaplailk( NamazVakitleri vakitveri){
+  print("hesap başladi");
   Vakit ilkgun = bugunubul(  vakitveri);
-  print("ilk gün" + ilkgun.miladiTarihKisa.toString());
+ // print("ilk gün" + ilkgun.miladiTarihKisa.toString());
  DateTime suan= DateTime.now();
   
   DateTime imsak= ilkgun.imsakdate;
@@ -157,15 +231,72 @@ print("vakindex" + vakindex.toString());
   DateTime aksam= ilkgun.aksamdate;
   DateTime yatsi= ilkgun.yatsidate;
 DateTime? siradaki_vakit = enYakinVakitBul(suan, [imsak, gunes, ogle, ikindi, aksam, yatsi]);
+if(siradaki_vakit != null){
+  print("siradaki_vakit var o gün için" + siradaki_vakit.toString());
+  var now =suan;
+
+ if(now.hour >= 0 && now.hour < imsak.hour){
+ Vakit dungun  = dunubul(vakitveri);
+  // Gece yarısından sonra ve sabah 7'den önce
+  print(dungun.yatsi);
+  print("Gece yarısından sonra ve sabah 7'den önceki zaman dilimi");
+  DateTime? onceki_vakit = yatsi;
+  oncekiVakit.value = dungun.yatsidate.obs.value;
+ prayerTime.value = siradaki_vakit!.obs.value;
+            AppConfig.vakitstxt = 1;
+ AppConfig.vakitstring= "İmsak Vaktin1e";
+}
+
+  else {
+  DateTime? onceki_vakit = oncekiVakitBul(suan, [imsak, gunes, ogle, ikindi, aksam, yatsi]);
+
+    oncekiVakit.value = onceki_vakit!.obs.value;
+      print( "onceki_vakit!" + onceki_vakit.toString() );
  prayerTime.value = siradaki_vakit!.obs.value;
 
- return siradaki_vakit;
+  print( "siradaki_vakit" + siradaki_vakit.toString() );
+
+}}
+if (siradaki_vakit == null) {
+  print("null yatsı vakti sonrasi");
+  Vakit yarin = yarinibul(vakitveri);
+   Vakit bugun = bugunubul(vakitveri);
+  print( "yarin" + yarin.miladiTarihKisa.toString() );
+  print( "bugun" + bugun.miladiTarihKisa.toString() );
+  DateTime yarin_imsak= yarin.imsakdate;
+  DateTime yarin_gunes= yarin.gunesdate;
+  DateTime yarin_ogle= yarin.ogledate;
+  DateTime yarin_ikindi= yarin.ikindidate;
+  DateTime yarin_aksam= yarin.aksamdate;
+  DateTime yarin_yatsi= yarin.yatsidate;
+
+
+  DateTime imsak= bugun.imsakdate;
+  DateTime gunes= bugun.gunesdate;
+  DateTime ogle= bugun.ogledate;
+  DateTime ikindi= bugun.ikindidate;
+  DateTime aksam= bugun.aksamdate;
+  DateTime yatsi= bugun.yatsidate;
+
+
+  DateTime? siradaki_vakit = enYakinVakitBul(suan, [yarin_imsak, yarin_gunes, yarin_ogle, yarin_ikindi, yarin_aksam, yarin_yatsi]);
+  DateTime? onceki_vakit = yatsi;
+
+
+ prayerTime.value = siradaki_vakit!.obs.value;
+ oncekiVakit.value = onceki_vakit!.obs.value;
+  print( "siradaki_vakit" + siradaki_vakit.toString() );
+  print( "onceki_vakit" + onceki_vakit.toString() );
+}
+
+
 
    }
 
 
 
 var prayerTime = DateTime(2030, 10, 22, 10, 0, 0).obs;
+var oncekiVakit = DateTime(2030, 10, 22, 10, 0, 0).obs;
 Rx<DateTime> currentTime = DateTime.now().obs;
 Rx<Duration> remainingTime = Rx(Duration());
    NamazVakitleri ? vakitveri;
@@ -182,11 +313,27 @@ void onInit() {
   Timer.periodic(Duration(seconds: 1), (timer) {
   currentTime.value = DateTime.now();
 });
-  ever(currentTime, (_) {
 
-    remainingTime.value = prayerTime.value.difference(currentTime.value); 
-      String formattedTime = formatDuration(remainingTime.value);
+  ever(currentTime, (_) {     
+    remainingTime.value = prayerTime.value.difference(currentTime.value ); 
+        var kalandakika = prayerTime.value.difference(currentTime.value).inSeconds / 60.0; 
         
+        var ilkdakika= prayerTime.value.difference(oncekiVakit.value).inSeconds / 60.0;
+         //   print("ilk dakika" + ilkdakika.toString());
+       // print("kalan dakika" + kalandakika.toString());
+        var progressdegeri = 100 - (kalandakika / ilkdakika) * 100;
+
+
+      
+
+     
+          progress.value = progressdegeri;
+
+
+
+       
+
+
   });
 
   ever(remainingTime, (_) {
@@ -199,17 +346,22 @@ void onInit() {
 Vibration.vibrate(pattern: [500, 1000, 500, 2000]);
 
     // Bir sonraki vakte geç
-    prayerTime.value = vakithesaplailk(vakitveri!);
+  vakithesaplailk(vakitveri!);
 Get.dialog(ImsakDialog());
-playAssetSound ("ezan1.mp3", 10);
+//playAssetSound ("ezan1.mp3", 10);
   }
   
 });
 }
 }
 
-
-
+  final HadisKont hadisc = Get.put(HadisKont());
+    final DuaKont duac = Get.put(DuaKont());
+    final IlmihalKont ilmihalc = Get.put(IlmihalKont());
+    final AyetKont ayetc = Get.put(AyetKont());
+    final IsimKont isimc = Get.put(IsimKont());
+ColorController controller = Get.put(ColorController());
+  
  class AnaEk extends StatefulWidget {
     AnaEk({super.key});
 
@@ -219,9 +371,11 @@ playAssetSound ("ezan1.mp3", 10);
 
 class _AnaEkState extends State<AnaEk> {
  @override
-    final TimerController timerController = Get.put(TimerController());
 
-ColorController controller = Get.put(ColorController());
+ var hadis;
+var ayet ;
+var ilmihal;
+var isim;
 
   List<Color> _colors = [ /*   Color(0xFF21367F).withOpacity(0.5), */
  /* Color(0xFF194D91).withOpacity(0.5), */
@@ -232,7 +386,6 @@ ColorController controller = Get.put(ColorController());
   int _currentColorIndex = 0; 
 
  late DateTime currentTime;
- var vakitstring= "Öğlenin Çıkmasına";
   late String selectedCity;
 
 var siradakivakit;
@@ -241,7 +394,12 @@ var siradakivakit;
   currentTime = DateTime.now();
     selectedCity = '${AppConfig.sehirname}'; // Başlangıçta seçilen şehir
 controller.changeColor(); 
+  print("Vakit değişti! Yeni vakit: ${AppConfig.vakitstxt}");
+//Vibration.vibrate(pattern: [500, 1000, 500, 2000]);
 
+    // Bir sonraki vakte geç
+//Get.dialog(ImsakDialog());
+//playAssetSound ("ezan1.mp3", 10);
   }
 
   @override
@@ -251,20 +409,50 @@ controller.changeColor();
 
   
 
-
   Future<List> AnaekranFuture() async{
  
-  AppConfig.sehirname;
-  AppConfig.ilceid;
 NamazVakitleri a= await NamazVakitleri.getNamazVakitleri(   AppConfig.ilceid);
-print("leng" + a.vakitler.length.toString());
-print("aha" + a.vakitler.toString());
+
 // tarihler
 var vakitler= a.vakitler;
+
 for( Vakit a in vakitler){
-  print("miladiTarihKisa" + a.miladiTarihKisa.toString());
 
 }
+
+  timerController.vakitveri =    a;
+        print(timerController.vakitveri );
+ 
+
+
+if(  AppConfig.vakitstxt == 0){
+   AppConfig .vakitstring = "İmsak Vaktine";
+}
+if(  AppConfig.vakitstxt == 1){
+     AppConfig .vakitstring= "Güneşin Doğmasına";
+}
+if(  AppConfig.vakitstxt == 2){
+    AppConfig . vakitstring= "Öğlenin Çıkmasına";
+}
+if(  AppConfig.vakitstxt == 3){
+    AppConfig . vakitstring= "İkindinin Çıkmasına";
+}
+if(  AppConfig.vakitstxt == 4){
+    AppConfig . vakitstring= "Akşamın Çıkmasına";
+}
+if(  AppConfig.vakitstxt == 5){
+    AppConfig . vakitstring= "Yatsının Çıkmasına";
+}
+if( AppConfig.vakitstxt == 6){
+    AppConfig . vakitstring= "İmsak Vaktine";
+}
+
+ 
+timerController.vakithesaplailk( timerController.vakitveri!);
+ hadis =  await hadisc.hadisvakit( AppConfig.vakitstxt.toString());
+ ayet = await ayetc.ayetvakit( AppConfig.vakitstxt.toString());
+ ilmihal =  await ilmihalc.imihalbelirle();
+ isim = await isimc.isimbelirle(); 
 
 
  return [a];
@@ -280,43 +468,39 @@ for( Vakit a in vakitler){
             return Text("${snapshot.error}");
           } if (snapshot.hasData) {
    
-    timerController.vakitveri =   snapshot.data![0];
-        print("vakit veri");
-        print(timerController.vakitveri );
-  Vakit bugun = timerController.bugunubul( timerController.vakitveri!);
-
-print("bugun" + bugun.miladiTarihKisa.toString());
- String vakitstring="Vakte ";
-if(  AppConfig.vakitstxt == 0){
-   vakitstring= "İmsak Vaktine";
-}
-if(  AppConfig.vakitstxt == 1){
-   vakitstring= "Güneşin Doğmasına";
-}
-if(  AppConfig.vakitstxt == 2){
-   vakitstring= "Öğlenin Çıkmasına";
-}
-if(  AppConfig.vakitstxt == 3){
-   vakitstring= "İkindinin Çıkmasına";
-}
-if(  AppConfig.vakitstxt == 4){
-   vakitstring= "Akşamın Çıkmasına";
-}
-if(  AppConfig.vakitstxt == 5){
-   vakitstring= "Yatsının Çıkmasına";
-}
-
- 
-DateTime ? siradakivakit =timerController.vakithesaplailk( timerController.vakitveri!); 
-
-    double progressValue = 1 - (timerController.remainingTime.value.inSeconds / Duration(hours: 1).inSeconds);
-
+   Vakit bugun = timerController.bugunubul( timerController.vakitveri!);
      var size = MediaQuery.of(context).size;
    var  height = size.height;
    var width = size.width;
-double normalizedValue = progressValue / 100.0;
+void _showNotification(String title, String body) {
+    NotificationService().showNotification(title: title, body: body);
+  }
+ 
+ ilkkezbildirim()async{
 
-     return Scaffold(      
+var dateInput = "30.10.2023";
+
+// Bunu parçalara ayıralım
+var datePieces = dateInput.split(".");
+
+// Tarih bilgisini çıkaralım
+var day = int.parse(datePieces[0]);
+var month = int.parse(datePieces[1]);  
+var year = int.parse(datePieces[2]);
+var hour = 14;
+var minute = 30;
+
+var notificationDate = DateTime(year, month, day, hour, minute);
+print(notificationDate.toString());
+ await notf.setAlarm(
+        notificationDate, 'Alarm', "ilk kez");
+    _showNotification('Alarm Ayarlandı', "ilk kez");
+
+
+ }
+     return Scaffold(    
+     
+    
          body:  AnimatedContainer(
         duration: Duration(seconds: 1),
         decoration: BoxDecoration(
@@ -337,7 +521,7 @@ double normalizedValue = progressValue / 100.0;
       child: Container(
          padding: EdgeInsets.all(10.0),
           height: size.height * 0.195,
-          width: size.width * 0.8,
+          width: size.width * 0.82,
          margin: EdgeInsets.fromLTRB(
               size.width * 0.05, size.width * 0.06, size.width * 0.05, size.width * 0.06),
           child: Column(
@@ -353,7 +537,7 @@ double normalizedValue = progressValue / 100.0;
              ),
              
               Text(
-        "$vakitstring",
+        "${AppConfig.vakitstring}",
                  textAlign: TextAlign.center,
 
         style: TextStyle(
@@ -374,17 +558,17 @@ SizedBox(height: 1),
   ),
   padding: EdgeInsets.all(4.0),
   child: Column(
-      mainAxisAlignment: MainAxisAlignment.start,
-      crossAxisAlignment: CrossAxisAlignment.start,
+      mainAxisAlignment: MainAxisAlignment.center,
+      crossAxisAlignment: CrossAxisAlignment.center,
     children: [
       Row(
-        mainAxisAlignment: MainAxisAlignment.start, // Orta hizalamalı olarak değiştiriyoruz
-              crossAxisAlignment: CrossAxisAlignment.start,
+        mainAxisAlignment: MainAxisAlignment.center, // Orta hizalamalı olarak değiştiriyoruz
+              crossAxisAlignment: CrossAxisAlignment.center,
 
         children: [
           Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-              mainAxisAlignment: MainAxisAlignment.start,
+                  crossAxisAlignment: CrossAxisAlignment.center,
+              mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Obx(() =>   Text(
                 timerController.remainingTime.value.inHours.toString() + " : ",
@@ -400,22 +584,20 @@ SizedBox(height: 1),
           ),
         
           Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-              mainAxisAlignment: MainAxisAlignment.start,
+                  crossAxisAlignment: CrossAxisAlignment.center,
+              mainAxisAlignment: MainAxisAlignment.center,
             children: [
-           Obx(() =>   Text(
-     
-
-                timerController.remainingTime.value.inMinutes.remainder(60).toString() +" : ",
+           Obx(() =>   Text(   timerController.remainingTime.value.inMinutes.remainder(60).toString() +" : ",
                 style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold, color: Colors.white),
               ) ),
               Text(
-                "dakika",
+                              textAlign:TextAlign.center, 
+
+                "dakika    ",
                 style: TextStyle(fontSize: 11, color: Colors.white),
               ),
             ],
           ),
-       
           Column(
                   crossAxisAlignment: CrossAxisAlignment.center,
 
@@ -480,7 +662,7 @@ Container(
               ),
               SizedBox(height: 10.0),
       
-TirtikliLinearProgressIndicator(progressValue: 30),
+Obx(() =>  TirtikliLinearProgressIndicator(progressValue: timerController.progress.value  ))
             
             ],
           ),
@@ -510,7 +692,42 @@ TirtikliLinearProgressIndicator(progressValue: 30),
       ),
     
           SliverToBoxAdapter(
-      child: Container(
+      child: 
+      
+       GestureDetector(
+        onTap: () {
+          print("tiklandi");
+               //   ilkkezbildirim();
+//NotificationService.showCustomNotification("Namaz Vakti", "Sabah Namazı", "05:33");
+  //zamanistring(datetime) // '06.11.2023:18:54',
+     
+    
+
+NotificationService.bildirimayarla(  
+        '06.11.2023:18:54', 
+ "${AppConfig.bildirim_title}",
+      "${AppConfig.bildirim_content}",
+   '${AppConfig.sehirname}',
+    '0',
+          '${    NotificationService.saatVeDakika( timerController.vakitveri!.vakitler[0].imsakdate) 
+}',
+   '${    NotificationService.saatVeDakika( timerController.vakitveri!.vakitler[0].gunesdate)}',
+    '${    NotificationService.saatVeDakika( timerController.vakitveri!.vakitler[0].ogledate)}',
+    '${    NotificationService.saatVeDakika( timerController.vakitveri!.vakitler[0].ikindidate)}',
+        '${    NotificationService.saatVeDakika( timerController.vakitveri!.vakitler[0].aksamdate)}',
+                '${    NotificationService.saatVeDakika( timerController.vakitveri!.vakitler[0].yatsidate)}',
+     
+  
+);
+print("bitti");
+         print("notf test");
+               //   ilkkezbildirim();
+//NotificationService.showCustomNotification("Namaz Vakti", "Sabah Namazı", "05:33");
+print("bitti");
+        },
+
+      child:
+      Container(
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(10),
             color: Colors.white.withOpacity(0.8),
@@ -543,7 +760,7 @@ TirtikliLinearProgressIndicator(progressValue: 30),
                 
                 ],
               ),
-      ),
+        ) ),
     
           ),
           SliverToBoxAdapter(
@@ -719,38 +936,19 @@ child:                      Row(
       Color(0xFF1590c1),
       Color(0xFF0298ca),
       Color(0xFF0298ca), ],
-
-               baslik: "Vakit Hadisi",icerik: "Resulullah (sav) buyurdular ki: “İnsanların en hayırlısı, ailesine karşı en hayırlı olanıdır. Ben de aileme karşı en hayırlı olanınızım.” (Tirmizi, Menakıb, 67)",
-
- 
-      
-       
-      
+               baslik: "Vaktin Hadisi",icerik: "${hadis[0] + " " + hadis[1]}",
       )),
 
  SliverToBoxAdapter(
       child:  HadisKarti( renk : [   Color(0xFF21D884).withOpacity(1),
                 Color(0xFF005510).withOpacity(1) ],
-               baslik: "Vakit Hadisi",icerik: "Resulullah (sav) buyurdular ki: “İnsanların en hayırlısı, ailesine karşı en hayırlı olanıdır. Ben de aileme karşı en hayırlı olanınızım.” (Tirmizi, Menakıb, 67)",
-
- 
-      
-       
-      
-      )), SliverToBoxAdapter(
+               baslik: "Vaktin Ayeti",icerik: "${ayet[0] + " " + ayet[1]}", )),
+       SliverToBoxAdapter(
       child:  HadisKarti( renk : [ 
       Color(0xFF0c1732),
       Color(0xFF65b2ff),
     ],
-               baslik: "Vakit Hadisi",icerik: "Resulullah (sav) buyurdular ki: “İnsanların en hayırlısı, ailesine karşı en hayırlı olanıdır. Ben de aileme karşı en hayırlı olanınızım.” (Tirmizi, Menakıb, 67)",
-
- 
-      
-       
-      
-      )),
-
-
+               baslik: "İlmihal",icerik: "${ilmihal[1]}  ${ilmihal[0]} +" )),
      SliverToBoxAdapter(
       child: Container(
         alignment: Alignment.center,
@@ -815,10 +1013,10 @@ Column(
   crossAxisAlignment: CrossAxisAlignment.center,
   children: [
 
-Text("Erkek İsim: AHMET",style: TextStyle(
+Text("Erkek İsim: ${isim[2] }",style: TextStyle(
   
 )),
- Text("Çok övülmüş , methedilmiş",style: TextStyle( 
+ Text(" ${isim[3] }",style: TextStyle( 
    fontSize: 12,
    color: Colors.black.withOpacity(0.5)
  
@@ -876,10 +1074,10 @@ Column(
   crossAxisAlignment: CrossAxisAlignment.center,
   children: [
 
-Text("Kız İsim: Azize",style: TextStyle(
+Text("Kız İsim:   ${isim[0]} ",style: TextStyle(
   
 )),
- Text("Sevgili, izzetli , nurlu,dost",style: TextStyle( 
+ Text("${isim[1]} ",style: TextStyle( 
    fontSize: 12,
    color: Colors.black.withOpacity(0.5)
  
@@ -1074,9 +1272,7 @@ gvakitler[seciliVakit].yatsidate.hour.toString() + ":" + gvakitler[seciliVakit].
 
 
 
-for (int i = 0; i < gvakitler.length; i++) {
- print("aha imsak" + gvakitler[i].imsak);
-}
+
 
 // selectedEzanvakti 
  Map<String, String> ezanVakitleriMap = {};
@@ -1093,7 +1289,7 @@ for (int i = 0; i < gvakitler.length; i++) {
          StatefulBuilder(
 
             builder: (BuildContext context, StateSetter setState) {
-print("yeniden");
+print("yeniden build");
 child:
        return GestureDetector(
                 onTap: () {
@@ -1495,28 +1691,31 @@ final srcRect = Rect.fromPoints(
   }
 }class TirtikliLinearProgressIndicator extends StatelessWidget {
   final double progressValue; // 0 ile 100 arasında değer
+    final TimerController timerController = Get.put(TimerController());
 
   TirtikliLinearProgressIndicator({required this.progressValue});
 
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return Obx(() => Container(
       height: 10, // İstediğiniz yükseklik
       width: 300, // İstediğiniz genişlik
       child: CustomPaint(
-        painter: TirtikliPainter(progressValue),
+        painter:  TirtikliPainter( timerController.progress.value),
       ),
-    );
+     ) );
   }
 }
+    final TimerController timerController = Get.put(TimerController());
 
 class TirtikliPainter extends CustomPainter {
-  final double progressValue;
+var progressValue = timerController.progress.value;
 
   TirtikliPainter(this.progressValue);
 
   @override
   void paint(Canvas canvas, Size size) {
+double normalizedProgress = progressValue.clamp(0, 100).toDouble();
     final backgroundPaint = Paint()
       ..color = Colors.grey.withOpacity(0.5)
       ..style = PaintingStyle.fill;
@@ -1525,16 +1724,16 @@ class TirtikliPainter extends CustomPainter {
       ..shader = LinearGradient(
         colors: [Colors.blue, Colors.white],
         stops: [0.2, 0.8],
-      ).createShader(Rect.fromLTWH(0, 0, size.width * (progressValue / 100), size.height))
+      ).createShader(Rect.fromLTWH(0, 1, size.width * (normalizedProgress / 100), size.height))
       ..style = PaintingStyle.fill;
 
     canvas.drawRRect(
-      RRect.fromRectAndRadius(Rect.fromLTWH(0, 0, size.width, size.height), Radius.circular(5)),
+      RRect.fromRectAndRadius(Rect.fromLTWH(0, 1, size.width, size.height), Radius.circular(5)),
       backgroundPaint,
     );
 
     canvas.drawRRect(
-      RRect.fromRectAndRadius(Rect.fromLTWH(0, 0, size.width * (progressValue / 100), size.height), Radius.circular(5)),
+      RRect.fromRectAndRadius(Rect.fromLTWH(0, 1, size.width * (normalizedProgress / 100), size.height), Radius.circular(5)),
       filledPaint,
     );
   }
@@ -1665,7 +1864,23 @@ child:
             
          
             onPressed: (){
-
+showModalBottomSheet(
+  context: context,
+  builder: (context) => Container(
+    height: size.height * 0.8,
+    child: Column(
+      children: [
+        Container(
+          child: Text( "$baslik",style: TextStyle( fontSize: 20,fontWeight: FontWeight.bold),),
+        ),
+        Container(
+          child: Text( "$icerik",style: TextStyle( fontSize: 16),),
+        ),
+      ],
+    ),
+  ),
+);
+            
             },)))
             
             

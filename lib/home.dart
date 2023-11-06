@@ -35,7 +35,7 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
   @override
   void initState() {
     super.initState();
-  
+  print("home page başladı");
   }
   int _selectedIndex = 2;
 

@@ -1,5 +1,9 @@
 //Json verisini modellemek için bir sınıf
 import 'dart:convert';
+import 'dart:math';
+
+import 'package:flutter/services.dart';
+import 'package:get/get.dart';
 
 class AyetModel {
   String? gunes;
@@ -47,37 +51,104 @@ class AyetModel {
     );
   }
 
-  Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = <String, dynamic>{};
-    data['gunes'] = gunes;
-    data['gunes_h_ayet'] = gunes_h_ayet;
-    data['sabah'] = sabah;
-    data['sabah_h_ayet'] = sabah_h_ayet;
-    data['ogle'] = ogle;
-    data['ogle_h_ayet'] = ogle_h_ayet;
-    data['ikindi'] = ikindi;
-    data['ikindi_h_ayet'] = ikindi_h_ayet;
-    data['aksam'] = aksam;
-    data['aksam_h_ayet'] = aksam_h_ayet;
-    data['yatsi'] = yatsi;
-    data['yatsi_h_ayet'] = yatsi_h_ayet;
-    return data;
-  }
-}
+ 
 
 //Json array'ini model listesine çevirme
-List<AyetModel> namazListFromJson(String jsonData) {
-  final data = json.decode(jsonData);
+/*List<AyetModel> namazListFromJson(String jsonData) {
   return List<AyetModel>.from(data.map((item) => AyetModel.fromJson(item)));
+} */
+ static Future<String> loadayetler_JsonFromAsset() async {
+  print("ayet fetch json başladı");
+var a=  await rootBundle.loadString('assets/json/ayetler_json.json');
+print("ayetten json gelen cevap");
+    return a; 
+
 }
 
-//Id'ye göre model getirme
-AyetModel getById(List<AyetModel> list, int id) {
- // return list.firstWhere((element) => element.id == id); 
-  return list[id];
+ static Future <List <AyetModel>> loadAyetler() async {
+  String jsonString = await loadayetler_JsonFromAsset();
+  final jsonResponse = json.decode(jsonString);
+  List<AyetModel> ayetler = [];
+  for (var u in jsonResponse) {
+    AyetModel ayet = AyetModel.fromJson(u);
+    ayetler.add(ayet);
+  }
+  AyetKont.ayetler = ayetler;
+  return ayetler;  
+
 }
 
-//Encode json 
-String modelToJson(AyetModel data) {
-  return json.encode(data.toJson());
+
+
+}
+
+class AyetKont extends GetxController {
+
+static List<AyetModel> ayetler = [];
+static var seciliayet = <Rx<AyetModel>>[].obs;
+
+
+ayetbelirle(){
+seciliayet.clear();
+ var random = new Random();
+var rastgeleIndex = random.nextInt(ayetler.length);
+ seciliayet.add( ayetler[rastgeleIndex].obs);
+return seciliayet;
+}
+
+ayetvakit(String tip,)async{
+RxList<Rx<AyetModel>> ayet = await ayetbelirle();
+
+if(  tip == "1"){
+   var aciklama= ayet[0].value.gunes.toString();
+    var kimden = ayet[0].value.sabah_h_ayet.toString();
+
+   return [ aciklama , kimden];
+   
+   }
+    else if(  tip == "2"){
+    var aciklama= ayet[0].value.sabah.toString();
+    var kimden = ayet[0].value.sabah_h_ayet.toString();
+    return [ aciklama , kimden];
+    }
+
+    else if(  tip == "3"){
+    var aciklama= ayet[0].value.ogle.toString();
+    var kimden = ayet[0].value.ogle_h_ayet.toString();
+    return [ aciklama , kimden];
+    }
+
+    else if(  tip == "4"){
+
+    var aciklama= ayet[0].value.ikindi.toString();
+    var kimden = ayet[0].value.ikindi_h_ayet.toString();
+    return [ aciklama , kimden];
+    }
+
+    else if(  tip == "5"){
+    var aciklama= ayet[0].value.aksam.toString();
+    var kimden = ayet[0].value.aksam_h_ayet.toString();
+    return [ aciklama , kimden];
+    }
+
+    else if(  tip == "6"){
+    var aciklama= ayet[0].value.yatsi.toString();
+    var kimden = ayet[0].value.yatsi_h_ayet.toString();
+    return [ aciklama , kimden];
+    }
+
+    else{
+      return ["hata","hata"];
+    }
+
+
+  //günes 1
+  //sabah 2
+  //oglen 3
+  //ikindi 4
+  //akşam 5 
+
+
+
+}
 }

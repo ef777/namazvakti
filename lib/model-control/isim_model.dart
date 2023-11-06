@@ -1,3 +1,9 @@
+import 'dart:convert';
+import 'dart:math';
+
+import 'package:flutter/services.dart';
+import 'package:get/get.dart';
+
 class IsimModeli {
   String? kizIsmi;
   String? kizIsmiManasi;
@@ -19,13 +25,47 @@ class IsimModeli {
       erkekIsmiManasi: json['erkek_ismi_manasi']
     );
   }
-
-  Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = <String, dynamic>{};
-    data['kiz_ismi'] = kizIsmi;
-    data['kiz_ismi_manasi'] = kizIsmiManasi;
-    data['erkek_ismi'] = erkekIsmi;
-    data['erkek_ismi_manasi'] = erkekIsmiManasi;
-    return data;
+ static Future<String> loadisimler_JsonFromAsset() async {
+  print("isim fetch json başladı");
+var a=  await rootBundle.loadString('assets/json/kiz_erkek_json.json');
+print("isimden json gelen cevap");
+    return a; 
+}
+ static Future <List <IsimModeli>> loadisimler() async {
+print("hadis load başladı");
+  String jsonString = await loadisimler_JsonFromAsset();
+  final jsonResponse = json.decode(jsonString);
+  print("gelen cevap");
+  print(jsonResponse);
+  List<IsimModeli> isimler = [];
+  for (var u in jsonResponse) {
+    IsimModeli isim = IsimModeli.fromJson(u);
+    isimler.add(isim);
   }
+  IsimKont.isimler = isimler;
+  return isimler;  
+
+}
+
+
+
+}
+
+class IsimKont extends GetxController {
+
+static List<IsimModeli> isimler = [];
+static var seciliisimler = <Rx<IsimModeli>>[].obs;
+
+
+isimbelirle(){
+seciliisimler.clear();
+ var random = new Random();
+var rastgeleIndex = random.nextInt(isimler.length);
+ seciliisimler.add( isimler[rastgeleIndex].obs);
+
+return [seciliisimler[0].value.kizIsmi.toString(), seciliisimler[0].value.kizIsmiManasi.toString(), seciliisimler[0].value.erkekIsmi.toString(), seciliisimler[0].value.erkekIsmiManasi.toString()];
+}
+
+
+
 }

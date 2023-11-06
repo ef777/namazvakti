@@ -8,6 +8,9 @@ import 'package:namazvakti/wellcome.dart';
 
 // yeni maps api AIzaSyD6fDwneuvZwuCwe-kbqZLl6E9qzwVq1s8
 class AppConfig extends GetxController {
+
+  static  var bildirim_title = "Namaz Vakti";
+  static var bildirim_content = "Namaz Vakti geldi...";
 bool getSwitchValue(String d1, String d2) {
   return ezanvaktibildirim[d1]![d2]![0] == "1";
 }
@@ -64,6 +67,7 @@ static String sehirname = "2";
 static String ilceid = "2";
 static String ilcename = "2";
 static int vakitstxt = 0; 
+ static var vakitstring= "Vaktin Çıkmasına";
 
   final box = GetStorage();
 
@@ -120,7 +124,7 @@ static var col1= Colors.blue ;
 static var col2= Colors.blueAccent;
 static var login = true;
  static List<bool> isSelected = [true, false, false];
- static int selectedaygunIndex = 0;
+ static int selectedaygunIndex = 1;
   static int selectedEzanvakti = 0;
   static int namazduaindex = 0;
   static int selecteddiniyil = 0;

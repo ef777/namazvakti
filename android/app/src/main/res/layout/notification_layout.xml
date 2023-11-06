@@ -1,0 +1,205 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+      android:layout_height="200dp"
+          android:background="#eee"
+
+    android:padding="12dp"
+    > 
+    <ImageView
+        android:id="@+id/notification_icon"
+        android:layout_width="22dp"
+        android:layout_height="22dp"
+        android:layout_centerVertical="false"
+        android:src="@drawable/app_icon"
+        android:layout_alignParentStart="false" />
+
+    <TextView
+        android:id="@+id/notification_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toEndOf="@id/notification_icon"
+        android:textSize="0sp"
+        android:textColor="#000"
+        android:text="Namaz Vakti"
+        android:layout_marginStart="0dp"
+        android:layout_marginTop="0dp" />
+
+    <TextView
+        android:id="@+id/notification_ilce"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/notification_title"
+        android:layout_toEndOf="@id/notification_icon"
+        android:textSize="20sp"
+        android:textColor="#333"
+        android:text="İlçe Adı:"
+        android:layout_marginStart="1dp"
+        android:layout_marginTop="1dp" />
+
+    <LinearLayout
+        android:id="@+id/vakit_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_below="@id/notification_ilce"
+        android:layout_marginTop="1dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="1dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="1sp"
+                android:textColor="#777"
+                android:text="İmsak:"
+                android:layout_marginEnd="1dp" />
+
+            <TextView
+                android:id="@+id/vakit_saat_1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="1sp"
+                android:textColor="#000"
+                android:text="Saat 1" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="1dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="18sp"
+                android:textColor="#777"
+                android:text="Sabah:"
+                android:layout_marginEnd="1dp" />
+
+            <TextView
+                android:id="@+id/vakit_saat_2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="18sp"
+                android:textColor="#000"
+                android:text="Saat 2" />
+        </LinearLayout>
+ <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="1dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="18sp"
+                android:textColor="#777"
+                android:text="Öğlen:"
+                android:layout_marginEnd="1dp" />
+
+            <TextView
+                android:id="@+id/vakit_saat_3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="18sp"
+                android:textColor="#000"
+                android:text="Saat 2" />
+        </LinearLayout>
+         <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="1dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="18sp"
+                android:textColor="#777"
+                android:text="İkindi:"
+                android:layout_marginEnd="1dp" />
+
+            <TextView
+                android:id="@+id/vakit_saat_4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="18sp"
+                android:textColor="#000"
+                android:text="Saat 2" />
+        </LinearLayout>
+         <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="1dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="18sp"
+                android:textColor="#777"
+                android:text="Akşam:"
+                android:layout_marginEnd="1dp" />
+
+            <TextView
+                android:id="@+id/vakit_saat_5"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="18sp"
+                android:textColor="#000"
+                android:text="Saat 2" />
+        </LinearLayout>
+         <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="1dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="18sp"
+                android:textColor="#777"
+                android:text="Yatsı:"
+                android:layout_marginEnd="1dp" />
+
+            <TextView
+                android:id="@+id/vakit_saat_6"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="18sp"
+                android:textColor="#000"
+                android:text="Saat 2" />
+        </LinearLayout>
+         <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="1dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="18sp"
+                android:textColor="#777"
+                android:text="Kalan Vakit:"
+                android:layout_marginEnd="1dp" />
+
+            <TextView
+                android:id="@+id/notification_kalan_vakit"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="18sp"
+                android:textColor="#000"
+                android:text="0" />
+        </LinearLayout>
+        <!-- Diğer vakitlerin aynı düzeni ekleyebilirsiniz -->
+    </LinearLayout>
+
+</RelativeLayout>
