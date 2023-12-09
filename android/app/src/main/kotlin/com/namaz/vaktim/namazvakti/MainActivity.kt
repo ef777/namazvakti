@@ -17,7 +17,8 @@ import android.content.Intent
 import android.widget.RemoteViews
 import kotlin.random.Random
 import android.util.Log
-
+import android.net.Uri
+import android.media.MediaPlayer
 import java.util.Locale
 import android.app.AlarmManager
 import android.content.BroadcastReceiver
@@ -98,17 +99,18 @@ class MainActivity: FlutterActivity() {
     
     val channelId = "localnot"
 
-    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+   /*  if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
         val name = "Custom Notification Channel"
         val descriptionText = "Custom notifications"
         val importance = NotificationManager.IMPORTANCE_HIGH
         val channel = NotificationChannel(channelId, name, importance).apply {
             description = descriptionText
         }
-        val notificationManager = context.getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
-
+       // val notificationManager = context.getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
+        val notificationManager: NotificationManager = context.getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
+            
         notificationManager.createNotificationChannel(channel)
-    }
+    } */
     // Intent
     val intent = Intent(context, AlarmReceiver::class.java)
 
@@ -220,7 +222,7 @@ else {
     }
   
     
-     fun createNotificationChannel(context: Context) {
+  /*    fun createNotificationChannel(context: Context) {
         // Bildirim kanalını oluşturun
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             val name = "Your Channel Name" // Kanal adını buraya yazın
@@ -234,7 +236,7 @@ else {
             val notificationManager: NotificationManager = context.getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
             notificationManager.createNotificationChannel(channel)
         }
-    }
+    } */
 
     fun showCustomNotification2(context: Context, title: String, content: String, ilce:String ,kalan_vakit : String,  time1: String,time2: String,time3: String,time4: String,time5: String,time6: String, notificationId: Int) {
         val channelId = "localnot"
@@ -246,8 +248,10 @@ else {
             val channel = NotificationChannel(channelId, name, importance).apply {
                 description = descriptionText
             }
-            val notificationManager = context.getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
-            notificationManager.createNotificationChannel(channel)
+          //  val notificationManager = context.getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
+            val notificationManager: NotificationManager = context.getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
+
+             notificationManager.createNotificationChannel(channel)
         }
     
         val notificationLayout = RemoteViews(context.packageName, R.layout.notification_layout)
@@ -260,19 +264,30 @@ else {
         notificationLayout.setTextViewText(R.id.vakit_saat_4, time4)
         notificationLayout.setTextViewText(R.id.vakit_saat_5, time5)
         notificationLayout.setTextViewText(R.id.vakit_saat_6, time6)
-    
-        // Genişletilmiş bildirim
+        val soundUri = Uri.parse("android.resource://" + context.packageName + "/" + R.raw.ses)
+        val soundUri2 = Uri.parse("android.resource://" + context.packageName + "/raw/ses")
+
         val builder = NotificationCompat.Builder(context, channelId)
+        builder.setSound(soundUri2)
+        val mediaPlayer = MediaPlayer.create(context, soundUri)
+
+        mediaPlayer.start() // Ses dosyasını çalmak için
+        
+        // MediaPlayer ile işiniz bittiğinde kaynakları serbest bırakın
+        mediaPlayer.setOnCompletionListener { mediaPlayer.release() }
         builder.setSmallIcon(R.drawable.app_icon)
         builder.setCustomContentView(notificationLayout) // Önemli: Bu genişletilmiş bildirim oluşturur
         builder.setPriority(NotificationCompat.PRIORITY_HIGH)
-        builder.setAutoCancel(true)
-        builder. setStyle(NotificationCompat.DecoratedCustomViewStyle())
-        // Genişletilmemiş bildirim için normal bildirim
+       builder.setCustomBigContentView(notificationLayout)
+     //   builder.setCustomHeadsUpContentView(notificationLayout)
+        builder.setVibrate(longArrayOf(1000, 1000, 1000, 1000, 1000))
+        builder.setAutoCancel(true) // Bildirim tıklandığında otomatik olarak kapat
+
         builder.setContentTitle(title)
         builder.setContentText(content)
         builder.setSmallIcon(R.drawable.app_icon)
-    
+        builder.setVibrate(longArrayOf(1000, 1000, 1000, 1000, 1000))
+     
         val notificationIntent = Intent(context, MainActivity::class.java)
         val flag: Int = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
             PendingIntent.FLAG_IMMUTABLE

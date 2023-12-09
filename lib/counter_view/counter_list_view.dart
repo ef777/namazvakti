@@ -112,7 +112,7 @@ class _CounterListViewState extends State<CounterListView> {
       ),
       leadingWidth: 64,
       title: Text(
-        'main.my_list_dhikrmatic'.tr(),
+        'Zikir Listem',
         style: Theme.of(context).textTheme.headlineSmall?.copyWith(
             fontWeight: FontWeight.bold, color: Colors.white, fontSize: 18),
       ),

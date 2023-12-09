@@ -58,72 +58,137 @@ class _CounterViewState extends State<CounterView> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
-      appBar: AppBar(
-        backgroundColor: Colors.white,
-          leading: Padding(
-            padding: const EdgeInsets.only(left: 18),
-            child: Container(
-              height: 64,
-              width: 64,
-              decoration: BoxDecoration(
-                shape: BoxShape.circle,
-                color: Colors.white,
-              ),
-              child: IconButton(
-                icon: Icon(
-                  Icons.menu,
-                  color: Colors.black,
-                ),
-                onPressed: () => Navigator.push(context,
-                    MaterialPageRoute(builder: (context) => CounterListView())),
-              ),
-            ),
-          ),
-          leadingWidth: 64,
-          actions: [
-            Padding(
-              padding: const EdgeInsets.only(right: 18),
-              child: Container(
-                height: 48,
-                width: 48,
-                decoration: BoxDecoration(
-                  shape: BoxShape.circle,
-                  color: Colors.white,
-                ),
-                child: IconButton(
-                  icon: Icon(
-                    Icons.add,
-                    color: Colors.black,
-                  ),
-                  onPressed: () async {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => AddCounter(),
-                      ),
-                    );
-                  },
-                ),
-              ),
-            ),
-          ],
-        ),
+   
+     
       body: Padding(
-        padding: const EdgeInsets.only(bottom: 76),
+        padding: const EdgeInsets.only(bottom: 39),
         child: Stack(
           alignment: AlignmentDirectional.bottomCenter,
           children: [
             ListView(
               children: [
-                Center(
-                  child: Text(
-                    widget.counterModel?.title ?? "",
-                    style: Theme.of(context)
-                        .textTheme
-                        .bodyLarge
-                        ?.copyWith(color: Colors.white),
+              
+               
+                Container(
+                  height: 350,
+                  width: 300,
+                  decoration: BoxDecoration(
+                    image: DecorationImage(
+                        image: AssetImage("assets/zikirmatik.png"),
+                        fit: BoxFit.cover),
+                  ),
+                  child: Column(
+                    children: [
+                      SizedBox(
+                        height: 80,
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.only(left: 8),
+                        child: Container(
+                          width: 180,
+                          height: 60,
+                          decoration: BoxDecoration(
+                              color: Color.fromARGB(255, 129, 129, 127),
+                              borderRadius: BorderRadius.circular(4)),
+                          child: Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: Align(
+                                alignment: Alignment.centerRight,
+                                child: Text(
+                                  counterText.toString(),
+                                  style: Theme.of(context)
+                                      .textTheme
+                                      .headlineMedium
+                                      ?.copyWith(
+                                          color: Colors.white,
+                                          fontWeight: FontWeight.w700),
+                                )),
+                          ),
+                        ),
+                      ),
+                      SizedBox(
+                        height: 20,
+                      ),
+                      Row(
+                        children: [
+                          SizedBox(
+                            width: 100,
+                          ),
+                          ButtonContainer(
+                              onPressed: () => setState(() {
+                                    if (counterText == 0) return;
+                                    counterText--;
+                                  }),
+                              icon: Icon(
+                                Icons.refresh,
+                              )),
+                          Spacer(),
+                          ButtonContainer(
+                              onPressed: () => setState(() {
+                                    counterText = 0;
+                                  }),
+                              icon: Icon(
+                                Icons.rotate_left_sharp,
+                              )),
+                          SizedBox(
+                            width: 90,
+                          ),
+                        ],
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.only(left: 8.0),
+                        child: InkWell(
+                          onTap: () => setState(() {
+                            incrementCounter();
+                            DatabaseHelper.instance.update(
+                                widget.counterModel?.id ?? 0,
+                                counterText.toString());
+                          }),
+                          child: Container(
+                            width: 88,
+                            height: 70,
+                            decoration: BoxDecoration(
+                                boxShadow: [
+                                  BoxShadow(
+                                    color: Colors.grey.withOpacity(0.2),
+                                    spreadRadius: 2,
+                                    blurRadius: 5,
+                                    offset: const Offset(0, 2),
+                                  ),
+                                ],
+                                color: Color.fromARGB(255, 210, 210, 209),
+                                shape: BoxShape.circle),
+                          ),
+                        ),
+                      ), 
+                     ],
                   ),
                 ),
+               Container(
+                        
+                        padding: EdgeInsets.all(10),
+                        child:
+                      
+                      Row(
+                        
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        
+                        children: [    Container(
+  decoration: BoxDecoration(
+    color: Colors.black,
+    shape: BoxShape.circle
+  ),
+  padding: EdgeInsets.all(8), 
+  child: 
+ IconButton(
+                icon: Icon(
+                  Icons.menu,
+                  color: Colors.white,
+                ),
+                onPressed: () => Navigator.push(context,
+                    MaterialPageRoute(builder: (context) => CounterListView())),
+                          )  ), 
                 Center(
                   child: ElevatedButton(
                       style: ElevatedButton.styleFrom(
@@ -166,102 +231,30 @@ class _CounterViewState extends State<CounterView> {
                         style: Theme.of(context).textTheme.bodyMedium,
                       )),
                 ),
-                Container(
-                  height: 400,
-                  width: 360,
-                  decoration: BoxDecoration(
-                    image: DecorationImage(
-                        image: AssetImage("assets/zikirmatik.png"),
-                        fit: BoxFit.cover),
-                  ),
-                  child: Column(
-                    children: [
-                      SizedBox(
-                        height: 104,
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.only(left: 8),
-                        child: Container(
-                          width: 180,
-                          height: 80,
-                          decoration: BoxDecoration(
-                              color: Color.fromARGB(255, 129, 129, 127),
-                              borderRadius: BorderRadius.circular(4)),
-                          child: Padding(
-                            padding: const EdgeInsets.all(8.0),
-                            child: Align(
-                                alignment: Alignment.centerRight,
-                                child: Text(
-                                  counterText.toString(),
-                                  style: Theme.of(context)
-                                      .textTheme
-                                      .headlineMedium
-                                      ?.copyWith(
-                                          color: Colors.white,
-                                          fontWeight: FontWeight.w700),
-                                )),
-                          ),
-                        ),
-                      ),
-                      SizedBox(
-                        height: 32,
-                      ),
-                      Row(
-                        children: [
-                          SizedBox(
-                            width: 100,
-                          ),
-                          ButtonContainer(
-                              onPressed: () => setState(() {
-                                    if (counterText == 0) return;
-                                    counterText--;
-                                  }),
-                              icon: Icon(
-                                Icons.refresh,
-                              )),
-                          Spacer(),
-                          ButtonContainer(
-                              onPressed: () => setState(() {
-                                    counterText = 0;
-                                  }),
-                              icon: Icon(
-                                Icons.rotate_left_sharp,
-                              )),
-                          SizedBox(
-                            width: 90,
-                          ),
-                        ],
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.only(left: 8.0),
-                        child: InkWell(
-                          onTap: () => setState(() {
-                            incrementCounter();
-                            DatabaseHelper.instance.update(
-                                widget.counterModel?.id ?? 0,
-                                counterText.toString());
-                          }),
-                          child: Container(
-                            width: 88,
-                            height: 88,
-                            decoration: BoxDecoration(
-                                boxShadow: [
-                                  BoxShadow(
-                                    color: Colors.grey.withOpacity(0.2),
-                                    spreadRadius: 2,
-                                    blurRadius: 5,
-                                    offset: const Offset(0, 2),
-                                  ),
-                                ],
-                                color: Color.fromARGB(255, 210, 210, 209),
-                                shape: BoxShape.circle),
-                          ),
-                        ),
-                      )
-                    ],
-                  ),
+                
+
+            Container(
+  decoration: BoxDecoration(
+    color: Colors.black,
+    shape: BoxShape.circle
+  ),
+  padding: EdgeInsets.all(8), 
+  child: IconButton(
+                icon: Icon(
+                  Icons.add,
+                  color: Colors.white,
                 ),
-              ],
+             onPressed: () async {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => AddCounter(),
+                      ),
+                    );
+                  },) ),     ],)
+               
+,
+                    )  ],
             ),
         
           ],

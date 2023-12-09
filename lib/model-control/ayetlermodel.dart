@@ -58,9 +58,9 @@ class AyetModel {
   return List<AyetModel>.from(data.map((item) => AyetModel.fromJson(item)));
 } */
  static Future<String> loadayetler_JsonFromAsset() async {
-  print("ayet fetch json başladı");
+ // print("ayet fetch json başladı");
 var a=  await rootBundle.loadString('assets/json/ayetler_json.json');
-print("ayetten json gelen cevap");
+//print("ayetten json gelen cevap");
     return a; 
 
 }
@@ -98,7 +98,6 @@ return seciliayet;
 
 ayetvakit(String tip,)async{
 RxList<Rx<AyetModel>> ayet = await ayetbelirle();
-
 if(  tip == "1"){
    var aciklama= ayet[0].value.gunes.toString();
     var kimden = ayet[0].value.sabah_h_ayet.toString();
@@ -106,6 +105,7 @@ if(  tip == "1"){
    return [ aciklama , kimden];
    
    }
+
     else if(  tip == "2"){
     var aciklama= ayet[0].value.sabah.toString();
     var kimden = ayet[0].value.sabah_h_ayet.toString();
@@ -136,6 +136,13 @@ if(  tip == "1"){
     var kimden = ayet[0].value.yatsi_h_ayet.toString();
     return [ aciklama , kimden];
     }
+    else if(  tip == "0"){
+   var aciklama= ayet[0].value.gunes.toString();
+    var kimden = ayet[0].value.sabah_h_ayet.toString();
+
+   return [ aciklama , kimden];
+   
+   }
 
     else{
       return ["hata","hata"];

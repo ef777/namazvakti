@@ -26,17 +26,17 @@ class IsimModeli {
     );
   }
  static Future<String> loadisimler_JsonFromAsset() async {
-  print("isim fetch json başladı");
+ // print("isim fetch json başladı");
 var a=  await rootBundle.loadString('assets/json/kiz_erkek_json.json');
-print("isimden json gelen cevap");
+//print("isimden json gelen cevap");
     return a; 
 }
  static Future <List <IsimModeli>> loadisimler() async {
-print("hadis load başladı");
+//print("hadis load başladı");
   String jsonString = await loadisimler_JsonFromAsset();
   final jsonResponse = json.decode(jsonString);
-  print("gelen cevap");
-  print(jsonResponse);
+ // print("gelen cevap");
+ // print(jsonResponse);
   List<IsimModeli> isimler = [];
   for (var u in jsonResponse) {
     IsimModeli isim = IsimModeli.fromJson(u);

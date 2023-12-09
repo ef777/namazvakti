@@ -9,6 +9,7 @@ import 'package:flutter_svg/flutter_svg.dart';
  import 'package:get/get.dart';
  import 'package:flutter/material.dart';
 import 'package:flutter/painting.dart';
+import 'package:namazvakti/model-control/dualarmodel.dart';
 import 'dart:math';
 
  import 'wrapper.dart';
@@ -19,55 +20,38 @@ import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart'; // Tarih biçimlendirme için
 
-List<Map<String, String>> dualar = [
- 
-  {  
-    'icon': "pusula.png",
-    'title': 'Sabah - Akşam', 
-    'aciklama' :'Sabah Ve Akşam duaları.',
-    'd_id': '1'
-  }, {  
-    'icon': "pusula.png",
-    'title': 'Yiyecek Ve İçecek', 
-    'aciklama' :'Lorem İpsum',
-    'd_id': '2'
-  }, ];
+     final duac = Get.put(DuaKont());
 
-List<Map<String, String>> icdualar = [
- 
-  {  
-    'icon': "pusula.png",
-    'title': 'uykudan uyunaınca', 
-    'aciklama' :'Sabah Ve Akşam duaları.',
-    'd_id': '1'
-  }, {  
-    'icon': "pusula.png",
-    'title': 'uykudan uyunaınca', 
-    'aciklama' :'Lorem İpsum',
-    'd_id': '2'
-  }, ];
- // It is assumed that all messages contain a data field with the key 'type'
- 
  class Dualar extends StatefulWidget {
-    Dualar({super.key});
+ final tip;
+ final baslik;
 
+// 3 tip var 1-genel baslik 2-alt baslit 3-dualar tile
+//genel tip 1
+      Dualar({Key? key,
+                this.tip,
+   
+      this.baslik,
+    
+    }) : super(key: key);
+    
   @override
   State<Dualar> createState() => _DualarState();
 }
 
 class _DualarState extends State<Dualar> {
  @override
-  
+
   List<Color> _colors = [ /*   Color(0xFF21367F).withOpacity(0.5), */
  /* Color(0xFF194D91).withOpacity(0.5), */
    Color(0xFF1590C1).withOpacity(0.5),
    Color(0xFF0298CA).withOpacity(0.5),
 ]; 
+List<DualarModel> dualar = [];
+  void initState()  {
+duac.loaddualar();
+       super.initState();
 
-  void initState() {
-    super.initState();
-  
-   
   }
 
   @override
@@ -76,31 +60,17 @@ class _DualarState extends State<Dualar> {
     super.dispose();
   }
 List<Widget> dualarwidgets = [];
+List<Widget> genelwidgets = [];
+List<Widget> altwidgets = [];
+
    @override
    Widget build(BuildContext context) {
-    // Hesaplamalar
    var size = MediaQuery.of(context).size;
    var  height = size.height;
    var width = size.width;
-dualarwidgets=[];
-for (int i = 0; i < dualar.length; i++) {
-      dualarwidgets.add(
-        
-                DualarTile( 
-                  tip: "dış",
-                  aciklama : dualar[i]['aciklama'].toString(),
-                  id: dualar[i]['d_id'].toString(),
-                   icon : dualar[i]['icon'].toString(),
-                    title : dualar[i]['title'].toString(),
 
-                )
 
-      
-    );
-    } 
-
-   
-     return Scaffold(
+return    Scaffold(
         backgroundColor: const Color.fromARGB(255, 235, 237, 240),
 
             appBar: AppBar(
@@ -118,8 +88,214 @@ for (int i = 0; i < dualar.length; i++) {
      Center(child:  Image.asset("assets/baslik.png",)) 
       
      ),
-         
-         body:   CustomScrollView(
+         body:
+        Container(
+  height: height * 1,
+    child: SingleChildScrollView (child:  Column(
+      children: [
+          if (widget.tip == "genel") ...[  
+   FutureBuilder( 
+    
+     
+    future:  duac.genelbasliklargetir(), builder: 
+        (context, snapshot) {
+          if (snapshot.hasData) {
+          var a =  snapshot.data ;
+             List <String> basliklar = snapshot.data! ;
+            genelwidgets=[];
+
+            
+for (int i = 0; i < basliklar.length; i++) {
+      genelwidgets.add(
+        
+                MenuTile( 
+                  icon : "pusula.png",
+                  tip:    "alt",
+                  baslik:  basliklar[i],
+                )
+
+      
+    ); } 
+     
+     
+     return CustomScrollView(
+          shrinkWrap: true,
+
+  slivers: [
+    
+
+
+  SliverToBoxAdapter(
+      child:Center(child: Container(
+        color: Colors.transparent,
+           padding: EdgeInsets.all(2.0),
+         /*  height: size.height * 0.11,
+          width: size.width * 0.8, */
+          margin: EdgeInsets.fromLTRB(
+              size.width * 0.05, size.width * 0.01, size.width * 0.02, size.width * 0.01),
+     
+        child: Text("Tüm Dualar", style: TextStyle(
+          fontSize: 21,
+          fontWeight: FontWeight.bold,
+          color: Colors.black,
+        ),
+        
+        ),
+
+    )  )),
+
+SliverToBoxAdapter(
+      child: GridView.count(
+          padding: EdgeInsets.all(5.0),
+           crossAxisSpacing: 10,
+           mainAxisSpacing: 10,
+        childAspectRatio: 3.5,
+          crossAxisCount: 1, // Her satırda 7 kutu olacak şekilde ayarlayabilirsiniz
+                     scrollDirection: Axis.vertical,
+
+          shrinkWrap: true, // GridView'ın  içeriği sığdırılabilir
+          children: genelwidgets,  
+        
+          )
+      ) 
+  
+  ] );
+    }
+
+     else {
+            return Center(
+            child: CircularProgressIndicator(
+              color: Colors.white,
+            ),
+          
+        
+        );
+          } 
+   
+        } )    
+            
+          
+   
+        
+    ] else if (widget.tip == "alt") ...[
+
+
+   FutureBuilder( future:  duac.altbaslik(widget.baslik), builder: 
+        (context, snapshot) {
+          if (snapshot.hasData) {
+             List <String> basliklar = snapshot.data! ;
+            altwidgets=[];
+
+            
+for (int i = 0; i < basliklar.length; i++) {
+      altwidgets.add(
+        
+                MenuTile( 
+                  icon : "pusula.png",
+                  tip:    "dua",
+                  baslik:  basliklar[i],
+                )
+
+      
+    ); } 
+     
+     
+    return    CustomScrollView(
+          shrinkWrap: true,
+
+  slivers: [
+    
+
+
+  SliverToBoxAdapter(
+      child:Center(child: Container(
+        color: Colors.transparent,
+           padding: EdgeInsets.all(2.0),
+         /*  height: size.height * 0.11,
+          width: size.width * 0.8, */
+          margin: EdgeInsets.fromLTRB(
+              size.width * 0.05, size.width * 0.01, size.width * 0.02, size.width * 0.01),
+     
+        child: Text("Tüm Dualar", style: TextStyle(
+          fontSize: 21,
+          fontWeight: FontWeight.bold,
+          color: Colors.black,
+        ),
+        
+        ),
+
+    )  )),
+
+SliverToBoxAdapter(
+      child: GridView.count(
+          padding: EdgeInsets.all(5.0),
+           crossAxisSpacing: 10,
+           mainAxisSpacing: 10,
+        childAspectRatio: 3.5,
+          crossAxisCount: 1, // Her satırda 7 kutu olacak şekilde ayarlayabilirsiniz
+                     scrollDirection: Axis.vertical,
+
+          shrinkWrap: true, // GridView'ın  içeriği sığdırılabilir
+          children: altwidgets,  
+        
+          )
+      ), 
+  ] 
+      )
+      ;
+    }
+   
+    else {
+            return  Container(
+          decoration: BoxDecoration(
+           
+            borderRadius: BorderRadius.only(
+              topLeft: Radius.circular(12.0),
+              topRight: Radius.circular(12.0),
+            ),
+          ),
+          child: Center(
+            child: CircularProgressIndicator(
+              color: Colors.white,
+            ),
+          ),
+        
+            );      
+            
+          } 
+   
+        } )
+    ] else  ...[
+
+   
+       FutureBuilder( future:  duac.dualarim(widget.baslik), builder: 
+        (context, snapshot) {
+          if (snapshot.hasData) {
+            dualar = snapshot.data as List<DualarModel>;
+            dualarwidgets=[];
+
+            
+for (int i = 0; i < dualar.length; i++) {
+      dualarwidgets.add(
+        
+                DualarTile( 
+                  icon : "pusula.png",
+                  tip:    widget.tip,
+                  id : "0",
+                  genelBaslik : dualar[i].genelBaslik,
+                  altBaslik : dualar[i].altBaslik,
+                  arapcasi : dualar[i].arapcasi,
+                  anlami : dualar[i].anlami,
+                  soyleyen : dualar[i].soyleyen,
+                
+
+                )
+
+      
+    ); }
+     
+     
+      return  CustomScrollView(
           shrinkWrap: true,
 
   slivers: [
@@ -159,152 +335,56 @@ SliverToBoxAdapter(
         
           )
       ), 
-  ] ),
+  ]
       )
       ;
     }
-  }
-
-     class icDualar extends StatefulWidget {
-final String id;
-    icDualar({super.key
-    , required this.id
-    });
-
-  @override
-  State<icDualar> createState() => ic_DualarState();
-}
-
-class ic_DualarState extends State<icDualar> {
- @override
-  
-  List<Color> _colors = [ /*   Color(0xFF21367F).withOpacity(0.5), */
- /* Color(0xFF194D91).withOpacity(0.5), */
-   Color(0xFF1590C1).withOpacity(0.5),
-   Color(0xFF0298CA).withOpacity(0.5),
-]; 
-
-  void initState() {
-    super.initState();
-  
    
-  }
+    else {
+            return Center(
+            child: CircularProgressIndicator(
+              color: Colors.white,
+            )
 
-  @override
-  void dispose() {
- // Cancel the timer when the widget is disposed
-    super.dispose();
-  }
-List<Widget> dualarwidgets = [];
-   @override
-   Widget build(BuildContext context) {
-    // Hesaplamalar
-   var size = MediaQuery.of(context).size;
-   var  height = size.height;
-   var width = size.width;
-dualarwidgets=[];
-for (int i = 0; i < dualar.length; i++) {
-      dualarwidgets.add(
-        
-                DualarTile( 
-                  aciklama : icdualar[i]['aciklama'].toString(),
-                  id: icdualar[i]['d_id'].toString(),
-                   icon : icdualar[i]['icon'].toString(),
-                    title : icdualar[i]['title'].toString(), tip: 'ic',
-
-                )
-
-      
-    );
-    } 
-
-   
-     return Scaffold(
-        backgroundColor: const Color.fromARGB(255, 235, 237, 240),
-
-            appBar: AppBar(
-    
-        backgroundColor: Colors.white,
-        actions: [
-          IconButton(
-            icon: Icon(Icons.arrow_back_ios, color: Colors.black),
-            onPressed: () => Get.toNamed('/'),
-          ),
-        ],
-        centerTitle: false,
-        title: 
-        
-     Center(child:  Image.asset("assets/baslik.png",)) 
-      
-     ),
-         
-         body:   CustomScrollView(
-          shrinkWrap: true,
-
-  slivers: [
-    
-
-
-  SliverToBoxAdapter(
-      child:Center(child: Container(
-        color: Colors.transparent,
-           padding: EdgeInsets.all(2.0),
-         /*  height: size.height * 0.11,
-          width: size.width * 0.8, */
-          margin: EdgeInsets.fromLTRB(
-              size.width * 0.05, size.width * 0.01, size.width * 0.02, size.width * 0.01),
-     
-        child: Text("Tüm Dualar", style: TextStyle(
-          fontSize: 21,
-          fontWeight: FontWeight.bold,
-          color: Colors.black,
-        ),
-        
-        ),
-
-    )  )),
-
-SliverToBoxAdapter(
-      child: GridView.count(
-          padding: EdgeInsets.all(5.0),
-           crossAxisSpacing: 10,
-           mainAxisSpacing: 10,
-        childAspectRatio: 3.5,
-          crossAxisCount: 1, // Her satırda 7 kutu olacak şekilde ayarlayabilirsiniz
-                     scrollDirection: Axis.vertical,
-
-          shrinkWrap: true, // GridView'ın  içeriği sığdırılabilir
-          children: dualarwidgets,  
-        
-          )
-      ), 
-  ] ),
-      )
-      ;
+          
+            );
+              
+            
+          }
+        }
+        )
+    ]
+      ],
+    ),
+  )));
     }
-  }
+    }
 
     
+   
 
-    class DualarTile extends StatefulWidget {
-final String tip; 
+
+
+  class MenuTile extends StatefulWidget {
+    // hem alt baslik hem üst baslik
+
+final String baslik ;
 final String icon;
-final String title;
-final String id;
-final String aciklama;
-
-      DualarTile({Key? key,  required this.icon,
-    required this.title,
-    required this.aciklama,
-    required this.id,
-    required this.tip,
+final String tip;
+// dis
+// ic
+      MenuTile({Key? key,  required this.icon,
+      required this.baslik,
+      required this.tip,
+   
+    
     }) : super(key: key);
     
       @override
-      _DualarTileState createState() => _DualarTileState();
+      _MenuTileState createState() => _MenuTileState();
     }
       
-    class _DualarTileState extends State<DualarTile> {
+    class _MenuTileState extends State<MenuTile> {
       @override
       Widget build(BuildContext context) {
         var size = MediaQuery.of(context).size;
@@ -313,13 +393,11 @@ final String aciklama;
         
         GestureDetector(
           onTap: () {
-            if (widget.tip == 'ic'){
-            nduagoster(context,widget.id);
-          }
+            menugoster(context,widget.baslik,widget.tip);
+      
           
-          if (widget.tip == 'dış'){
-            menugoster(context,widget.id);
-          }
+           
+     
           
           },
 
@@ -413,7 +491,202 @@ Expanded(
         Container(
                             padding: EdgeInsets.fromLTRB(1, 4, 1, 1),
 
-          child:Text("${widget.title}",style: TextStyle(
+          child:Text("${widget.baslik}",style: TextStyle(
+          fontSize: 16,
+          fontWeight: FontWeight.bold,
+          color: Colors.white,
+        ))),
+       
+        
+            
+            
+
+    ],),
+    ),
+
+
+
+  )
+
+
+  ]))
+      
+      
+  ) ,Align(
+ alignment: Alignment.centerRight,
+  
+  child:
+  Container(
+          height: size.height * 0.10,
+          width: size.width * 0.10,
+          
+  padding: EdgeInsets.all(0),
+  margin: EdgeInsets.fromLTRB(0, 0,0, 0),
+          decoration: BoxDecoration(
+                shape: BoxShape.circle
+,
+          color: Colors.white
+          ),
+          child: Center(child:
+Container(child:
+
+SvgPicture.asset(
+            'assets/eye.svg', // SVG dosyanızın yolunu doğru şekilde belirtin
+            width: 30, // Genişlik
+            height: 30,
+            fit: 
+            BoxFit.scaleDown,
+            color: Colors.black
+            , // Yükseklik
+          ),
+
+))),
+  )
+
+])));
+      }
+    }
+    class DualarTile extends StatefulWidget {
+final String tip ;
+final String id;
+final String icon;
+final String genelBaslik; 
+final String altBaslik;
+final String arapcasi;
+final String anlami;
+final String soyleyen;
+      DualarTile({Key? key,  required this.icon,
+      required this.id,
+      required this.tip,
+      required this.genelBaslik,
+      required this.altBaslik,
+      required this.arapcasi,
+      required this.anlami,
+      required this.soyleyen,
+    
+    }) : super(key: key);
+    
+      @override
+      _DualarTileState createState() => _DualarTileState();
+    }
+      
+    class _DualarTileState extends State<DualarTile> {
+      @override
+      Widget build(BuildContext context) {
+        var size = MediaQuery.of(context).size;
+
+        return
+        
+        GestureDetector(
+          onTap: () {
+        var a=  DualarModel (
+                    
+                     genelBaslik: widget.genelBaslik,
+                     altBaslik: widget.altBaslik,
+                     arapcasi: widget.arapcasi,
+                     anlami: widget.anlami,
+                     soyleyen: widget.soyleyen,
+                   );
+          
+                   nduagoster(context,
+                a
+                   
+                   );
+
+          
+          },
+
+          child:
+         Container(
+
+height: size.height * 0.10,
+decoration: BoxDecoration(
+  color: Colors.transparent,
+  borderRadius: BorderRadius.circular(20)
+),
+padding: EdgeInsets.all(0.0),
+        margin: EdgeInsets.fromLTRB(
+              size.width * 0.03, size.width * 0.01, size.width * 0.05, size.width * 0.001),
+child:
+Stack(children: [
+
+
+Align(
+ alignment: Alignment.center,
+  
+  child:
+Container(
+  decoration: BoxDecoration(
+  color: Colors.transparent,
+  borderRadius: BorderRadius.circular(20)
+),
+  child:
+ Row(children:[ 
+
+  Expanded(
+    flex: 1,
+    child: Container(
+      
+    
+  decoration: BoxDecoration(
+    color: Colors.white,
+    borderRadius: BorderRadius.only(
+      topLeft: Radius.circular(15),
+      bottomLeft: Radius.circular(15),
+    ),
+   
+  ),
+
+      height: size.height * 0.10,
+
+      child:SvgPicture.asset(
+            'assets/duaicon.svg', // SVG dosyanızın yolunu doğru şekilde belirtin
+            width: 20, // Genişlik
+            height: 20,
+            fit: 
+            BoxFit.scaleDown,
+            color: Colors.black
+            , // Yükseklik
+          ),
+    ),
+
+
+
+  ),
+Expanded(
+  flex: 3,
+    child: Container(
+      padding: EdgeInsets.all(8),
+      margin: EdgeInsets.fromLTRB(size.width*0.0 
+      , size.height*0.018 , size.width*0.05 , size.height*0.018 ),
+          decoration: BoxDecoration(
+             gradient: LinearGradient(
+      begin: Alignment(0.00, 0.00),
+      end: Alignment(1.00, 0.00),
+      colors: [
+        const Color(0xFF21367F),
+        const Color(0xFF194D91),
+        const Color(0xFF1590C1),
+        const Color(0xFF0298CA),
+        const Color(0xFF0298CA),
+      ],
+      stops: [0.00, 0.2834, 0.8794, 0.9951, 1.00],
+    ),
+  color: Colors.white,
+ borderRadius: BorderRadius.only(
+      topRight: Radius.circular(20),
+      bottomRight: Radius.circular(20),
+    ),
+),
+      height: size.height * 0.22,
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.start,
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+        Container(
+                            padding: EdgeInsets.fromLTRB(1, 4, 1, 1),
+
+          child:Text("${widget.anlami.substring(0, 20)}",style: TextStyle(
           fontSize: 16,
           fontWeight: FontWeight.bold,
           color: Colors.white,
@@ -424,7 +697,7 @@ child:
        SizedBox(
         height: size.height * 0.02,
         child: SingleChildScrollView(
-          child: Text("${widget.aciklama}",style: TextStyle(
+          child: Text("${widget.soyleyen}",style: TextStyle(
             color: Colors.white,
             fontSize: 14,)
             ),
@@ -480,20 +753,17 @@ SvgPicture.asset(
       }
     }
 
-nduagoster(context,id){
+nduagoster(context,DualarModel secilidua ){
   var size = MediaQuery.of(context).size;
    var  height = size.height;
    var width = size.width;
   bool _lights = false;
-
-var secilidua =
-dualar.where((element) => element['d_id'] == id);
   return showModalBottomSheet(
      isScrollControlled: true, // Bu parametre alt sayfanın tam ekranı kaplamasını sağlar
   useRootNavigator: true,
   context: context,
   builder: (context) {
-
+// dua getiren fonksiyon
     return StatefulBuilder(
       builder: (context, setState) {
  
@@ -547,7 +817,7 @@ dualar.where((element) => element['d_id'] == id);
   Container(
     
     margin: EdgeInsets.fromLTRB(width*0.05 , height * 0.010, width*0.05, height * 0.010),
-    child:Text('${secilidua.first['title']}',style: TextStyle(
+    child:Text('${secilidua.soyleyen}',style: TextStyle(
           fontSize: 14,
           fontWeight: FontWeight.bold,
                  ))),    
@@ -570,9 +840,33 @@ SliverToBoxAdapter(child:  Container(
       ),
     ],
   ),
-  child:  Center(child: Text('Bu 1. Sayfa'))))
+  child:  Center(child:
+  
+  SingleChildScrollView(child:
+  Column (children: [
+  Text('${secilidua.arapcasi}',style: TextStyle(
+          fontSize: 14,
+          fontWeight: FontWeight.bold,
+                 )),
+  Text('${secilidua.anlami}',style: TextStyle(
+          fontSize: 14,
+          fontWeight: FontWeight.bold,
+                 ))
+        ])
+                 
+        ))
 
-        ]));});});}
+        ) ) 
+        ],
+        
+        ));
+        
+      },
+    );
+  },
+);
+}
+
             
                
              
@@ -586,14 +880,12 @@ SliverToBoxAdapter(child:  Container(
 
 
 
-menugoster(context,id){
+menugoster(context,String baslik,String tip){
   var size = MediaQuery.of(context).size;
    var  height = size.height;
    var width = size.width;
   bool _lights = false;
 
-var secilidua =
-dualar.where((element) => element['d_id'] == id);
   return showModalBottomSheet(
      isScrollControlled: true, // Bu parametre alt sayfanın tam ekranı kaplamasını sağlar
   useRootNavigator: true,
@@ -607,7 +899,7 @@ dualar.where((element) => element['d_id'] == id);
 
 
         return  Container(
-child:icDualar(id:id),
+child:Dualar(tip : tip, baslik:baslik  ),
         
 
         ); } ) ; } ); }

@@ -26,6 +26,14 @@ class _ImsakVaktiState extends State<ImsakVakti> {
         child: CustomScrollView(
           shrinkWrap: true,
   slivers: [
+
+    SliverToBoxAdapter(
+      child: Container(
+
+height: 30,
+
+      )),
+    
 SliverToBoxAdapter(
   child: Container(
 child:
@@ -35,8 +43,8 @@ Column(children: [
           ),
 Text("imsak vakti"),
 VakitTile(title: "Vaktinde", id: "imsak_vaktinde",),
-VakitTile(title: "Vaktinden Önce", id: "imsak_once",),
-VakitTile( title: "Güneşten Önce", id: "imsak_gunes",),
+//VakitTile(title: "Vaktinden Önce", id: "imsak_once",),
+//VakitTile( title: "Güneşten Önce", id: "imsak_gunes",),
 
 
 
@@ -53,7 +61,7 @@ Column(children: [
           ),
 Text("Öğlen  vakti"),
 VakitTile( title: "Vaktinde", id: "oglen_vaktinde",),
-VakitTile( title: "Vaktinden Önce", id: "oglen_once",),
+//VakitTile( title: "Vaktinden Önce", id: "oglen_once",),
 
 
 
@@ -70,13 +78,8 @@ Column(children: [
           ),
 Text("İkindin  vakti"),
 VakitTile( title: "Vaktinde", id: "ikindin_vaktinde",),
-VakitTile( title: "Vaktinden Önce", id: "ikindin_once",),
-
-
-
+//VakitTile( title: "Vaktinden Önce", id: "ikindin_once",),
 ],)
-
-  
   ),
 ),SliverToBoxAdapter(
   child: Container(
@@ -87,13 +90,8 @@ Column(children: [
           ),
 Text("Akşam  vakti"),
 VakitTile( title: "Vaktinde", id: "aksam_vaktinde",),
-VakitTile( title: "Vaktinden Önce", id: "aksam_once",),
-
-
-
+//VakitTile( title: "Vaktinden Önce", id: "aksam_once",),
 ],)
-
-  
   ),
 ),SliverToBoxAdapter(
   child: Container(
@@ -104,10 +102,7 @@ Column(children: [
           ),
 Text("Yatsı  vakti"),
 VakitTile( title: "Vaktinde", id: "yatsi_vaktinde",),
-VakitTile( title: "Vaktinden Önce", id: "yatsi_once",),
-
-
-
+//VakitTile( title: "Vaktinden Önce", id: "yatsi_once",),
 ],)
 
   
@@ -118,7 +113,7 @@ VakitTile( title: "Vaktinden Önce", id: "yatsi_once",),
           height: size.height * 0.10,
           width: size.width * 0.8,
          margin: EdgeInsets.fromLTRB(
-              size.width * 0.05, size.width * 0.06, size.width * 0.05, size.width * 0.06),
+              size.width * 0.05, size.width * 0.02, size.width * 0.05, size.width * 0.06),
           child: GestureDetector(
       onTap: () async {
        

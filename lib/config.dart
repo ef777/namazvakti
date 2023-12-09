@@ -29,15 +29,15 @@ static Map<String, Map<String, RxList<String>>> ezanvaktibildirim = {
     'once': ['0', 'default', '0:0'].obs,
   },
   'ikindin': {
-    'vaktinde': ['0', 'default', '0:0'].obs,
+    'vaktinde': ['1', 'default', '0:0'].obs,
     'once': ['0', 'default', '0:0'].obs,
   },
   'aksam': {
-    'vaktinde': ['0', 'default', '0:0'].obs,
+    'vaktinde': ['1', 'default', '0:0'].obs,
     'once': ['0', 'default', '0:0'].obs,
   },
   'yatsi': {
-    'vaktinde': ['0', 'default', '0:0'].obs,
+    'vaktinde': ['1', 'default', '0:0'].obs,
     'once': ['0', 'default', '0:0'].obs,
   }
 }.obs;

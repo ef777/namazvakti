@@ -12,7 +12,8 @@ class Ilce {
 
   factory Ilce.fromJson(Map<String, dynamic> json) {
     return Ilce(
-      ilceAdi: json['IlceAdi'] as String,
+      ilceAdi: (utf8.decode(json["IlceAdi"].toString().codeUnits)) as String,
+
       ilceAdiEn: json['IlceAdiEn'] as String,  
       ilceID: json['IlceID'] as String,
     );

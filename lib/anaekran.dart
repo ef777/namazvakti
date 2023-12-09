@@ -33,7 +33,7 @@ class ImsakDialog extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Dialog(
+    return Dialog( 
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(16)
       ),
@@ -102,16 +102,18 @@ class TimerController extends GetxController {
   final RxDouble progress = 0.0.obs;
    
  Vakit bugunubul( NamazVakitleri vakitveri ){
+  print("bugun bulunuyor");
   List <Vakit> vakitler = vakitveri.vakitler;
   var today = DateTime.now();
     var formattedDate = DateFormat('dd.MM.yyyy').format(today);
 
     for(var i = 0; i < vakitler.length; i++) {
       if(vakitler[i].miladiTarihKisa == formattedDate) {
+        print("bugun bulundu $formattedDate");
         return vakitler[i];
       }
     }
-    print("bugun bulunamad");
+    print("bugun bulunamadi");
       return vakitler[0];
 
 
@@ -125,12 +127,13 @@ class TimerController extends GetxController {
     var formattedDate = DateFormat('dd.MM.yyyy').format(tomorrow);
 
     for(var i = 0; i < vakitler.length; i++) {
-      print("yarin bulundu");
       if(vakitler[i].miladiTarihKisa == formattedDate) {
+              print("dün bulundu $formattedDate");
+
         return vakitler[i];
       }
     }
-    print("yarin bulunamad");
+    print("dün bulunamadi");
       return vakitler[0];
 
 
@@ -145,12 +148,13 @@ class TimerController extends GetxController {
     var formattedDate = DateFormat('dd.MM.yyyy').format(tomorrow);
 
     for(var i = 0; i < vakitler.length; i++) {
-      print("yarin bulundu");
       if(vakitler[i].miladiTarihKisa == formattedDate) {
+                      print("yarin bulundu $formattedDate");
+
         return vakitler[i];
       }
     }
-    print("yarin bulunamad");
+    print("yarin bulunamadi");
       return vakitler[0];
 
 
@@ -174,8 +178,6 @@ class TimerController extends GetxController {
   
     if (vakitler[i].isBefore(suan)) {
             vakindex = vakindex + 1;
-         //   AppConfig.vakitstxt = vakindex;
-print("vakindex" + vakindex.toString());
       continue; 
     }
     
@@ -195,47 +197,53 @@ DateTime? enYakinVakitBul(DateTime suan, List<DateTime> vakitler) {
   int vakindex= 0;
   DateTime? enYakinVakit;
   int enKucukFark = 999999; 
+  print("debug alani ********************************************");
   print( "suan" + suan.toString() ); //         2023-11-04 19:31:56.842374
   print( "vakitler!" + vakitler.toString()); // 2023-11-04 05:48:00.000
   for (var vakit in vakitler) {
-    
+  //   akşam okunacak saat 1 saat var 
     if (vakit.isBefore(suan)) {
             vakindex = vakindex + 1;
-            AppConfig.vakitstxt = vakindex;
-print("vakindex" + vakindex.toString());
-      continue; 
+print("vakindexlm" + vakindex.toString());
+AppConfig.vakitstxt = vakindex; 
+     continue; 
     }
-    
-    int fark = suan.difference(vakit).inSeconds.abs();
-    
+    else {
+
+   int fark = suan.difference(vakit).inSeconds.abs();
+    print("fark" + fark.toString());
+    print("şuanki saat " + suan.toString());
     if (fark < enKucukFark) {
       enKucukFark = fark;
       enYakinVakit = vakit;
     }
-    
+    // ama işte yakın veya uzak bir sonrakini seçmeli
   }
+  print("dönen en yakın vakit" + enYakinVakit.toString());
+  print("debug alani bitti ********************************************");
 
   return enYakinVakit;
-  
+    }
+   print("hata vakit");
+  return vakitler[vakindex+1];
 }
- vakithesaplailk( NamazVakitleri vakitveri){
+ vakithesaplailk( NamazVakitleri vakitveri)async{
   print("hesap başladi");
-  Vakit ilkgun = bugunubul(  vakitveri);
- // print("ilk gün" + ilkgun.miladiTarihKisa.toString());
- DateTime suan= DateTime.now();
-  
+  Vakit ilkgun = bugunubul(vakitveri);
+ DateTime suan= await DateTime.now();
   DateTime imsak= ilkgun.imsakdate;
   DateTime gunes= ilkgun.gunesdate;
   DateTime ogle= ilkgun.ogledate;
   DateTime ikindi= ilkgun.ikindidate;
   DateTime aksam= ilkgun.aksamdate;
   DateTime yatsi= ilkgun.yatsidate;
-DateTime? siradaki_vakit = enYakinVakitBul(suan, [imsak, gunes, ogle, ikindi, aksam, yatsi]);
+DateTime? siradaki_vakit = await enYakinVakitBul(suan, [imsak, gunes, ogle, ikindi, aksam, yatsi]);
 if(siradaki_vakit != null){
-  print("siradaki_vakit var o gün için" + siradaki_vakit.toString());
+  // yani eğer yatsi değilse vakit
+  print("siradaki_vakit var o gün için yani yatsi değil şuanki vakit" + siradaki_vakit.toString());
   var now =suan;
 
- if(now.hour >= 0 && now.hour < imsak.hour){
+ if(now.hour >= 0 && now.hour < imsak.hour){  
  Vakit dungun  = dunubul(vakitveri);
   // Gece yarısından sonra ve sabah 7'den önce
   print(dungun.yatsi);
@@ -248,17 +256,20 @@ if(siradaki_vakit != null){
 }
 
   else {
+    print("dq23");
   DateTime? onceki_vakit = oncekiVakitBul(suan, [imsak, gunes, ogle, ikindi, aksam, yatsi]);
 
     oncekiVakit.value = onceki_vakit!.obs.value;
       print( "onceki_vakit!" + onceki_vakit.toString() );
  prayerTime.value = siradaki_vakit!.obs.value;
-
+  
   print( "siradaki_vakit" + siradaki_vakit.toString() );
 
 }}
 if (siradaki_vakit == null) {
-  print("null yatsı vakti sonrasi");
+  // eğer vakit yatsı ise
+  print("dl25");
+  print("bir sonraki vakit yatsi ve o vakitten sonra başka vakit yok. bir sonraki güne bakılıyor");
   Vakit yarin = yarinibul(vakitveri);
    Vakit bugun = bugunubul(vakitveri);
   print( "yarin" + yarin.miladiTarihKisa.toString() );
@@ -279,7 +290,7 @@ if (siradaki_vakit == null) {
   DateTime yatsi= bugun.yatsidate;
 
 
-  DateTime? siradaki_vakit = enYakinVakitBul(suan, [yarin_imsak, yarin_gunes, yarin_ogle, yarin_ikindi, yarin_aksam, yarin_yatsi]);
+  DateTime? siradaki_vakit = await enYakinVakitBul(suan, [yarin_imsak, yarin_gunes, yarin_ogle, yarin_ikindi, yarin_aksam, yarin_yatsi]);
   DateTime? onceki_vakit = yatsi;
 
 
@@ -317,21 +328,11 @@ void onInit() {
   ever(currentTime, (_) {     
     remainingTime.value = prayerTime.value.difference(currentTime.value ); 
         var kalandakika = prayerTime.value.difference(currentTime.value).inSeconds / 60.0; 
-        
         var ilkdakika= prayerTime.value.difference(oncekiVakit.value).inSeconds / 60.0;
          //   print("ilk dakika" + ilkdakika.toString());
        // print("kalan dakika" + kalandakika.toString());
         var progressdegeri = 100 - (kalandakika / ilkdakika) * 100;
-
-
-      
-
-     
           progress.value = progressdegeri;
-
-
-
-       
 
 
   });
@@ -426,7 +427,7 @@ for( Vakit a in vakitler){
 
 
 if(  AppConfig.vakitstxt == 0){
-   AppConfig .vakitstring = "İmsak Vaktine";
+   AppConfig .vakitstring = "İmsak Vaktine0";
 }
 if(  AppConfig.vakitstxt == 1){
      AppConfig .vakitstring= "Güneşin Doğmasına";
@@ -444,7 +445,7 @@ if(  AppConfig.vakitstxt == 5){
     AppConfig . vakitstring= "Yatsının Çıkmasına";
 }
 if( AppConfig.vakitstxt == 6){
-    AppConfig . vakitstring= "İmsak Vaktine";
+    AppConfig . vakitstring= "İmsak Vaktine2";
 }
 
  
@@ -520,7 +521,7 @@ print(notificationDate.toString());
   SliverToBoxAdapter(
       child: Container(
          padding: EdgeInsets.all(10.0),
-          height: size.height * 0.195,
+          height: size.height * 0.210,
           width: size.width * 0.82,
          margin: EdgeInsets.fromLTRB(
               size.width * 0.05, size.width * 0.06, size.width * 0.05, size.width * 0.06),
@@ -704,7 +705,7 @@ Obx(() =>  TirtikliLinearProgressIndicator(progressValue: timerController.progre
     
 
 NotificationService.bildirimayarla(  
-        '06.11.2023:18:54', 
+        '${DateTime.now().add(Duration(seconds: 10))}', 
  "${AppConfig.bildirim_title}",
       "${AppConfig.bildirim_content}",
    '${AppConfig.sehirname}',
@@ -792,13 +793,10 @@ print("bitti");
    Text("Hicri Takvim"),
    Text("${bugun.hicriTarihKisa}",style:TextStyle(
     color:  Color(0xFF1687BB),
-    fontSize: 14),),
-                
-                
+    fontSize: 14),),        
                 ],
               ),
       ),
-    
           ),   SliverToBoxAdapter(
       child: Container(
         color: Colors.transparent,
@@ -832,7 +830,7 @@ print("bitti");
             ],
           ),
          padding: EdgeInsets.all(2.0),
-          height: size.height * 0.11,
+          height: size.height * 0.13,
           width: size.width * 0.9,
           margin: EdgeInsets.fromLTRB(
               size.width * 0.03, size.width * 0.005, size.width * 0.03, size.width * 0.005),
@@ -874,28 +872,21 @@ print("bitti");
                 blurRadius: 10,
                 offset: Offset(0, 3),
               ),
-            ],
+            ], 
           ),
          padding: EdgeInsets.all(2.0),
-          height: size.height * 0.39,
+          height: size.height * 0.45,
           width: size.width * 0.8,
           margin: EdgeInsets.fromLTRB(
               size.width * 0.05, size.width * 0.005, size.width * 0.05, size.width * 0.005),
        child:  EzanVakitleri( vakitveri : timerController.vakitveri!),
 
-      
-        
-            
-
-      
-      
             ),
             ),
               SliverToBoxAdapter(
       child: Container(
         height: size.height * 0.20,
 child:                      Row(
-  
   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
 
   children:[  CircularProgressBar(vakitveri: timerController.vakitveri!,   tip:"1" ,
@@ -1066,6 +1057,7 @@ child: Container(
       
   alignment: Alignment.center,
 child: Container(
+  padding: EdgeInsets.all(10),
   margin: EdgeInsets.fromLTRB(1, 1, 40, 1),
   
   child:
@@ -1301,7 +1293,7 @@ child:
                 },
                 child:   Container(
           
-          height: size.height * 0.18,
+          height: size.height * 0.25,
           width: size.width * 0.050,
           padding: EdgeInsets.all(13),
           margin: EdgeInsets.fromLTRB(5, 5, 5, 5),
@@ -1366,7 +1358,7 @@ child:
               Text(
                 '${ezanVakitleri[i]}',
                 style: TextStyle(
-                  fontSize: 14,
+                  fontSize: size.width/ 25,
                   fontWeight: FontWeight.bold,
                   color: Colors.white,
                 ),
@@ -1374,7 +1366,7 @@ child:
                 Text(
                 '${ezanVakitleriMap[ezanVakitleri[i]]}',
                 style: TextStyle(
-                  fontSize: 22,
+                  fontSize: size.width/ 20,
                   fontWeight: FontWeight.bold,
                   color: Colors.white,
                 ),
@@ -1772,7 +1764,7 @@ decoration: BoxDecoration(
 padding: EdgeInsets.all(size.width * 0.01),
         margin: EdgeInsets.fromLTRB(
               size.width * 0.03, size.width * 0.010, size.width * 0.03, size.width * 0.005),
-        height: size.height * 0.20,
+        height: size.height * 0.23,
 child:
 Stack(children: [
 
@@ -1826,7 +1818,8 @@ Expanded(
       bottomRight: Radius.circular(20),
     ),
 ),
-      height: size.height * 0.22,
+
+      height: size.height * 0.25,      
       child: Column(
         mainAxisAlignment: MainAxisAlignment.start,
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -1835,7 +1828,7 @@ Expanded(
                             padding: EdgeInsets.fromLTRB(1, 4, 1, 1),
 
           child:Text("$baslik",style: TextStyle(
-          fontSize: 16,
+          fontSize: size.width / 28,
           fontWeight: FontWeight.bold,
           color: Colors.black,
         ))),
@@ -1843,7 +1836,7 @@ Expanded(
                             padding: EdgeInsets.fromLTRB(1, 2, 1, 1),
 child:
        SizedBox(
-        height: size.height * 0.095,
+        height: size.height * 0.1,
         child: SingleChildScrollView(
           child: Text(" $icerik")))), 
           
@@ -1853,11 +1846,11 @@ child:
             alignment: Alignment.bottomLeft,
             
             child: Container(
-              height: size.height * 0.034,
+              height: size.height * 0.060,
               child:  TextButton(
               
             child: Text("Devamını Oku",style: TextStyle(
-          fontSize: 12,
+          fontSize: size.width / 30,
           fontWeight: FontWeight.bold,
           color: Colors.blue,
         )),

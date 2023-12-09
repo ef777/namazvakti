@@ -25,9 +25,15 @@ static String saatVeDakika(DateTime dateTime) {
 static Future<void> bildirimayarla (String saat ,String title ,String content ,String ilce ,String kalan_vakit ,String time1 ,String time2 ,String time3 ,String time4 ,String time5 ,String time6
 
 ) async{
+  print( "setAlarm çalıştı");
+  print("gelen saat: $saat");
+  print("olması gereken saat 06.11.2023:18:54 ");
+  DateTime dateTime = DateTime.parse(saat);
+  String output = DateFormat('dd.MM.yyyy:HH:mm').format(dateTime);
+  print("output: $output");
  try {await platform.invokeMethod('setAlarm', {
       'title' : "$title",
-      'saat' : '$saat', // '06.11.2023:18:54',
+      'saat' : '$output', // '06.11.2023:18:54',
       'content' : '$content',
       'ilce' : '$ilce',
       'kalan_vakit' : '$kalan_vakit',

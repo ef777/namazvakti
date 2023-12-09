@@ -6,7 +6,7 @@ import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:namazvakti/config.dart';
 import 'package:namazvakti/home.dart';
-import 'package:namazvakti/imsak.dart';
+import 'package:namazvakti/girisalarm.dart';
 import 'package:namazvakti/model-control/ilceler.dart';
 import 'package:namazvakti/model-control/sehirler.dart';
 import 'package:namazvakti/model-control/ulkeler.dart';
@@ -26,7 +26,7 @@ class _KonumSecState extends State<KonumSec> {
 
   final box = GetStorage();
 
-
+var _isLoading = false;
   
     bool _isChecked = false;
 List<Sehir> sehirListesi = [];
@@ -121,16 +121,15 @@ saveid(Ulke ulke,Sehir sehir, Ilce ilce) async {
         builder: (context, snapshot) {
           if (snapshot.hasError) {
             return Text("${snapshot.error}");
-          } if (snapshot.hasData) {
+          } 
+          
+        
+          
+          if (snapshot.hasData) {
             ulkeListesi = snapshot.data![0];
             sehirListesi = snapshot.data![1];
             ilceListesi = snapshot.data![2];
-
-          
-            
-
-
-            return 
+             return 
        Center(
         child: CustomScrollView(
           shrinkWrap: true,
@@ -181,11 +180,18 @@ SliverToBoxAdapter(
 child:Container(
         alignment: Alignment.center,
          padding: EdgeInsets.all(10.0),
-          height: size.height * 0.12,
+          height: size.height * 0.15,
           width: size.width * 0.8,
          margin: EdgeInsets.fromLTRB(
               size.width * 0.05, size.width * 0.55, size.width * 0.05, size.width * 0.00),
-          child: Column (children:
+          child: Column 
+          
+          
+          (
+            mainAxisAlignment: MainAxisAlignment.spaceAround,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            
+            children:
           
           [
           Text("Konum seçin",style: TextStyle(fontSize: 18 ,
@@ -202,22 +208,20 @@ child:Container(
 
           ]),
       )
-  
-
       )
     ],
   ),
 ),
 SliverToBoxAdapter( 
   child: DropdownBottomSheetWidget(
+        secilen: selectedUlke?.ulkeAdi ?? "",
         tip: "1",
         items: ulkeListesi.map((e) => e.ulkeAdi!).toList(),
         id : ulkeListesi.map((e) => e.ulkeID!).toList(),
-        onSelected: (selected) {
+        onSelected: (selected) async{
         selectedSehir = null;
         setState(() {
-                    selectedUlke = ulkeListesi.firstWhere((element) => element.ulkeAdi == selected);
-                    
+                    selectedUlke =   ulkeListesi.firstWhere((element) => element.ulkeAdi == selected);             
         selectedSehir = null;
 selectedIlce = null;
         });
@@ -227,39 +231,69 @@ selectedIlce = null;
       ),),
  
  
-
-   SliverToBoxAdapter( 
-  child: DropdownBottomSheetWidget(
-        tip: "2",
-        id: sehirListesi.map((e) => e.sehirID!).toList(),
-        items: sehirListesi.map((e) => e.sehirAdi!).toList(),
-        onSelected: (selected) {
-            setState(() {
-
-          selectedSehir = sehirListesi.firstWhere((element) => element.sehirAdi == selected);
-selectedIlce = null;
-             }); print(selected);
-        },
-      ) ,),
-            
-         
-        
+ SliverToBoxAdapter( 
+  child: FutureBuilder(
+  future: Future.delayed(Duration(seconds: 2)),
+  builder: (context, snapshot) {
+    if (!_isLoading) {
+      return
       
+  AbsorbPointer(
+    
+  absorbing: selectedUlke == null, child: DropdownBottomSheetWidget(
+        secilen: selectedSehir?.sehirAdi ?? "",
+  tip: "2",
+  id: sehirListesi.map((e) => e.sehirID!).toList(), 
+  items: sehirListesi.map((e) => e.sehirAdi!).toList(),
+  onSelected: (selected) async {
+     if (selectedUlke == null) {
+            Get.snackbar("Hata", "Lütfen önce şehir seçin");
+            selectedSehir = null;
+            selected = "";
+          }
+          else {
+    setState(() {
+      _isLoading = true; 
+    });
+    await Future.delayed(Duration(seconds: 3));
+    setState(() {
+          selectedSehir =  sehirListesi.firstWhere((element) => element.sehirAdi == selected);
+      selectedIlce = null;
+      _isLoading = false; 
+    });
+    
+    print(selected);
+  }},
+  ));
 
+    }
+    else {
+      return Center(child: CircularProgressIndicator());
+    }
+  },
 
-    SliverToBoxAdapter( 
-  child: DropdownBottomSheetWidget(
+)),
+ SliverToBoxAdapter( 
+  child: AbsorbPointer(
+    
+  absorbing: selectedSehir == null, child:  DropdownBottomSheetWidget(
+    secilen: selectedIlce?.ilceAdi ?? "",
         tip: "3",
                 id: ilceListesi.map((e) => e.ilceID!).toList(),
 
         items: ilceListesi.map((e) => e.ilceAdi!).toList(),
-        onSelected: (selected) {
+        onSelected: (selected)  {
+          if (selectedSehir == null) {
+            Get.snackbar("Hata", "Lütfen önce şehir seçin");
+            selectedIlce = null;
+          }
+          else {
             setState(() {
-          selectedIlce = ilceListesi.firstWhere((element) => element.ilceAdi == selected);
+          selectedIlce =  ilceListesi.firstWhere((element) => element.ilceAdi == selected);
           print(selected);
-            });
+            });}
         },
-      ),)
+      ),))
  ,
     SliverToBoxAdapter(
       child: Container(
@@ -351,13 +385,16 @@ class DropdownBottomSheetWidget extends StatefulWidget {
   final List<String> items;
   final ValueChanged<String> onSelected;
   final List<String> id;
+     String secilen;
 
-  const DropdownBottomSheetWidget({
+
+   DropdownBottomSheetWidget({
     Key? key, 
     required this.items,
     required this.id,
     required this.tip,
-    required this.onSelected
+    required this.onSelected,
+    required this.secilen
   }) : super(key: key);
 
   @override
@@ -366,7 +403,6 @@ class DropdownBottomSheetWidget extends StatefulWidget {
 
 class _DropdownBottomSheetWidgetState extends State<DropdownBottomSheetWidget> {
 
-  String selectedItem = '';
  var   isColored = false; 
 
   @override
@@ -483,25 +519,20 @@ widget.tip == "2" ? LinearGradient(
           Color(0xFFa659ff):  Colors.blue,height: 15,width:15 , fit: BoxFit.scaleDown ,
              )),
                      
-
-           
-             
              ),
 SizedBox(width: 25,),
 
               Container(child:
               widget.tip== "1" ?
-Text("${selectedItem == '' ? 'Ülke' : selectedItem}",style: TextStyle(fontSize: 16,color: isColored ? Colors.white : Colors.black ))
-: widget.tip== "2" ? Text("${selectedItem == '' ? 'İl' : selectedItem}",style: TextStyle(fontSize: 16,color: isColored ? Colors.white : Colors.black ))
-: widget.tip== "3" ? Text("${selectedItem == '' ? 'İlçe' : selectedItem}",style: TextStyle(fontSize: 16,color: isColored ? Colors.white : Colors.black ))
+Text("${widget.secilen == '' ? 'Ülke' : widget.secilen}",style: TextStyle(fontSize: 16,color: isColored ? Colors.white : Colors.black ))
+: widget.tip== "2" ? Text("${widget.secilen == '' ? 'İl' : widget.secilen}",style: TextStyle(fontSize: 16,color: isColored ? Colors.white : Colors.black ))
+: widget.tip== "3" ? Text("${widget.secilen == '' ? 'İlçe' : widget.secilen}",style: TextStyle(fontSize: 16,color: isColored ? Colors.white : Colors.black ))
 : Text( "",style: TextStyle(fontSize: 16,color: isColored ? Colors.white : Colors.black ),),
               )
 
               
             ]),
 
-          /*   Container(child: 
-            Image.asset("assets/ok.png")) */
             Container(
           height: size.height * 0.20,
           width: size.width * 0.20,
@@ -583,7 +614,7 @@ if (_debounce?.isActive ?? false) _debounce.cancel();
                       onTap: () {
                         // Seçimi güncelle
                         setState(() {
-                          selectedItem = item;
+                          widget.secilen = item;
                         });
                         
                         // Callback'i çağır

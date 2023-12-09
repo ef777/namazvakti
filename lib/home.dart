@@ -12,7 +12,7 @@ import 'package:get/get.dart';
 import 'package:namazvakti/anaekran.dart';
 import 'package:namazvakti/config.dart';
 import 'package:namazvakti/counter_view/counter_view.dart';
-import 'package:namazvakti/imsak.dart';
+import 'package:namazvakti/girisalarm.dart';
 import 'package:namazvakti/konumsec.dart';
 import 'package:namazvakti/yenipusula.dart';
 
@@ -144,7 +144,7 @@ class CustomBottomNavigationBar extends StatelessWidget {
         alignment: Alignment.bottomCenter,
         child: Container( 
         
-        height: height*0.1,
+        height: height*0.115,
          decoration: BoxDecoration(
         color: Colors.white,
         boxShadow: [
@@ -182,8 +182,8 @@ Widget buildNavItem(String icon, String label, int index) {
       crossAxisAlignment: CrossAxisAlignment.center,
       children: [
         Container(
-  width: 70,
-  height: 80,
+  width: 65, 
+  height: 75,
   decoration: BoxDecoration(
     shape: BoxShape.circle,
     color: isSelected ? Colors.white : Colors.transparent,

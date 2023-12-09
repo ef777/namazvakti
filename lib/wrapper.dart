@@ -11,6 +11,7 @@ import 'package:namazvakti/home.dart';
 import 'package:namazvakti/model-control/ayetlermodel.dart';
 import 'package:namazvakti/model-control/hadismodel.dart';
 import 'package:namazvakti/model-control/vakitlermodel.dart';
+import 'package:namazvakti/veritabani.dart';
 import 'package:namazvakti/wellcome.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:timezone/timezone.dart' as tz;
@@ -23,6 +24,7 @@ import 'model-control/isim_model.dart';
    final controller = Get.put(AppConfig()); 
 var flutterLocalNotificationsPlugin = FlutterLocalNotificationsPlugin();
   final notf = Get.put(NotificationService());
+  final db = Get.put(VeritabaniYardimcisi());
 
 class Wrapper extends StatefulWidget {
   @override
@@ -41,113 +43,20 @@ void _showNotification(String title, String body) {
 
  
   final box = GetStorage();
-  //vakitleri al
-  // sonra local notftan verileri al yazdır
   namazvakital()async{
   NamazVakitleri a= await NamazVakitleri.getNamazVakitleri(AppConfig.ilceid);
   print("namaz vakitleri alındı");
   return a;
   }
 
- 
-
-bekleyenBildirim() async {
-
-  var pendingNotifications = await flutterLocalNotificationsPlugin.pendingNotificationRequests();
-
-  print("bildirim adeti " + pendingNotifications.length.toString());
-
-  for(PendingNotificationRequest notification in pendingNotifications) {
-                                                                  
-  
-    var payloadStr = notification.payload as String;
-var parts = payloadStr.split('|');
-var dateTimeStr = parts[0]; 
-var customPayload = parts[1];
-var dateTime = DateTime.parse(dateTimeStr);
-
-print("payload gelen tarih : " + dateTime.toString());
-
-    if (dateTime.isBefore(DateTime.now())) {
-      print("bildirim tarihi geçmiş");
-      flutterLocalNotificationsPlugin.cancel(notification.id);
-    }
-    else {
-      print("bildirim tarihi geçmemiş");
-    }
-    
-
-  }
-  return pendingNotifications;
-
-}
-
-
-// tamam vakitleri aldım. kurulu alarmların tarihini aldım. şimdi bu tarihlerle vakitleri karşılaştıracağım
-vakitalarmkontrol() async {
- NamazVakitleri gelennamaz= await namazvakital();
-  List<Vakit> vakits= await gelennamaz.vakitler;
-
- List<PendingNotificationRequest> gelenalarms=await  bekleyenBildirim();
-print("vakit adeti : " + vakits.length.toString());
-
- for( var i=1; i<vakits.length; i++){
-    var vakit= vakits[i].miladiTarihKisa;
-    print("vakit tarih : " + vakit);
-    var deger=0;
-
-   for( var a=0; a<gelenalarms.length; a++){
-   var payloadStr = gelenalarms[a].payload as String;
-var parts = payloadStr.split('|');
-var dateTimeStr = parts[0];
-var customPayload = parts[1];
-var dateTime = DateTime.parse(dateTimeStr);
-  final DateFormat formatter = DateFormat('dd.MM.yyyy');
-var alarm = formatter.format(dateTime);
-print("alarm tarihi : " + alarm);
-if (vakit==alarm) {
-  deger=1;
-  print("buldu");
-  break;
-}
-else{
-
-}
-   }
-
-if(deger == 1)
-{
-    print("alarm kurulu");
-
-  
-   }
-
-else{
-  print("alarm kurulu değil");
-  _setAlarm(vakits[i].imsakdate, "imsak vakti");
-  _setAlarm(vakits[i].gunesdate, "güneş vakti");
-  _setAlarm(vakits[i].ogledate, "öğle vakti");
-  _setAlarm(vakits[i].ikindidate, "ikindi vakti");
-  _setAlarm(vakits[i].aksamdate, "akşam vakti");
-  _setAlarm(vakits[i].yatsidate, "yatsı vakti");
-
-
-
-}
-
-}
-print("döngü bitti");
-return 1;
-}
-
-
- // ilk kezz giris kontrol
+     final duac = Get.put(DuaKont());
 
 giristum()async{
   List < HadisModel> hadisler  = await HadisModel.loadHadisler();
 HadisKont.hadisler = hadisler;
-List<DualarModel> dualar = await  DualarModel.loaddualar();
-DuaKont.dualar = dualar;
+//print("gelen hadisler : " + hadisler.length.toString());
+List<DualarModel> dualar = await  duac.loaddualar();
+duac.dualar = dualar;
 
 List<AyetModel> ayetler = await AyetModel.loadAyetler();
 AyetKont.ayetler = ayetler;
@@ -160,17 +69,20 @@ IsimKont.isimler = isimler;
 var giris = await controller.ilkgirismi();
 if (giris==true) {
 print("hop ilk kez giriyor");
+     await db.veritabaniolustur();
+print("veri tabanı oluşturuldu");
     return true ;
 
 }
 else{
   await controller.okuid();
         AppConfig.login=true;
-        
  //await vakitalarmkontrol();
 // hadis yükle
+  //  await db.veritabanisil();
+      db.tarihicontrolEt();
 
-  print("hop ilk kez değil");
+  print("hop ilk kez girmiyor");
   return false;
 
 }}

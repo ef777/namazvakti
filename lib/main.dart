@@ -101,7 +101,7 @@ class MyApp extends StatelessWidget {
         GetPage(name: '/home', page: () => HomePage()),
         GetPage(name: '/kaza', page: () => Kazalar()),
           GetPage(name: '/esma', page: () => EsmaUl()),
-          GetPage(name: '/dualar', page: () => Dualar()),
+          GetPage(name: '/dualar', page: () => Dualar(baslik: "0", tip:"genel")),
           GetPage(name: '/hikaye', page: () => DiniHikaye()),
           GetPage(name: '/rehber', page: () => Rehber()),
           GetPage(name: '/radyolar', page: () => Radyolar())

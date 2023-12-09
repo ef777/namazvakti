@@ -154,10 +154,7 @@ class _QiblahCompassState extends State<QiblahCompass> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.transparent,
-      appBar: AppBar(
-          title: Text(
-        'main.qibla_compass'.tr(),
-      )),
+    
       body: Padding(
         padding: const EdgeInsets.only(bottom: 76),
         child: Stack(

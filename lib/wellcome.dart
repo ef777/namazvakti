@@ -22,7 +22,11 @@ class _WellcomePageState extends State<WellcomePage> {
    var width = size.width;
     return Scaffold(
      
-      body:Container(child:
+      body:Container(
+                height: height,
+
+        
+        child:
       
       Stack(children: [
 
@@ -65,7 +69,7 @@ UpwardSlopedCircularContainer(
 
    SliverToBoxAdapter(
     
-      child:   Container( height: 30, )),
+      child:   Container( height: 15, )),
    SliverToBoxAdapter(
     
       child:   Container(
@@ -89,7 +93,7 @@ UpwardSlopedCircularContainer(
               end: Alignment.bottomCenter,
             ),
           ),
-         padding: EdgeInsets.all(10.0),
+         padding: EdgeInsets.all(4.0),
           height: size.height * 0.18,
           width: size.width * 0.1,
          margin: EdgeInsets.fromLTRB(
@@ -100,15 +104,12 @@ UpwardSlopedCircularContainer(
           size.height * 0.09,
           width: size.width * 0.1,
           ),
-          
-          
-          
       ),
   ),
    
     SliverToBoxAdapter(
       child: Container(
-         padding: EdgeInsets.all(8.0),
+         padding: EdgeInsets.all(4.0),
 /*           height: size.height * 0.18,
           width: size.width * 0.8, */
          margin: EdgeInsets.fromLTRB(
@@ -124,7 +125,7 @@ UpwardSlopedCircularContainer(
 
             Container(child: 
             Text ("Selamun Aleyküm"
-            ,style: TextStyle(fontSize: 29.0, color: 
+            ,style: TextStyle(fontSize: 24.0, color: 
             
                             Color(0xFF004eff),
 
@@ -136,7 +137,7 @@ UpwardSlopedCircularContainer(
             )
 ,          SizedBox(height: 10,),
             Container(child: 
-            Text ("Lorem ipsum dolor sit amet, conse cadipiscing elit,Lorem ipsum",
+            Text ("Ezan Vakti'ne hoşgeldiniz",
             
             textAlign: TextAlign.center
             ,
@@ -285,7 +286,7 @@ Text("Gizlilik Sözleşmesi"),
       ,style: TextStyle(
   color:  Color.fromRGBO(0, 0, 0, 0.502).withOpacity(0.53),
   fontWeight: FontWeight.bold,
-  fontSize: 14.0,
+  fontSize: 12.0,
   letterSpacing: 0.0,
   decoration: TextDecoration.underline,
   fontFamily: "Gilroy",
@@ -299,7 +300,7 @@ Text("Gizlilik Sözleşmesi"),
     SliverToBoxAdapter(
       child: Container(
          padding: EdgeInsets.all(10.0),
-          height: size.height * 0.10,
+          height: size.height * 0.09,
           width: size.width * 0.8,
          margin: EdgeInsets.fromLTRB(
               size.width * 0.05, size.width * 0.06, size.width * 0.05, size.width * 0.06),
@@ -350,15 +351,7 @@ Text("Gizlilik Sözleşmesi"),
       ),
   ),
     ),
-      SliverToBoxAdapter(
-      child: Container(
-         padding: EdgeInsets.all(10.0),
-          height: size.height * 0.05,
-          width: size.width * 0.8,
-         margin: EdgeInsets.fromLTRB(
-              size.width * 0.05, size.width * 0.06, size.width * 0.05, size.width * 0.06),
-      ),
-  ),
+   
   ]),
       ),    ],)
       )  );

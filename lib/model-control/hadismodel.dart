@@ -103,44 +103,50 @@ return secilihadis;
 
 hadisvakit(String tip)async {
 RxList<Rx<HadisModel>> hadis =await hadisbelirle();
-if(  tip == "1"){
+if(  tip == "0"){
    var aciklama= hadis[0].value.imsakHadisi.toString();
     var kimden = hadis[0].value.imsakMuctehidi.toString();
 
    return [ aciklama , kimden];
    
    }
-    else if(  tip == "2"){
+    else if(  tip == "1"){
     var aciklama= hadis[0].value.sabahHadisi.toString();
     var kimden = hadis[0].value.sabahMuctehidi.toString();
     return [ aciklama , kimden];
     }
 
-    else if(  tip == "3"){
+    else if(  tip == "2"){
     var aciklama= hadis[0].value.oglenHadisi.toString();
     var kimden = hadis[0].value.oglenMuctehidi.toString();
     return [ aciklama , kimden];
     }
 
-    else if(  tip == "4"){
+    else if(  tip == "3"){
 
     var aciklama= hadis[0].value.ikindiHadisi.toString();
     var kimden = hadis[0].value.ikindiMuctehidi.toString();
     return [ aciklama , kimden];
     }
 
-    else if(  tip == "5"){
+    else if(  tip == "4"){
     var aciklama= hadis[0].value.aksamHadisi.toString();
     var kimden = hadis[0].value.aksamMuctehidi.toString();
     return [ aciklama , kimden];
     }
 
-    else if(  tip == "6"){
+    else if(  tip == "5"){
     var aciklama= hadis[0].value.yatsiHadisi.toString();
     var kimden = hadis[0].value.yatsiMuctehidi.toString();
     return [ aciklama , kimden];
     }
+else if(  tip == "6"){
+   var aciklama= hadis[0].value.imsakHadisi.toString();
+    var kimden = hadis[0].value.imsakMuctehidi.toString();
 
+   return [ aciklama , kimden];
+   
+   }
     else{
       return ["hata","hata"];
     }
