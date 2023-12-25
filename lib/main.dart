@@ -124,11 +124,7 @@ class MyApp extends StatelessWidget {
         ], */
         debugShowCheckedModeBanner: false,
         theme: ThemeData(
-          textTheme: TextTheme(
-            bodyText1: TextStyle(fontFamily: 'MDSans'),
-            bodyText2: TextStyle(fontFamily: 'MDSans'),
-          ),
-
+                  fontFamily: 'Gilroy',
           bottomAppBarColor: Colors.transparent,
           inputDecorationTheme: const InputDecorationTheme(
               filled: true,

@@ -3,7 +3,16 @@ import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:namazvakti/config.dart';
 import 'package:namazvakti/home.dart';
+  Future<void> _selectTime(BuildContext context) async {
+    TimeOfDay? selectedTime = await showTimePicker(
+      context: context,
+      initialTime: TimeOfDay.now(),
+    );
 
+    if (selectedTime != null) {
+      print('Seçilen Zaman: ${selectedTime.hour}:${selectedTime.minute}');
+    }
+  }
 class ImsakVakti extends StatefulWidget {
   @override
   State<ImsakVakti> createState() => _ImsakVaktiState();
@@ -11,6 +20,7 @@ class ImsakVakti extends StatefulWidget {
 
 class _ImsakVaktiState extends State<ImsakVakti> {
         final AppConfig conf = Get.put(AppConfig());
+
 
   @override
   bool _lights = false;
@@ -54,7 +64,7 @@ VakitTile(title: "Vaktinde", id: "imsak_vaktinde",),
   ),
 ),SliverToBoxAdapter(
   child: Container(
-child:
+child:  
 Column(children: [
  Image.asset("assets/imsak_vakit.png",width: 25,height: 25
           ,fit: BoxFit.contain,
@@ -270,7 +280,7 @@ Obx(() => _buildSwitch(d1, d2))
           child:
    GestureDetector(
   onTap: (){
-   
+   _selectTime (context);
   },
   child:
 

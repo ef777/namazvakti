@@ -80,7 +80,7 @@ class VeritabaniYardimcisi {
   }
    namazvakital()async{
   NamazVakitleri a= await NamazVakitleri.getNamazVakitleri(AppConfig.ilceid);
-  print("namaz vakitleri alındı");
+  //print("namaz vakitleri alındı");
   // burada günümüzden öncesindeki verileri silmemiz gerekiyor
 
 
@@ -91,23 +91,23 @@ class VeritabaniYardimcisi {
   namazvakitfiltre(List<Vakit>  vakitler){
   List<Vakit> yenivakits= [];
  DateTime suan= DateTime.now();
-  print("ilk vakit uzunlugu : " + vakitler.length.toString());
-  print(vakitler[0].miladiTarihKisa);
+ // print("ilk vakit uzunlugu : " + vakitler.length.toString());
+ // print(vakitler[0].miladiTarihKisa);
 
  for (var item in vakitler) 
-  { print("tarih kontrol ediliyor");
+  { // print("tarih kontrol ediliyor");
   String formatlanmisTarihStr = DateFormat('dd.MM.yyyy').parse(item.miladiTarihKisa).toString(); 
     if(DateTime.parse(formatlanmisTarihStr).isAfter(suan) ){
       yenivakits.add(item);
-      print("bu tarih gelecek");
+      //print("bu tarih gelecek");
     }
     else{
-      print("bu tarih geçmiş");
-      print(item.miladiTarihKisa);
+    //  print("bu tarih geçmiş");
+   //   print(item.miladiTarihKisa);
 
     }
 
-   print(item.miladiTarihKisa);
+  // print(item.miladiTarihKisa);
  }
 
 
@@ -116,9 +116,10 @@ print("filtrelenmiş vakit uzunlugu : " + yenivakits.length.toString());
  return yenivakits;
   }
   Future<void> tarihicontrolEt() async {
-    print("vakit alarm kontrol ediliyor");
+    
+   // print("vakit alarm kontrol ediliyor");
 NamazVakitleri gelennamaz= await namazvakital();
-print( gelennamaz.vakitler.length.toString() + " adet namaz vakiti alındı" );
+//print( gelennamaz.vakitler.length.toString() + " adet namaz vakiti alındı" );
   List<Vakit> vakits= await gelennamaz.vakitler;
     vakits =   namazvakitfiltre(vakits);
 
@@ -129,9 +130,9 @@ for (var i = 0 ; i <vakits.length; i ++){
 
   var result = await db.query('namaz_vakitleri', where: 'tarih = ?', whereArgs: [vakits[i].miladiTarihKisa]);
 if(result.isEmpty ){
-  print("sorgu yapıldi ve ilgili günde alarm bulunamadı");
-print("alarm kurulu değil");
-  print("kur");
+  //print("sorgu yapıldi ve ilgili günde alarm bulunamadı");
+//print("alarm kurulu değil");
+ // print("kur");
   var eklensin_mi=0;
  if( AppConfig.ezanvaktibildirim["imsak"]!["vaktinde"]![0] =="1");
  {
@@ -164,24 +165,24 @@ print("alarm kurulu değil");
        }
 if(eklensin_mi==1){
   veriEkle(vakits[i]);
- print("veri tabanina ilgili gün eklendi");
+ // print("veri tabanina ilgili gün eklendi");
 }   
 }
 else{
-  print("alarm kurulu");
+ // print("alarm kurulu");
 
 }
 
 }
-print("döngü bitti");
+// print("döngü bitti");
  List<Map<String, dynamic>>  a = await tumNamazVakitleriniOku();
-print(a.toString());
+// print(a.toString());
 
   }
 
 bildirimkur(Vakit vakit,String Kurulan_tarih) async {
-  print("bildirim kuruluyor");
-  print(Kurulan_tarih.toString() + " tarihli bildirim kuruluyor");
+ // print("bildirim kuruluyor");
+ // print(Kurulan_tarih.toString() + " tarihli bildirim kuruluyor");
      
   NotificationService.bildirimayarla(  
       '${Kurulan_tarih}', 

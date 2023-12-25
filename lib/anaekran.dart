@@ -1,7 +1,6 @@
 
  import 'dart:math';
 import 'dart:ui';
-import 'dart:ui';
 import 'package:audioplayers/audioplayers.dart';
 import 'package:namazvakti/alarm.dart';
 import 'package:namazvakti/model-control/ayetlermodel.dart';
@@ -10,9 +9,9 @@ import 'package:namazvakti/model-control/hadismodel.dart';
 import 'package:namazvakti/model-control/ilmihaller_model.dart';
 import 'package:namazvakti/model-control/isim_model.dart';
 import 'package:vibration/vibration.dart';
+import 'package:share_plus/share_plus.dart';
 
 import 'package:flutter/material.dart';
- import 'package:flutter/services.dart';
 import 'package:flutter_svg/flutter_svg.dart';
  import 'package:get/get.dart';
  import 'package:flutter/material.dart';
@@ -194,6 +193,7 @@ class TimerController extends GetxController {
   
 }
 DateTime? enYakinVakitBul(DateTime suan, List<DateTime> vakitler) {
+  print("en yakın vakit bul başladı");
   int vakindex= 0;
   DateTime? enYakinVakit;
   int enKucukFark = 999999; 
@@ -205,7 +205,9 @@ DateTime? enYakinVakitBul(DateTime suan, List<DateTime> vakitler) {
     if (vakit.isBefore(suan)) {
             vakindex = vakindex + 1;
 print("vakindexlm" + vakindex.toString());
-AppConfig.vakitstxt = vakindex; 
+
+apf.updateindexValue(vakindex);
+ print("hop");
      continue; 
     }
     else {
@@ -224,11 +226,18 @@ AppConfig.vakitstxt = vakindex;
 
   return enYakinVakit;
     }
-   print("hata vakit");
-  return vakitler[vakindex+1];
+   print("en yakın vakit hata vakit");
+     print("en yakın vakit bul bitti");
+     if( vakindex> 5){
+  print("bulunamadı sonraki güne gidilmeli");
+  return null;
+ }
+var sonuc = vakitler[vakindex+1];
+
+  return  sonuc; //333
 }
  vakithesaplailk( NamazVakitleri vakitveri)async{
-  print("hesap başladi");
+  print("ilk vakit bul başladı");
   Vakit ilkgun = bugunubul(vakitveri);
  DateTime suan= await DateTime.now();
   DateTime imsak= ilkgun.imsakdate;
@@ -237,7 +246,8 @@ AppConfig.vakitstxt = vakindex;
   DateTime ikindi= ilkgun.ikindidate;
   DateTime aksam= ilkgun.aksamdate;
   DateTime yatsi= ilkgun.yatsidate;
-DateTime? siradaki_vakit = await enYakinVakitBul(suan, [imsak, gunes, ogle, ikindi, aksam, yatsi]);
+  DateTime? siradaki_vakit = await enYakinVakitBul(suan, [imsak, gunes, ogle, ikindi, aksam, yatsi]);
+// 333
 if(siradaki_vakit != null){
   // yani eğer yatsi değilse vakit
   print("siradaki_vakit var o gün için yani yatsi değil şuanki vakit" + siradaki_vakit.toString());
@@ -245,14 +255,14 @@ if(siradaki_vakit != null){
 
  if(now.hour >= 0 && now.hour < imsak.hour){  
  Vakit dungun  = dunubul(vakitveri);
-  // Gece yarısından sonra ve sabah 7'den önce
+  // Gece yarısından sonra ve sabah 7'den ö nce
   print(dungun.yatsi);
   print("Gece yarısından sonra ve sabah 7'den önceki zaman dilimi");
   DateTime? onceki_vakit = yatsi;
   oncekiVakit.value = dungun.yatsidate.obs.value;
  prayerTime.value = siradaki_vakit!.obs.value;
-            AppConfig.vakitstxt = 1;
- AppConfig.vakitstring= "İmsak Vaktin1e";
+ apf.updateindexValue(1);
+ apf.updateStringValue("İmsak Vaktine .");
 }
 
   else {
@@ -300,6 +310,7 @@ if (siradaki_vakit == null) {
   print( "onceki_vakit" + onceki_vakit.toString() );
 }
 
+  print("ilk vakit bul bitti");
 
 
    }
@@ -343,12 +354,12 @@ void onInit() {
 
     // Bir sonraki vakte geçildi, uyarı ver
     
-    print("Vakit değişti! Yeni vakit: ${AppConfig.vakitstxt}");
+    print("Vakit değişti! Yeni vakit: ${apf.vakitstxt}");
 Vibration.vibrate(pattern: [500, 1000, 500, 2000]);
 
     // Bir sonraki vakte geç
   vakithesaplailk(vakitveri!);
-Get.dialog(ImsakDialog());
+//Get.dialog(ImsakDialog());
 //playAssetSound ("ezan1.mp3", 10);
   }
   
@@ -362,7 +373,8 @@ Get.dialog(ImsakDialog());
     final AyetKont ayetc = Get.put(AyetKont());
     final IsimKont isimc = Get.put(IsimKont());
 ColorController controller = Get.put(ColorController());
-  
+    final AppConfig apf = Get.put(AppConfig());
+
  class AnaEk extends StatefulWidget {
     AnaEk({super.key});
 
@@ -395,7 +407,7 @@ var siradakivakit;
   currentTime = DateTime.now();
     selectedCity = '${AppConfig.sehirname}'; // Başlangıçta seçilen şehir
 controller.changeColor(); 
-  print("Vakit değişti! Yeni vakit: ${AppConfig.vakitstxt}");
+  print("Vakit değişti! Yeni vakit: ${apf.vakitstxt}");
 //Vibration.vibrate(pattern: [500, 1000, 500, 2000]);
 
     // Bir sonraki vakte geç
@@ -425,33 +437,9 @@ for( Vakit a in vakitler){
         print(timerController.vakitveri );
  
 
-
-if(  AppConfig.vakitstxt == 0){
-   AppConfig .vakitstring = "İmsak Vaktine0";
-}
-if(  AppConfig.vakitstxt == 1){
-     AppConfig .vakitstring= "Güneşin Doğmasına";
-}
-if(  AppConfig.vakitstxt == 2){
-    AppConfig . vakitstring= "Öğlenin Çıkmasına";
-}
-if(  AppConfig.vakitstxt == 3){
-    AppConfig . vakitstring= "İkindinin Çıkmasına";
-}
-if(  AppConfig.vakitstxt == 4){
-    AppConfig . vakitstring= "Akşamın Çıkmasına";
-}
-if(  AppConfig.vakitstxt == 5){
-    AppConfig . vakitstring= "Yatsının Çıkmasına";
-}
-if( AppConfig.vakitstxt == 6){
-    AppConfig . vakitstring= "İmsak Vaktine2";
-}
-
- 
 timerController.vakithesaplailk( timerController.vakitveri!);
- hadis =  await hadisc.hadisvakit( AppConfig.vakitstxt.toString());
- ayet = await ayetc.ayetvakit( AppConfig.vakitstxt.toString());
+ hadis =  await hadisc.hadisvakit( apf.vakitstxt.value.toString());
+ ayet = await ayetc.ayetvakit( apf.vakitstxt.value.toString());
  ilmihal =  await ilmihalc.imihalbelirle();
  isim = await isimc.isimbelirle(); 
 
@@ -521,7 +509,7 @@ print(notificationDate.toString());
   SliverToBoxAdapter(
       child: Container(
          padding: EdgeInsets.all(10.0),
-          height: size.height * 0.210,
+          height: size.height * 0.20,
           width: size.width * 0.82,
          margin: EdgeInsets.fromLTRB(
               size.width * 0.05, size.width * 0.06, size.width * 0.05, size.width * 0.06),
@@ -537,16 +525,19 @@ print(notificationDate.toString());
         width: size.width * 0.1,
              ),
              
-              Text(
-        "${AppConfig.vakitstring}",
-                 textAlign: TextAlign.center,
+             Obx(
+                () => Text(
+                   textAlign: TextAlign.center,
 
         style: TextStyle(
-          fontSize: 12,
+                                fontSize: size.height * 0.015,
+
           fontWeight: FontWeight.bold,
           color: Colors.white,
         ),
-      )  ]),
+                  apf.vakitstring.value,
+                ),
+              ),      ]),
 SizedBox(height: 1),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -573,13 +564,13 @@ SizedBox(height: 1),
             children: [
               Obx(() =>   Text(
                 timerController.remainingTime.value.inHours.toString() + " : ",
-                style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold, color: Colors.white),
+                style: TextStyle(fontSize: size.height * 0.030, fontWeight: FontWeight.bold, color: Colors.white),
               )),
               Center(child: Text(
               
               textAlign:TextAlign.center, 
                 "saat",
-                style: TextStyle(fontSize: 11, color: Colors.white),
+                style: TextStyle(fontSize: size.height * 0.015, color: Colors.white),
               )),
             ],
           ),
@@ -589,13 +580,13 @@ SizedBox(height: 1),
               mainAxisAlignment: MainAxisAlignment.center,
             children: [
            Obx(() =>   Text(   timerController.remainingTime.value.inMinutes.remainder(60).toString() +" : ",
-                style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold, color: Colors.white),
+                style: TextStyle(fontSize: size.height * 0.030, fontWeight: FontWeight.bold, color: Colors.white),
               ) ),
               Text(
                               textAlign:TextAlign.center, 
 
                 "dakika    ",
-                style: TextStyle(fontSize: 11, color: Colors.white),
+                style: TextStyle(fontSize: size.height * 0.015, color: Colors.white),
               ),
             ],
           ),
@@ -607,12 +598,12 @@ SizedBox(height: 1),
              Obx(() =>    Text(
                  timerController.remainingTime.value.inSeconds.remainder(60).toString() ,
             
-                style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold, color: Colors.white),
+                style: TextStyle(fontSize: size.height * 0.030, fontWeight: FontWeight.bold, color: Colors.white),
              )),
               Text(
                 textAlign: TextAlign.center,
                 "saniye",
-                style: TextStyle(fontSize: 11, color: Colors.white),
+                style: TextStyle(fontSize: size.height * 0.015, color: Colors.white),
               ),
             ],
           ),
@@ -830,7 +821,7 @@ print("bitti");
             ],
           ),
          padding: EdgeInsets.all(2.0),
-          height: size.height * 0.13,
+          height: size.height * 0.125,
           width: size.width * 0.9,
           margin: EdgeInsets.fromLTRB(
               size.width * 0.03, size.width * 0.005, size.width * 0.03, size.width * 0.005),
@@ -875,12 +866,12 @@ print("bitti");
             ], 
           ),
          padding: EdgeInsets.all(2.0),
-          height: size.height * 0.45,
+          height: size.height * 0.40,
           width: size.width * 0.8,
           margin: EdgeInsets.fromLTRB(
               size.width * 0.05, size.width * 0.005, size.width * 0.05, size.width * 0.005),
-       child:  EzanVakitleri( vakitveri : timerController.vakitveri!),
-
+       child: Obx(() =>  EzanVakitleri( vakitveri : timerController.vakitveri!,seciliVakit :apf.selectedEzanvakti.value),
+       )
             ),
             ),
               SliverToBoxAdapter(
@@ -996,7 +987,8 @@ child: Container(
       
   alignment: Alignment.center,
 child: Container(
-  margin: EdgeInsets.fromLTRB(40, 1, 0, 1),
+  margin: EdgeInsets.fromLTRB(70, 1, 5, 1),
+  padding: EdgeInsets.all(30),
   
   child:
 Column(
@@ -1008,7 +1000,7 @@ Text("Erkek İsim: ${isim[2] }",style: TextStyle(
   
 )),
  Text(" ${isim[3] }",style: TextStyle( 
-   fontSize: 12,
+    fontSize: isim[1].length > 20 ? 10 : 12 ,
    color: Colors.black.withOpacity(0.5)
  
   ),
@@ -1057,8 +1049,8 @@ child: Container(
       
   alignment: Alignment.center,
 child: Container(
-  padding: EdgeInsets.all(10),
-  margin: EdgeInsets.fromLTRB(1, 1, 40, 1),
+  padding: EdgeInsets.all(30),
+  margin: EdgeInsets.fromLTRB(1, 1, 70, 1),
   
   child:
 Column(
@@ -1070,7 +1062,7 @@ Text("Kız İsim:   ${isim[0]} ",style: TextStyle(
   
 )),
  Text("${isim[1]} ",style: TextStyle( 
-   fontSize: 12,
+   fontSize: isim[1].length > 20 ? 10 : 12 ,
    color: Colors.black.withOpacity(0.5)
  
   ),
@@ -1190,7 +1182,7 @@ var  isSelected = false;
               Text(
                 '${gunler[i].vakitTarih!.day}',
                 style: TextStyle(
-                  fontSize: 18,
+                  fontSize: size.height * 0.025,
                   fontWeight: FontWeight.bold,
                   color:  AppConfig.selectedaygunIndex == i ?         Colors.white        : Color(0xFF004eff)  ,
                 ),
@@ -1199,7 +1191,8 @@ var  isSelected = false;
               
                 DateFormat('MMMM', 'tr_TR').format(gunler[i].vakitTarih!), // Ayı türkçe olarak yazdırıyoruz
                 style: TextStyle(
-                  fontSize: 12,
+                            fontSize: size.height * 0.017,
+
                   color:  AppConfig.selectedaygunIndex == i ?   Colors.white : Colors.black ,
                 ),
               ),
@@ -1223,15 +1216,17 @@ return   GridView.count(
 
 class EzanVakitleri extends StatelessWidget {
           NamazVakitleri ? vakitveri;
+          int seciliVakit;
     EzanVakitleri({Key? key,   
 required this.vakitveri
+    ,required this.seciliVakit
     }) : super(key: key);
     
 
   @override
   Widget build(BuildContext context) {
            var size = MediaQuery.of(context).size;
-   int seciliVakit = AppConfig.selectedEzanvakti;
+    
 
    List<String> iconlar = [
     'imsak_vakit.png',
@@ -1285,11 +1280,7 @@ print("yeniden build");
 child:
        return GestureDetector(
                 onTap: () {
-                  setState(() {
-                    AppConfig.selectedEzanvakti=i;
-                    print("tikladin");
-                    
-                  });
+                 
                 },
                 child:   Container(
           
@@ -1298,7 +1289,7 @@ child:
           padding: EdgeInsets.all(13),
           margin: EdgeInsets.fromLTRB(5, 5, 5, 5),
           decoration: BoxDecoration(
-           color:  AppConfig.selectedEzanvakti ==i ?    Color(0xFF004eff).withOpacity(0.8): Color(0xFF004eff).withOpacity(0.3)
+           color:  apf.selectedEzanvakti.value ==i ?    Color(0xFF004eff).withOpacity(0.8): Color(0xFF004eff).withOpacity(0.3)
           ,  boxShadow: [
                /*  BoxShadow(
                   color: Colors.white.withOpacity(0.2),
@@ -1310,7 +1301,7 @@ child:
             gradient:
             
              
-                    AppConfig.selectedEzanvakti ==i ?  
+                    apf.selectedEzanvakti.value ==i ?  
                      LinearGradient(
       begin: Alignment(0.0, 0.0),
       end: Alignment(0, 1),
@@ -1423,7 +1414,7 @@ class CircularProgressBar extends StatelessWidget {
   Widget build(BuildContext context) {
   
     List<Vakit> vakit = vakitveri!.vakitler;
-    Vakit bugun = vakit[AppConfig.selectedEzanvakti];
+    Vakit bugun = vakit[apf.selectedEzanvakti.value];
     // ayin kaçıncı günü 
     int ayinKacinciGunu = bugun.vakitTarih!.day;
     // yılın kaçıncı ayı
@@ -1764,7 +1755,7 @@ decoration: BoxDecoration(
 padding: EdgeInsets.all(size.width * 0.01),
         margin: EdgeInsets.fromLTRB(
               size.width * 0.03, size.width * 0.010, size.width * 0.03, size.width * 0.005),
-        height: size.height * 0.23,
+       
 child:
 Stack(children: [
 
@@ -1799,7 +1790,7 @@ borderRadius: BorderRadius.only(
       bottomLeft: Radius.circular(20),
     ),
 ),
-      height: size.height * 0.20,
+      height: size.height * 0.25 *  ((icerik.length) / 222),
 
       child: Image .asset("assets/aicon.png"),
     ),
@@ -1819,7 +1810,6 @@ Expanded(
     ),
 ),
 
-      height: size.height * 0.25,      
       child: Column(
         mainAxisAlignment: MainAxisAlignment.start,
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -1836,45 +1826,11 @@ Expanded(
                             padding: EdgeInsets.fromLTRB(1, 2, 1, 1),
 child:
        SizedBox(
-        height: size.height * 0.1,
         child: SingleChildScrollView(
           child: Text(" $icerik")))), 
           
           
-          Align(
-            
-            alignment: Alignment.bottomLeft,
-            
-            child: Container(
-              height: size.height * 0.060,
-              child:  TextButton(
-              
-            child: Text("Devamını Oku",style: TextStyle(
-          fontSize: size.width / 30,
-          fontWeight: FontWeight.bold,
-          color: Colors.blue,
-        )),
-            
-         
-            onPressed: (){
-showModalBottomSheet(
-  context: context,
-  builder: (context) => Container(
-    height: size.height * 0.8,
-    child: Column(
-      children: [
-        Container(
-          child: Text( "$baslik",style: TextStyle( fontSize: 20,fontWeight: FontWeight.bold),),
-        ),
-        Container(
-          child: Text( "$icerik",style: TextStyle( fontSize: 16),),
-        ),
-      ],
-    ),
-  ),
-);
-            
-            },)))
+       
             
             
 
@@ -1910,7 +1866,15 @@ showModalBottomSheet(
           child: Center(child:
 Container(child:
 SizedBox(child: 
+GestureDetector(
+  onTap: () {
+     Share.share( "$baslik \n $icerik");
+    print("tıklandı");
+  },
+  child:
      SvgPicture.asset("assets/share.svg",color:Colors.white ,height: 15,width:15 , fit: BoxFit.scaleDown ,) ,
+),
+
 )),
   )
 

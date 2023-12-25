@@ -89,9 +89,10 @@ return    Scaffold(
       
      ),
          body:
-        Container(
-  height: height * 1,
-    child: SingleChildScrollView (child:  Column(
+         SingleChildScrollView(
+          physics: ScrollPhysics(),
+           child:
+       Column(
       children: [
           if (widget.tip == "genel") ...[  
    FutureBuilder( 
@@ -119,6 +120,7 @@ for (int i = 0; i < basliklar.length; i++) {
      
      
      return CustomScrollView(
+      physics: NeverScrollableScrollPhysics(),
           shrinkWrap: true,
 
   slivers: [
@@ -145,8 +147,9 @@ for (int i = 0; i < basliklar.length; i++) {
     )  )),
 
 SliverToBoxAdapter(
-      child: GridView.count(
-          padding: EdgeInsets.all(5.0),
+      child:GridView.count(
+    physics: NeverScrollableScrollPhysics(),
+          padding: EdgeInsets.all(10.0),
            crossAxisSpacing: 10,
            mainAxisSpacing: 10,
         childAspectRatio: 3.5,
@@ -201,6 +204,7 @@ for (int i = 0; i < basliklar.length; i++) {
      
      
     return    CustomScrollView(
+      physics: NeverScrollableScrollPhysics(),
           shrinkWrap: true,
 
   slivers: [
@@ -228,6 +232,7 @@ for (int i = 0; i < basliklar.length; i++) {
 
 SliverToBoxAdapter(
       child: GridView.count(
+    physics: NeverScrollableScrollPhysics(),
           padding: EdgeInsets.all(5.0),
            crossAxisSpacing: 10,
            mainAxisSpacing: 10,
@@ -296,6 +301,7 @@ for (int i = 0; i < dualar.length; i++) {
      
      
       return  CustomScrollView(
+        physics: NeverScrollableScrollPhysics(),
           shrinkWrap: true,
 
   slivers: [
@@ -323,6 +329,7 @@ for (int i = 0; i < dualar.length; i++) {
 
 SliverToBoxAdapter(
       child: GridView.count(
+        physics: NeverScrollableScrollPhysics(),
           padding: EdgeInsets.all(5.0),
            crossAxisSpacing: 10,
            mainAxisSpacing: 10,
@@ -355,8 +362,7 @@ SliverToBoxAdapter(
         )
     ]
       ],
-    ),
-  )));
+    ),));
     }
     }
 
@@ -463,7 +469,7 @@ Expanded(
     child: Container(
       padding: EdgeInsets.all(8),
       margin: EdgeInsets.fromLTRB(size.width*0.0 
-      , size.height*0.018 , size.width*0.05 , size.height*0.018 ),
+      , size.height*0.014 , size.width*0.05 , size.height*0.014 ),
           decoration: BoxDecoration(
              gradient: LinearGradient(
       begin: Alignment(0.00, 0.00),
@@ -492,7 +498,7 @@ Expanded(
                             padding: EdgeInsets.fromLTRB(1, 4, 1, 1),
 
           child:Text("${widget.baslik}",style: TextStyle(
-          fontSize: 16,
+          fontSize:   widget.baslik.length> 30 ? 12  :  widget.baslik.length> 20 ? 14 : 16 ,
           fontWeight: FontWeight.bold,
           color: Colors.white,
         ))),
@@ -790,6 +796,7 @@ nduagoster(context,DualarModel secilidua ){
    margin: EdgeInsets.fromLTRB(
               size.width * 0.00, size.width * 0.1, size.width * 0.00, size.width * 0.00),
        child:   CustomScrollView(
+        physics: NeverScrollableScrollPhysics(),
         slivers: <Widget>[
           SliverAppBar(
               iconTheme: IconThemeData(color: Colors.black), // Geri düğmesi rengi

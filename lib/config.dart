@@ -66,9 +66,54 @@ static String sehirid = "2";
 static String sehirname = "2";
 static String ilceid = "2";
 static String ilcename = "2";
-static int vakitstxt = 0; 
- static var vakitstring= "Vaktin Çıkmasına";
+ RxString vakitstring = "Vaktin Çıkmasına".obs;
+ RxInt vakitstxt = 1.obs;
+ void updateindexValue(int newValue) {
+  print("vakit update çalıştı");
+    // Use the update method to update the state
+    vakitstxt.update((val) {
+      val = newValue;
+    });
+    vakitstxt.value = newValue;
+    var isim ;
+ if(  vakitstxt.value == 0){
+   isim = "İmsak Vaktine...";
+}
+if(  vakitstxt.value == 1){
+     isim = "Güneşin Doğmasına";
+}
+if(  vakitstxt.value == 2){
+   isim= "Öğlenin Çıkmasına";
+}
+if(  vakitstxt.value == 3){
+   isim= "İkindinin Çıkmasına";
+}
+if(  vakitstxt.value == 4){
+    isim = "Akşamın Çıkmasına";
+}
+if(  vakitstxt.value == 5){
+   isim= "Yatsının Çıkmasına";
+}
+if( vakitstxt.value == 6){
+    isim= "İmsak Vaktine..";
+}
 
+ selectedEzanvakti.update((val) {
+
+      val = newValue;
+    });
+    selectedEzanvakti.value = newValue;
+updateStringValue(isim);
+vakitstring.value = isim;
+  }
+
+  // Function to update the state value
+  void updateStringValue(String newValue) {
+    // Use the update method to update the state
+    vakitstring.update((val) {
+      val = newValue;
+    });
+  }
   final box = GetStorage();
 
 ilkgiriskayit() async {
@@ -125,7 +170,7 @@ static var col2= Colors.blueAccent;
 static var login = true;
  static List<bool> isSelected = [true, false, false];
  static int selectedaygunIndex = 1;
-  static int selectedEzanvakti = 0;
+   RxInt selectedEzanvakti = 0.obs;
   static int namazduaindex = 0;
   static int selecteddiniyil = 0;
 RxInt selecteddinigun = 0.obs;

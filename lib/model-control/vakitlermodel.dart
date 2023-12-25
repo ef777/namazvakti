@@ -1,5 +1,8 @@
 import 'dart:convert';
+import 'package:get/get.dart';
+import 'package:get_storage/get_storage.dart';
 import 'package:http/http.dart' as http;
+import 'package:http/http.dart';
 
 class NamazVakitleri {
   List<Vakit> vakitler;
@@ -13,26 +16,50 @@ class NamazVakitleri {
 
 // JSON string'ini ayrıştır
 static  Future<NamazVakitleri> getNamazVakitleri(String ilceId) async {
+    final box = await GetStorage();
+
 print("istek gitti");
 print("ilce id : $ilceId ");
-  final response = await http.get(Uri.parse("http://vakitlerapix.namazvaktipro.com/vakitler?ilce=$ilceId"));
+  try {
+      final response = await http.get(Uri.parse("http://vakitlerapix.namazvaktipro.com/vakitler?ilce=$ilceId"));
 
   if (response.statusCode == 200) {
+      await  box.write('namazvakitlericache', response.body);
 
-    // JSON çözümle 
     List<dynamic> jsonList = jsonDecode(response.body);
+     var sonuc = NamazVakitleri.fromJson(jsonList);
     // Nesneye çevir
-    return NamazVakitleri.fromJson(jsonList);
+    return sonuc;
+  } 
+  else {
+    print("ahanda hata catche düşmedi");
+    var namazvakitler= await box.read('namazvakitlericache');
+ List<dynamic> jsonList = jsonDecode(namazvakitler);
+     var sonuc = NamazVakitleri.fromJson(jsonList);
+     return sonuc;
+  }
+  }
+  catch (e) {
 
-  } else {
+    print("ahanda hata catche düştü");
+ var namazvakitler= await box.read('namazvakitlericache');
+ List<dynamic> jsonList = jsonDecode(namazvakitler);
+     var sonuc = NamazVakitleri.fromJson(jsonList);
+    // Nesneye çevir
+    return sonuc;
 
-    // Hata durumunda
-    throw Exception('Veri yüklenemedi');
-  
   }
 
+     
+    // JSON çözümle 
+    
+
+
+
+  } 
+
 }
-}
+
 
 class Vakit {
   String miladiTarihKisa;

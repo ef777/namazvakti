@@ -94,7 +94,11 @@ return QiblahView() ;
    
     }
     if(index==1){
-      return ImsakVakti();
+      return Container(
+child: Center(child: Text("Kur'an Sayfası Yakında Sizlerle"),),
+
+      );
+
     }
     if(index==2){
       return AnaEk();

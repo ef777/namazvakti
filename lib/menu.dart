@@ -11,43 +11,54 @@ class Menu extends StatefulWidget {
 class _MenuState extends State<Menu> {
   @override
 
-
 List<Map<String, String>> menuList = [
- 
   {  
     'icon': "menuicons/duakardes.png",
     'title': 'Kazalar', 
-    'page': '/kaza'
+    'page': '/kaza',
+    'aktif' : '0'
   },
    {
     'icon': "menuicons/dualar.png",
     'title': 'Namaz Duaları',
     'page': '/namazdua'
+    ,
+    'aktif' : '0'
   } ,
     {
     'icon': "menuicons/dinigunler.png",
     'title': 'Dini Günler Ve Geceler',
     'page': '/dinigunler'
+    ,
+    'aktif' : '0'
   } ,
  {
     'icon': "menuicons/esmaulhusna.png",
     'title': 'Esma\'ül Hüsna',
     'page': '/esma'
+    ,
+    'aktif' : '0'
   } ,
   {
     'icon': "menuicons/dualar.png",
     'title': 'Dualar',
     'page': '/dualar'
+    ,
+    'aktif' : '1'
   } ,
   
   {
     'icon': "menuicons/dinihikaye.png",
     'title': 'Dini Hikayeler',
     'page': '/hikaye' 
+    ,
+    'aktif' : '0'
   }, {  
     'icon': "pusula.png",
     'title': 'Kıble Pusulası', 
     'page': 'KıblePusulası'
+    ,
+    'aktif' : '0'
   },
 
    
@@ -55,50 +66,72 @@ List<Map<String, String>> menuList = [
     'icon': "menuicons/dinirehber.png",
     'title': 'Dini Rehber',
     'page': '/rehber'
+    ,
+    'aktif' : '0'
   } , {
     'icon': "menuicons/diniradyo.png",
     'title': 'Dini Radyolar',
     'page': '/radyolar'
+    ,
+    'aktif' : '0'
   } ,
    {  
     'icon': "menuicons/yakindacami.png",
     'title': 'Yakındaki Camiler', 
     'page': '/'
+    ,
+    'aktif' : '0'
   },
    {  
     'icon': "menuicons/kabecanli.png",
     'title': 'Kabe Canlı', 
     'page': '/'
+    ,
+    'aktif' : '0'
   }, {  
     'icon': "menuicons/hikmetname.png",
     'title': 'Hikmetname', 
     'page': '/'
+    ,
+    'aktif' : '0'
   },{  
     'icon': "menuicons/hikmetname.png",
     'title': 'Hikmetname', 
     'page': '/'
+    ,
+    'aktif' : '0'
   },
   {  
     'icon': "menuicons/duakardes.png",
     'title': 'Dua', 
     'page': '/'
+    ,
+    'aktif' : '0'
   }, {  
     'icon': "menuicons/kur'an.png",
     'title': 'Kur\'an ', 
     'page': '/'
+    ,
+    'aktif' : '0'
   },
    {  
     'icon': "menuicons/zikirler.png",
     'title': 'Zikir', 
     'page': '/'
+    ,
+    'aktif' : '0'
   },   {  
     'icon': "menuicons/tebrik.png",
     'title': 'Tebrik Kartları', 
     'page': '/'
+    ,
+    'aktif' : '0'
   }, {  
     'icon': "menuicons/tesbihat.png",
     'title': 'Tesbihat', 
     'page': '/'
+    ,
+    'aktif' : '0'
   },
 ];
 
@@ -119,12 +152,17 @@ for (int i = 0; i < menuList.length; i++) {
       menulistwidgets.add(
          GestureDetector(
                 onTap: () {
+                  if (menuList[i]['aktif'] == '1'){
                   Get.toNamed(menuList[i]['page']!);
+
+                  }
+                  else {
+                    Get.snackbar("Uyarı", "Bu özellik henüz aktif değil");}
                 },    
                 child:   Container(
           
           
-          padding: EdgeInsets.all(10),
+          padding: EdgeInsets.all(9),
           margin: EdgeInsets.fromLTRB(8, 3, 8, 3),
           decoration: BoxDecoration(
             boxShadow: [
@@ -135,10 +173,11 @@ for (int i = 0; i < menuList.length; i++) {
                   offset: Offset(0, 3),
                 ), 
               ],
-            gradient:
+                gradient:
             
-               LinearGradient(
-              colors: [
+        menuList[i]['aktif'] == '1' ?   LinearGradient(
+              colors:  [
+                
                 Color(0xFF21367F),
                 Color(0xFF194D91),
                 Color(0xFF1590C1),
@@ -146,7 +185,19 @@ for (int i = 0; i < menuList.length; i++) {
               ],
               begin: Alignment.topCenter,
               end: Alignment.bottomCenter,
+            ) 
+          
+           : LinearGradient(
+              colors: [
+                Color.fromARGB(255, 112, 115, 126),
+                Color.fromARGB(255, 140, 147, 155),
+                Color.fromARGB(255, 196, 203, 206),
+               
+              ],
+              begin: Alignment.topCenter,
+              end: Alignment.bottomCenter,
             ),
+          
           
             borderRadius: BorderRadius.circular(20),
           ),
@@ -183,7 +234,7 @@ for (int i = 0; i < menuList.length; i++) {
                 '${menuList[i]['title']}',
                 textAlign: TextAlign.center,
                 style: TextStyle(
-                  fontSize: menuList[i]['title']!.length > 20 ?12 : 14, 
+                  fontSize: menuList[i]['title']!.length > 18 ?10 : 12, 
                   
                   color: Colors.white,
                 ),
@@ -199,14 +250,17 @@ for (int i = 0; i < menuList.length; i++) {
 
     return Scaffold(
      
-      body: Center(
-        child: CustomScrollView(
+      body: CustomScrollView(
+            physics: ScrollPhysics(),
+
 
   slivers: [
 
    SliverToBoxAdapter(
            
       child:   Container(
+        
+        height: size.height * 1,
         
          padding: EdgeInsets.all(5.0),
          
@@ -237,11 +291,9 @@ for (int i = 0; i < menuList.length; i++) {
           width: size.width * 0.1,
          margin: EdgeInsets.fromLTRB(
               size.width * 0.3, size.width * 0.04, size.width * 0.3, size.width * 0.02), */
-          child: SingleChildScrollView(
-  child: GridView.count(  
+         child: GridView.count(  
           crossAxisCount: 3, // Her satırda 7 kutu olacak şekilde ayarlayabilirsiniz
-                     scrollDirection: Axis.vertical,
-
+physics: NeverScrollableScrollPhysics(),
           shrinkWrap: true, // GridView'ın  içeriği sığdırılabilir
           children: menulistwidgets,  
         
@@ -252,10 +304,14 @@ for (int i = 0; i < menuList.length; i++) {
           
           
       ),
-  ),)
+  ),
+  
+   SliverToBoxAdapter(
+     child: SizedBox(height: 100,),      
+   ),
   
  ]),
-      ),
+      
     );
    
   }

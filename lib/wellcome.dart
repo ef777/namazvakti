@@ -1,7 +1,19 @@
+import 'dart:convert';
+import 'dart:io';
 import 'package:flutter/material.dart';
+
+import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:geocoding/geocoding.dart';
+import 'package:geolocator/geolocator.dart';
 import 'package:get/get.dart';
 import 'package:namazvakti/konumsec.dart';
+import 'package:flutter_html/flutter_html.dart';
+import 'package:geolocator/geolocator.dart';
+import 'package:google_maps_flutter/google_maps_flutter.dart';
+import 'package:google_maps_flutter/google_maps_flutter.dart';
+import 'package:http/http.dart' as http;
 
 import 'arkaplanwidget.dart';
 
@@ -15,7 +27,123 @@ class _WellcomePageState extends State<WellcomePage> {
  */
   @override
     bool _isChecked = false;
+    var gizlilik ;
+ void initState() {
 
+ loadsozlesmejson().then((value) => gizlilik = value);
+    super.initState();
+
+}
+
+
+static   Future loadsozlesme() async {
+var a=  await rootBundle.loadString('assets/json/sozlesme.json');
+    return a; 
+
+}
+ checkInternetConnection() async{
+  try {
+    // Google'ın DNS sunucularına bir istek gönderir.
+    var response = await http.get(Uri.parse("https://www.google.com"));
+
+    // İstek başarılı olursa, internet bağlantısı vardır.
+    if (response.statusCode == 200) {
+      return 1;
+      // İnternet bağlantısı var.
+    } else {
+      // İnternet bağlantısı yok.
+
+      // Kullanıcıya internete bağlanmasını söyler.
+      showDialog(
+        context: context,
+        builder: (BuildContext context) {
+          return AlertDialog(
+            title: Text("İnternet bağlantısı yok"),
+            content: Text("Lütfen internete bağlanın ve tekrar deneyin."),
+            actions: [
+              TextButton(
+                child: Text("Tamam"),
+                onPressed: () => Navigator.pop(context),
+              ),
+            ],
+          );
+        },
+      );
+            return 0;
+
+    }
+  } catch (e) {
+    // İstek başarısız olursa, internet bağlantısı yoktur.
+
+    // Kullanıcıya internete bağlanmasını söyler.
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: Text("İnternet bağlantısı yok"),
+          content: Text("Lütfen internete bağlanın ve tekrar deneyin."),
+          actions: [
+            TextButton(
+              child: Text("Tamam"),
+              onPressed: () => Navigator.pop(context),
+            ),
+          ],
+        );
+      },
+    );            return 0;
+
+  }
+  
+}
+static Future <String> loadsozlesmejson() async {
+  String jsonString = await loadsozlesme();
+  final jsonResponse = json.decode(jsonString);
+  print("jsonResponse" + jsonResponse .toString());
+  var cevap =  jsonResponse[0]["text"];
+  return   cevap.toString();
+
+
+}
+
+static sozlesmegoster(context,gizlilik) async {
+  showModalBottomSheet(      isScrollControlled: true, // Set to true to make it take up the entire screen
+context: context,  builder: (BuildContext context) {
+               
+                  return Container(
+                    padding: EdgeInsets.all(10.0),
+                    margin: EdgeInsets.fromLTRB(
+                        10, 10, 10, 10),
+                        
+                    height: 800,
+                    child: Center(
+                      child: Center(
+                                          child: SingleChildScrollView(
+                                        physics: BouncingScrollPhysics(),
+                                        child: Html(
+                                          style: {
+                                            '*': Style(
+                                              fontFamily: 'Montserrat',
+                                              color: Colors.black,
+                                            ),
+                                            'body': Style(
+                                                fontFamily: 'Montserrat',
+                                                color: Colors
+                                                    .black), // Tüm metni beyaz renkte göstermek için
+                                            'p': Style(
+                                                fontFamily: 'Montserrat',
+                                                color: Colors
+                                                    .black), // Paragrafları beyaz renkte göstermek için
+                                            // Diğer etiketler ve stiller buraya eklenebilir
+                                          },
+                                          data: gizlilik.toString(),
+                                        ),
+                                      )),
+                                    
+                      ),
+                    );
+                  
+                });
+}
   Widget build(BuildContext context) {
      var size = MediaQuery.of(context).size;
    var  height = size.height;
@@ -215,43 +343,43 @@ UpwardSlopedCircularContainer(
             ),
             borderRadius: BorderRadius.circular(10),
           ),
-          child:
+          child:   SizedBox(
+            child : GestureDetector (
+              onTap: () {
+
+sozlesmegoster(context,gizlilik)  ;            },
+           
+            child:  
            
            
              SvgPicture.asset("assets/eye.svg",color: 
              Colors.blue,fit: BoxFit.scaleDown // Görüntüyü mevcut boyut sınırlarına sığdır
              , height: 15,width: 15,)),
+          )
+          ),
+          
           /*   Container(child: 
             Image.asset("assets/ok.png")) */
-             Container(child: 
+  
+
+
+             SizedBox(
+            child : GestureDetector (
+              onTap: () {
+
+sozlesmegoster(context,gizlilik)  ;            },
+           
+            child:  Container(child: 
 Text("Gizlilik Sözleşmesi"),            
-            
+            ))
             ),  
            Row(   
             children: [
            SizedBox(
             child : GestureDetector (
               onTap: () {
-                showModalBottomSheet(context: context,  builder: (BuildContext context) {
-                  return Container(
-                    height: 200,
-                    child: Center(
-                      child: Text("Gizlilik Sözleşmesi"
-                      
-                    ,  style: TextStyle(
-  color:  Color.fromRGBO(0, 0, 0, 0.502).withOpacity(0.53),
-  fontWeight: FontWeight.bold,
-  fontSize: 14.0,
-  letterSpacing: 0.0,
-  decoration: TextDecoration.underline,
-  fontFamily: "Gilroy",
-  
-),
-                      ),
-                    ),
-                  );
-                });
-              },
+
+sozlesmegoster(context,gizlilik)  ;            },
            
             child:  SvgPicture.asset("assets/sozlesme.svg",color: 
              Colors.black,height: 15 , width: 15, fit: BoxFit.scaleDown, // Görüntüyü mevcut boyut sınırlarına sığdır
@@ -307,14 +435,17 @@ Text("Gizlilik Sözleşmesi"),
           child:
           
           GestureDetector(
-            onTap: () {
+            onTap: () async{
              // Navigator.pushNamed(context, '/login');
-
-             if(_isChecked){
+int a =await checkInternetConnection();
+             if(_isChecked == true && a == 1){
               Get.to(() => KonumSec());
 
              }
               else {
+                if(a == 0)
+                Get.snackbar("Hata", "Lütfen internet bağlantınızı kontrol ediniz");
+                else
                 Get.snackbar("Hata", "Lütfen Gizlilik Sözleşmesini okuyup kabul ediniz");
               }   
             },

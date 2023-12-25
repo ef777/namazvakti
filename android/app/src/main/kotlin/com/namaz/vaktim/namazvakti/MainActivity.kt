@@ -1,6 +1,7 @@
 
 
 package com.namaz.vaktim.namazvakti
+import android.os.PowerManager
 import io.flutter.embedding.android.FlutterActivity
 import io.flutter.embedding.engine.FlutterEngine
 import io.flutter.plugins.GeneratedPluginRegistrant
@@ -211,6 +212,34 @@ Log.d("MyTag", time5)
 Log.d("MyTag", time6)
 
 showCustomNotification2(context, title, content,ilce ,kalan_vakit, time1,time2,time3,time4,time5,time6 ,id) 
+
+
+
+val packageName = "com.namaz.vaktim.namazvakti"
+val launchIntent = context.packageManager.getLaunchIntentForPackage(packageName)
+
+if (launchIntent != null) {
+    // The launchIntent is not null, so you can use it
+    // Example: startActivity(launchIntent)
+    
+launchIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+launchIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK)
+launchIntent.putExtra("title", title)
+launchIntent.putExtra("content", content)
+launchIntent.putExtra("time", time)
+context.startActivity(launchIntent)
+} else {
+    // Handle the case where the launch intent is null
+    // (package not installed or no launch intent found)
+}
+
+
+
+
+
+// Servisi uyandırmayı unutma
+//releaseWakeLock(context);
+
 }
 else {
     Log.d("MyTag", "içerik boş")
@@ -274,7 +303,8 @@ else {
         mediaPlayer.start() // Ses dosyasını çalmak için
         
         // MediaPlayer ile işiniz bittiğinde kaynakları serbest bırakın
-        mediaPlayer.setOnCompletionListener { mediaPlayer.release() }
+        mediaPlayer.setOnCompletionListener {   mediaPlayer.reset()
+            mediaPlayer.release() }
         builder.setSmallIcon(R.drawable.app_icon)
         builder.setCustomContentView(notificationLayout) // Önemli: Bu genişletilmiş bildirim oluşturur
         builder.setPriority(NotificationCompat.PRIORITY_HIGH)
@@ -299,6 +329,8 @@ else {
     
         val notification = builder.build()
         NotificationManagerCompat.from(context).notify(notificationId, notification)
+        
+        
     }
     
    

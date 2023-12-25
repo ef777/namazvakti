@@ -9,7 +9,7 @@ class Ulke {
   Ulke({this.ulkeAdi, this.ulkeAdiEn, this.ulkeID});
 
   Ulke.fromJson(Map<String, dynamic> json) {
-    ulkeAdi = json['UlkeAdi'];
+    ulkeAdi = (utf8.decode(json['UlkeAdi'].toString().codeUnits)) as String;
     ulkeAdiEn = json['UlkeAdiEn'];
     ulkeID = json['UlkeID'];
   }
@@ -30,7 +30,8 @@ var  Ulkeler = <Ulke>[];
 // Fetch ile kullanımı: 
 
 static Future<List<Ulke>> fetchUlkeListesi() async {
-  final response = await http.get(Uri.parse("http://vakitlerapix.namazvaktipro.com/ulkeler"));
+  final response = await http.get(Uri.parse("http://vakitlerapix.namazvaktipro.com/ulkeler"),headers: {
+  "Content-Type": "application/json; charset=utf-8",} );
   
   if(response.statusCode == 200) {
    var sonuc = parseUlkeListesi(response.body);

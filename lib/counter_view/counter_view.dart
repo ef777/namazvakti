@@ -56,19 +56,21 @@ class _CounterViewState extends State<CounterView> {
 
   @override
   Widget build(BuildContext context) {
+               var size = MediaQuery.of(context).size;
+
     return Scaffold(
       backgroundColor: Colors.white,
    
      
-      body: Padding(
+      body: Center(child: Padding(
         padding: const EdgeInsets.only(bottom: 39),
         child: Stack(
           alignment: AlignmentDirectional.bottomCenter,
           children: [
+            
             ListView(
               children: [
-              
-               
+              SizedBox(height: size.height /10 ,),
                 Container(
                   height: 350,
                   width: 300,
@@ -260,7 +262,7 @@ class _CounterViewState extends State<CounterView> {
           ],
         ),
       ),
-    );
+    ));
   }
 }
 

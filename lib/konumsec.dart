@@ -2,6 +2,8 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:geocoding/geocoding.dart';
+import 'package:geolocator/geolocator.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:namazvakti/config.dart';
@@ -10,6 +12,7 @@ import 'package:namazvakti/girisalarm.dart';
 import 'package:namazvakti/model-control/ilceler.dart';
 import 'package:namazvakti/model-control/sehirler.dart';
 import 'package:namazvakti/model-control/ulkeler.dart';
+import 'dart:math' as math;
 
 
 
@@ -26,6 +29,36 @@ class _KonumSecState extends State<KonumSec> {
 
   final box = GetStorage();
 
+Future<Map<String, String>> getLocationInfo() async {
+  Map<String, String> locationInfo = {};
+
+  try {
+    // Konum bilgilerini al
+    Position position = await Geolocator.getCurrentPosition(
+    );
+
+    // Koordinatları kullanarak adres bilgilerini al
+    List<Placemark> placemarks = await placemarkFromCoordinates(
+        position.latitude!, position.longitude!);
+
+    // Ülke, şehir ve ilçe bilgilerini al
+    String country = placemarks.first.country ?? '';
+    String city = placemarks.first.administrativeArea ?? '';
+    String mahalle = placemarks.first.subLocality ?? '';
+       String ilce = placemarks.first.subAdministrativeArea?? '';
+
+    // Bilgileri map'e ekle
+    locationInfo = {
+      'country': country,
+      'city': city,
+      'subLocality': ilce,
+    };
+  } catch (e) {
+    print('Hata: $e');
+  }
+
+  return locationInfo;
+}
 var _isLoading = false;
   
     bool _isChecked = false;
@@ -39,17 +72,218 @@ Ilce ?selectedIlce;
 @override
   void initState() {
 
-  
+  konumgenel();
     // TODO: implement initState
     super.initState();
   }
+     Map<String, String> locationInfo = {};
+String findClosestWord(String kelime, List<dynamic> kelimeler) {
+  String enYakinKelime = "";
+  int enKucukMesafe = -1;
 
- Future <List<dynamic >> Konumveri(ulke,sehir) async {
-print("future fonk başladı");
-   var  ulkeler   = await Ulke.fetchUlkeListesi();
+  for (String kelime2 in kelimeler) {
+    int mesafe = levenshteinDistance(kelime, kelime2);
+    if (mesafe < enKucukMesafe || enKucukMesafe == -1) {
+      enKucukMesafe = mesafe;
+      enYakinKelime = kelime2;
+    }
+  }
+
+  return enYakinKelime;
+}
+int levenshteinDistance(String kelime1, String kelime2){
+  List<List<int>> distanceMatrix = List.generate(kelime1.length + 1, (i) => List.generate(kelime2.length + 1, (j) => 0));
+
+  for (int i = 0; i <= kelime1.length; i++) {
+    distanceMatrix[i][0] = i;
+  }
+  
+  for (int j = 0; j <= kelime2.length; j++) {
+    distanceMatrix[0][j] = j;
+  }
+
+  for (int i = 1; i <= kelime1.length; i++) {
+    for (int j = 1; j <= kelime2.length; j++) {
+      int substitutionCost = kelime1[i - 1] == kelime2[j - 1] ? 0 : 1;
+      
+      int insertionDistance = distanceMatrix[i][j - 1] + 1;
+      int deletionDistance = distanceMatrix[i - 1][j] + 1;
+      int substitutionDistance = distanceMatrix[i - 1][j - 1] + substitutionCost;
+
+      distanceMatrix[i][j] = [insertionDistance, deletionDistance, substitutionDistance].reduce(math.min);
+    }
+  }
+
+  return distanceMatrix[kelime1.length][kelime2.length]; 
+}
+ 
+
+Future<void> checkAndOpenGPS() async {
+    // GPS kapalı mı kontrolü
+    bool isLocationServiceEnabled = await Geolocator.isLocationServiceEnabled();
+    if (!isLocationServiceEnabled) {
+       showDialog(
+          context: context,
+          builder: (BuildContext context) {
+            return AlertDialog(
+              title: Text('Uyarı'),
+              content: Text('Konum Bulmak için GPS Açmanız Gerekiyor'),
+              actions: [
+                TextButton(
+                  onPressed: () async{
+                          bool openLocationSettings = await Geolocator.openLocationSettings();
+
+                    Navigator.pop(context);
+                  },
+                  child: Text('GPS Ayarları'),
+                ),
+                  TextButton(
+                  onPressed: () async{
+
+                    Navigator.pop(context);
+                  },
+                  child: Text('El ile seç'),
+                ),
+              ],
+            );
+          },
+        );
+      
+
+      // GPS kapalıysa, kullanıcıya açma izni iste
+     
+    }  }
+  
+
+ konumgenel(){
+var a;
+ gpskonum().then((value)  {
+  a = value;
+
+
+    if (a[0] != null && a[1] != null && a[2] != null) {
+      setState(() {
+        selectedUlke = a[0];
+        selectedSehir = a[1];
+        selectedIlce = a[2];
+      });
+      print("hoppp oto gps çalıştı");
+saveid(selectedUlke!, selectedSehir!, selectedIlce!);
+      print("oto gps idler kaydedildi");
+      AppConfig.login = true;
+  
+  Get.snackbar(
+      "Konumunuz otomatik olarak bulundu!",
+      "${selectedUlke!.ulkeAdi} ${selectedSehir!.sehirAdi} ${selectedIlce!.ilceAdi}",
+      duration: Duration(seconds: 7),
+      snackPosition: SnackPosition.BOTTOM,
+      backgroundColor: Colors.blue,
+      colorText: Colors.white,
+      borderRadius: 10.0,
+      margin: EdgeInsets.all(10.0),
+      padding: EdgeInsets.all(15.0),
+      boxShadows: [
+        BoxShadow(
+          color: Colors.black.withOpacity(0.5),
+          spreadRadius: 1,
+          blurRadius: 3,
+          offset: Offset(0, 2),
+        ),
+      ],
+    );
+  
+              Get.offAll(ImsakVakti());     
+    } });
+  }
+
+        
+      
+      
+     
+
+
+ 
+
+
+    
+  
+   
+ 
+
+
+  Future <List<dynamic >>  gpskonum() async{
+    print("future fonk başladı");
+    Ulke ? ulke;
+    Sehir ?sehir;
+    Ilce ?ilce;
+    var  ulkeler   = await Ulke.fetchUlkeListesi();
 
    var sehirler = null;
     var ilceler = null;
+     bool gps = await Geolocator.isLocationServiceEnabled();
+     print("gps durumu : " + gps.toString());
+if (gps== true ) {
+locationInfo = await getLocationInfo() as Map<String, String>;
+print( locationInfo.toString());
+ 
+    if(locationInfo['country'] != null && locationInfo['city'] != null && locationInfo['subLocality'] != null) {
+   print("gps bulundu");
+    print(locationInfo['country']!.toUpperCase() + " " + locationInfo['city']!.toUpperCase() + " " + locationInfo['subLocality']!.toUpperCase());
+    
+    
+    var gpsulke= findClosestWord(locationInfo['country']!.toUpperCase(), ulkeler.map((e) => e.ulkeAdi!.toUpperCase()).toList());
+     print("bulunan ülke : " + gpsulke);
+     for (var item in ulkeler) {
+       if (item.ulkeAdi!.toUpperCase() == gpsulke) {
+         ulke = item;
+         print("bulunan ülke id : " + item.ulkeID!);
+       }
+     }
+
+      sehirler = await Sehir.getSehirler(ulke!.ulkeID.toString());
+      print("sehirler geldi");
+      var gpssehir= findClosestWord(locationInfo['city']!.toUpperCase(), sehirler.map((e) => e.sehirAdi!.toString().toUpperCase()).toList());
+      print("bulunan şehir : " + gpssehir);
+      for (var item in sehirler) {
+       if (item.sehirAdi!.toUpperCase() == gpssehir) {
+         sehir = item;
+         print("bulunan şehir id : " + item.sehirID!);
+       }}
+   
+     ilceler = await Ilce.getIlceler(sehir!.sehirID!.toString());
+      var gpsilce= findClosestWord(locationInfo['subLocality']!.toUpperCase(), ilceler.map((e) => e.ilceAdi!.toString().toUpperCase()).toList());
+      print("bulunan ilçe : " + gpsilce);
+      for (var item in ilceler) {
+       if (item.ilceAdi!.toUpperCase() == gpsilce) {
+         ilce = item;
+         print("bulunan ilçe id : " + item.ilceID!);
+       }
+
+
+
+
+    }
+
+    }
+      print("gps konum oto bitti");
+  return [ulke,sehir,ilce];
+    }
+else{
+  print("gps yok");
+  return [null,null,null];
+}
+}
+
+ Future <List<dynamic >> Konumveri(ulke,sehir) async {
+  print("future fonk başladı");
+    var  ulkeler   = await Ulke.fetchUlkeListesi();
+   
+   var sehirler = null;
+    var ilceler = null;
+  
+// manuel
+
+
     if(ulke == null && sehir == null){
     sehirler = await Sehir.getSehirler(ulkeler.first.ulkeID!);
     ilceler = await Ilce.getIlceler(sehirler.first.sehirID!);
@@ -70,19 +304,13 @@ else if (ulke != null && sehir != null) {
 
 
 
-  
- 
-
-   
- 
-
-
   else {
         print("hata");
 
    return [null,null,null];
-  }
- }
+  }}
+ 
+ 
 
 saveid(Ulke ulke,Sehir sehir, Ilce ilce) async {
 
@@ -274,7 +502,13 @@ selectedIlce = null;
 
 )),
  SliverToBoxAdapter( 
-  child: AbsorbPointer(
+  child:
+  FutureBuilder(
+  future: Future.delayed(Duration(seconds: 2)),
+  builder: (context, snapshot) {
+    if (!_isLoading) {
+      return 
+   AbsorbPointer(
     
   absorbing: selectedSehir == null, child:  DropdownBottomSheetWidget(
     secilen: selectedIlce?.ilceAdi ?? "",
@@ -293,8 +527,14 @@ selectedIlce = null;
           print(selected);
             });}
         },
-      ),))
- ,
+      ),);}
+       else {
+      return Center(child: CircularProgressIndicator());
+    }
+      
+      
+  }, ),),
+
     SliverToBoxAdapter(
       child: Container(
          padding: EdgeInsets.all(10.0),
