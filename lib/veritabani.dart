@@ -123,7 +123,7 @@ NamazVakitleri gelennamaz= await namazvakital();
   List<Vakit> vakits= await gelennamaz.vakitler;
     vakits =   namazvakitfiltre(vakits);
 
-
+//s
 
 for (var i = 0 ; i <vakits.length; i ++){
   var db = await VeritabaniYardimcisi.veritabaniErisim();
